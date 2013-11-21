@@ -91,4 +91,3 @@
 		<service android:name="net.purespeedx.psxxtras.Utils.BackgroundIntentService" />"   		
     </application>
 </manifest>
-
