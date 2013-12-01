@@ -44,11 +44,12 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
     private static final String KEY_LIGHT_OPTIONS = "category_light_options";
     private static final String KEY_NOTIFICATION_PULSE = "notification_pulse";
     private static final String KEY_BATTERY_LIGHT = "battery_light";
-
+    private static final String PREF_LESS_NOTIFICATION_SOUNDS = "less_notification_sounds";
+	 
     private PreferenceCategory mLightOptions;
     private PreferenceScreen mNotificationPulse;
     private PreferenceScreen mBatteryPulse;
-
+    private ListPreference mAnnoyingNotifications;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,6 +80,13 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
                 updateBatteryPulseDescription();
             }
         }
+
+        mAnnoyingNotifications = (ListPreference) findPreference(PREF_LESS_NOTIFICATION_SOUNDS);
+        int notificationThreshold = Settings.System.getInt(getContentResolver(),
+                Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD,
+                0);
+        mAnnoyingNotifications.setValue(Integer.toString(notificationThreshold));
+        mAnnoyingNotifications.setOnPreferenceChangeListener(this);		
     }
 
     private void updateLightPulseDescription() {
@@ -111,7 +119,13 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object objValue) {
-        // TODO Auto-generated method stub
+	    final String key = preference.getKey();
+        if (PREF_LESS_NOTIFICATION_SOUNDS.equals(key)) {
+            final int val = Integer.valueOf((String) objValue);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD, val);
+			return true;
+        }        
         return false;
     }
     
