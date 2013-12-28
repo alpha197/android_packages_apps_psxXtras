@@ -34,6 +34,7 @@ import android.os.Vibrator;
 import android.preference.Preference.OnPreferenceChangeListener;
 
 import com.android.settings.R;
+import com.android.settings.Utils;
 import android.preference.PreferenceCategory;
 import android.database.ContentObserver;
 import android.content.res.Resources;
@@ -47,6 +48,11 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
     private static final String PREF_LESS_NOTIFICATION_SOUNDS = "less_notification_sounds";
     private static final String KEY_QUIET_HOURS = "quiet_hours_settings";
     private static final String KEY_SAFE_HEADSET_VOLUME_WARNING = "safe_headset_volume_warning";
+    private static final String KEY_INCREASING_RING = "increasing_ring";
+
+    private static final String[] NEED_VOICE_CAPABILITY = {
+            KEY_INCREASING_RING
+    };
     
     private PreferenceCategory mLightOptions;
     private PreferenceScreen mNotificationPulse;
@@ -116,6 +122,15 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
         mVolumeWarning.setChecked(Settings.System.getInt(getContentResolver(),
                     Settings.System.MANUAL_SAFE_MEDIA_VOLUME, 1) == 1);
         mVolumeWarning.setOnPreferenceChangeListener(this);        
+		
+        if (!Utils.isVoiceCapable(getActivity())) {
+            for (String prefKey : NEED_VOICE_CAPABILITY) {
+                Preference pref = findPreference(prefKey);
+                if (pref != null) {
+                    getPreferenceScreen().removePreference(pref);
+                }
+            }
+        }		
     }
     
 

@@ -173,4 +173,22 @@
     <!-- Safe headset volume warning -->
     <string name="safe_headset_volume_warning_title">Lautstärkenwarnung</string>
     <string name="safe_headset_volume_warning_summary">Zeige Warnung "Sichere Kopfhörerlautstärke"</string>	
+
+	<!-- Increasing Ringtone -->
+
+    <string name="increasing_ring_title">Ansteigender Klingelton</string>
+    <!-- Sound settings screen, the caption of the checkbox for making incoming calls increase in volume -->
+    <string name="checkbox_increasing_ring">Aktiv</string>
+    <!-- Sound settings screen, the title of the volume bar to adjust the minimum increasing ring volume -->
+    <string name="increasing_ring_min_volume_title">Anfangslautstärke</string>
+    <string name="increasing_ring_volume_notice">Hinweis:\nWenn die Anfangslautstärke lauter gesetzt wird als die normale Lautstärke, wird die Normale benutzt</string>
+    <string name="increasing_ring_interval_title">Anstiegsintervall</string>
+    <string name="increasing_ring_interval_eachring">Bei jedem Klingeln</string>
+    <string name="increasing_ring_interval_half_second">0.5 Sekunden</string>
+    <string name="increasing_ring_interval_1second">1 Sekunden</string>
+    <string name="increasing_ring_interval_2seconds">2 Sekunden</string>
+    <string name="increasing_ring_interval_3seconds">3 Sekunden</string>
+    <string name="increasing_ring_interval_5seconds">5 Sekunden</string>
+    <string name="increasing_ring_interval_10seconds">10 Sekunden</string>	
+	
 </resources>

@@ -24,6 +24,13 @@
             android:title="@string/safe_headset_volume_warning_title"
             android:summary="@string/safe_headset_volume_warning_summary"
             android:persistent="false" />	
+
+    <com.android.settings.IncreasingRingPreference
+        android:key="increasing_ring"
+        android:title="@string/increasing_ring_title"
+        android:dialogTitle="@string/increasing_ring_title"
+        android:persistent="false"
+        android:streamType="ring" />
 			
  	<PreferenceCategory
         android:title="@string/notifications_category_title" >
