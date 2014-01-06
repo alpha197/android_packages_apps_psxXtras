@@ -9,7 +9,8 @@
 	<string name="psx_header_buttons">Buttons</string>
 	<string name="psx_header_interface">Interface</string>
 	<string name="psx_header_lockscreen">Lockscreen</string>
-
+    <string name="status_bar_style_title">Status bar style</string>
+	
 	<!-- General strings -->
     <string name="ok">OK</string>
     <string name="reset">Reset</string>
@@ -144,5 +145,9 @@
     <string name="less_notification_sounds_1m">1 minute</string>
     <string name="less_notification_sounds_2m">2 minutes</string>
     <string name="less_notification_sounds_5m">5 minutes</string>
-	
+
+ <!-- Statusbar show battery percent -->
+  <string name="status_bar_show_battery_percent">Show battery percent</string>
+  <string name="status_bar_show_battery_percent_summary">Shows the battery state in percent inside of the battery symbol</string>	
+  
 </resources>
