@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.preference.CheckBoxPreference;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceScreen;
@@ -20,8 +21,10 @@ import com.android.settings.SettingsPreferenceFragment;
 public class BarsSettings extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
     private static final String STATUS_BAR_SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
+    private static final String KEY_NAVIGATION_BAR_HEIGHT = "navigation_bar_height";	
 	
 	private CheckBoxPreference mStatusBarShowBatteryPercent;
+	private ListPreference mNavigationBarHeight;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,16 @@ public class BarsSettings extends SettingsPreferenceFragment implements OnPrefer
         mStatusBarShowBatteryPercent.setChecked((Settings.System.getInt(getContentResolver(),
             "status_bar_native_battery_percentage", 0) == 1));
         mStatusBarShowBatteryPercent.setOnPreferenceChangeListener(this);
+
+        // Navigationbar height		
+        mNavigationBarHeight = 
+		    (ListPreference) prefSet.findPreference(KEY_NAVIGATION_BAR_HEIGHT);
+        mNavigationBarHeight.setOnPreferenceChangeListener(this);
+        int statusNavigationBarHeight = Settings.System.getInt(getActivity().getApplicationContext()
+                .getContentResolver(),
+                Settings.System.NAVIGATION_BAR_HEIGHT, 48);
+        mNavigationBarHeight.setValue(String.valueOf(statusNavigationBarHeight));
+        mNavigationBarHeight.setSummary(mNavigationBarHeight.getEntry());		
     }
 
     @Override
@@ -50,6 +63,13 @@ public class BarsSettings extends SettingsPreferenceFragment implements OnPrefer
             Settings.System.putInt(getContentResolver(),
                     "status_bar_native_battery_percentage",
                     (Boolean) newValue ? 1 : 0);
+            return true;
+        } else if (preference == mNavigationBarHeight) {
+            int statusNavigationBarHeight = Integer.valueOf((String) newValue);
+            int index = mNavigationBarHeight.findIndexOfValue((String) newValue);
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.NAVIGATION_BAR_HEIGHT, statusNavigationBarHeight);
+            mNavigationBarHeight.setSummary(mNavigationBarHeight.getEntries()[index]);
             return true;
         }
         return false;
