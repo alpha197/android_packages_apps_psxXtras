@@ -9,7 +9,8 @@
 	<string name="psx_header_buttons">Buttons</string>
 	<string name="psx_header_interface">Interface</string>
 	<string name="psx_header_lockscreen">Lockscreen</string>
-    <string name="status_bar_style_title">Status bar style</string>
+    <string name="psx_header_statusbar">Status bar</string>
+    <string name="psx_header_navbar">Navigation bar</string>
 	
 	<!-- General strings -->
     <string name="ok">OK</string>
@@ -149,9 +150,6 @@
  <!-- Statusbar show battery percent -->
   <string name="status_bar_show_battery_percent">Show battery percent</string>
   <string name="status_bar_show_battery_percent_summary">Shows the battery state in percent inside of the battery symbol</string>	
-
-    <!-- Navigation Bar -->
-    <string name="navigation_bar_title">Navigation bar</string>
 
     <!-- Navigation Bar Height -->
     <string name="navigation_bar_height">Navigation bar height</string>

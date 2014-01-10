@@ -17,16 +17,17 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
-    android:title="@string/psx_header_bars">
+    android:title="@string/psx_header_navbar">
 
-    <PreferenceScreen
-        android:key="psx_statusbar"
-        android:fragment="net.purespeedx.psxxtras.StatusbarSettings"
-        android:title="@string/psx_header_statusbar" />			
-		
-    <PreferenceScreen
-        android:key="psx_navbar"
-        android:fragment="net.purespeedx.psxxtras.NavbarSettings"
-        android:title="@string/psx_header_navbar" />			
-		
+
+	    <ListPreference
+            android:key="navigation_bar_height"
+            android:dialogTitle="@string/navigation_bar_height"
+            android:title="@string/navigation_bar_height"
+            android:entries="@array/navigation_bar_height_entries"
+            android:entryValues="@array/navigation_bar_height_values"
+            android:defaultValue="48"
+            android:persistent="false" />
+
+			
 </PreferenceScreen>

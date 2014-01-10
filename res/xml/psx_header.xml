@@ -17,16 +17,30 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
-    android:title="@string/psx_header_bars">
+    android:title="@string/header_category_rom_settings">
 
+    <!-- Bars -->
     <PreferenceScreen
-        android:key="psx_statusbar"
-        android:fragment="net.purespeedx.psxxtras.StatusbarSettings"
-        android:title="@string/psx_header_statusbar" />			
-		
+        android:key="psx_bars"
+        android:fragment="net.purespeedx.psxxtras.BarsSettings"
+        android:title="@string/psx_header_bars" />
+
+    <!-- Buttons -->
     <PreferenceScreen
-        android:key="psx_navbar"
-        android:fragment="net.purespeedx.psxxtras.NavbarSettings"
-        android:title="@string/psx_header_navbar" />			
-		
+        android:key="psx_buttons"
+        android:fragment="net.purespeedx.psxxtras.ButtonsSettings"
+        android:title="@string/psx_header_buttons" />
+                
+    <!-- Interface -->
+    <PreferenceScreen
+        android:key="psx_user_interface"
+        android:fragment="net.purespeedx.psxxtras.UserInterfaceSettings"
+        android:title="@string/psx_header_interface" />
+
+    <!-- Lockscreen -->
+    <PreferenceScreen
+        android:key="psx_lockscreen"
+        android:fragment="net.purespeedx.psxxtras.LockscreenSettings"
+        android:title="@string/psx_header_lockscreen" />	
+
 </PreferenceScreen>

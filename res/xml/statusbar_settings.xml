@@ -17,16 +17,13 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
-    android:title="@string/psx_header_bars">
+    android:title="@string/psx_header_statusbar">
 
-    <PreferenceScreen
-        android:key="psx_statusbar"
-        android:fragment="net.purespeedx.psxxtras.StatusbarSettings"
-        android:title="@string/psx_header_statusbar" />			
-		
-    <PreferenceScreen
-        android:key="psx_navbar"
-        android:fragment="net.purespeedx.psxxtras.NavbarSettings"
-        android:title="@string/psx_header_navbar" />			
-		
+        
+    <CheckBoxPreference
+        android:key="status_bar_show_battery_percent"
+        android:title="@string/status_bar_show_battery_percent"
+        android:summary="@string/status_bar_show_battery_percent_summary"
+        android:defaultValue="false" />
+ 				
 </PreferenceScreen>

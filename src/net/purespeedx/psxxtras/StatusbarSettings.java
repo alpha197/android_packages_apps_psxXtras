@@ -18,16 +18,27 @@ import android.provider.Settings;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 
-public class BarsSettings extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
+public class StatusbarSettings extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
+    private static final String STATUS_BAR_SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
+	
+	private CheckBoxPreference mStatusBarShowBatteryPercent;
+	private ListPreference mNavigationBarHeight;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        addPreferencesFromResource(R.xml.bars_settings);
+        addPreferencesFromResource(R.xml.statusbar_settings);
 		PreferenceScreen prefSet = getPreferenceScreen();
 		
+		// Statusbar battery percentage
+        mStatusBarShowBatteryPercent =
+            (CheckBoxPreference) prefSet.findPreference(STATUS_BAR_SHOW_BATTERY_PERCENT);
+        mStatusBarShowBatteryPercent.setChecked((Settings.System.getInt(getContentResolver(),
+            "status_bar_native_battery_percentage", 0) == 1));
+        mStatusBarShowBatteryPercent.setOnPreferenceChangeListener(this);
+
     }
 
     @Override
@@ -37,6 +48,13 @@ public class BarsSettings extends SettingsPreferenceFragment implements OnPrefer
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        return true;
+	    //Statusbar battery percentage
+	    if (preference == mStatusBarShowBatteryPercent) {
+            Settings.System.putInt(getContentResolver(),
+                    "status_bar_native_battery_percentage",
+                    (Boolean) newValue ? 1 : 0);
+            return true;
+        }
+        return false;
     }
 }
