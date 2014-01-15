@@ -31,5 +31,6 @@
   <bool name="config_show_userinterface_chargingled">false</bool>
   <bool name="config_show_userinterface_notificationled">false</bool>
   <bool name="config_show_userinterface_lessnotifications">false</bool>
+  <bool name="config_show_buttons_powermenu">false</bool>
 
 </resources>

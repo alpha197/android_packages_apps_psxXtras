@@ -22,6 +22,7 @@ import android.preference.ListPreference;
 
 public class ButtonsSettings extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
+    private static final String KEY_POWER_MENU = "power_menu";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +31,13 @@ public class ButtonsSettings extends SettingsPreferenceFragment implements OnPre
         
 		ContentResolver resolver = getActivity().getContentResolver();	
 		PreferenceScreen prefSet = getPreferenceScreen();
+
+        boolean hasPowermenu = getResources().getBoolean(
+                R.bool.config_show_buttons_powermenu);
+		if (!hasPowermenu) {
+		     Preference ps = (Preference) findPreference(KEY_POWER_MENU);
+			 if (ps != null) prefSet.removePreference(ps);
+		}
 		
 	}
 
