@@ -20,6 +20,9 @@ import com.android.settings.SettingsPreferenceFragment;
 
 public class BarsSettings extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
+    private static final String KEY_STATUSBAR = "psx_statusbar";
+    private static final String KEY_NAVBAR = "psx_navbar";
+
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,19 @@ public class BarsSettings extends SettingsPreferenceFragment implements OnPrefer
         addPreferencesFromResource(R.xml.bars_settings);
 		PreferenceScreen prefSet = getPreferenceScreen();
 		
+        boolean hasStatusbar = getResources().getBoolean(
+                R.bool.config_show_psx_statusbar);
+    	if (!hasStatusbar) {
+	        Preference ps = (Preference) findPreference(KEY_STATUSBAR);
+    		 if (ps != null) prefSet.removePreference(ps);
+	    }
+		
+        boolean hasNavbar = getResources().getBoolean(
+                R.bool.config_show_psx_navbar);
+    	if (!hasNavbar) {
+	        Preference ps = (Preference) findPreference(KEY_NAVBAR);
+    		 if (ps != null) prefSet.removePreference(ps);
+	    }	
     }
 
     @Override

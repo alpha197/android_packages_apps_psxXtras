@@ -45,6 +45,7 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
     private static final String KEY_NOTIFICATION_PULSE = "notification_pulse";
     private static final String KEY_BATTERY_LIGHT = "battery_light";
     private static final String PREF_LESS_NOTIFICATION_SOUNDS = "less_notification_sounds";
+    private static final String KEY_QUIET_HOURS = "quiet_hours_settings";
 	 
     private PreferenceCategory mLightOptions;
     private PreferenceScreen mNotificationPulse;
@@ -58,6 +59,13 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
         addPreferencesFromResource(R.xml.user_interface_settings);
         PreferenceScreen prefSet = getPreferenceScreen();
 
+        boolean hasQuietHours = getResources().getBoolean(
+                R.bool.config_show_userinterface_quiethours);
+	    if (!hasQuietHours) {
+	        Preference ps = (Preference) findPreference(KEY_QUIET_HOURS);
+		    if (ps != null) prefSet.removePreference(ps);
+	    }
+		
         mLightOptions = (PreferenceCategory) prefSet.findPreference(KEY_LIGHT_OPTIONS);
         mNotificationPulse = (PreferenceScreen) findPreference(KEY_NOTIFICATION_PULSE);
         if (mNotificationPulse != null) {
@@ -81,12 +89,26 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
             }
         }
 
+		if ((mNotificationPulse == null) && (mBatteryPulse == null) && (mLightOptions != null)) {
+			prefSet.removePreference(mLightOptions);
+			mLightOptions = null;
+		}
+		
         mAnnoyingNotifications = (ListPreference) findPreference(PREF_LESS_NOTIFICATION_SOUNDS);
-        int notificationThreshold = Settings.System.getInt(getContentResolver(),
-                Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD,
-                0);
-        mAnnoyingNotifications.setValue(Integer.toString(notificationThreshold));
-        mAnnoyingNotifications.setOnPreferenceChangeListener(this);		
+        boolean hasAnnoyingNotifications = getResources().getBoolean(
+                R.bool.config_show_userinterface_lessnotifications);
+		if (mAnnoyingNotifications !=null) {
+		    if (!hasAnnoyingNotifications) {
+		        prefSet.removePreference(mAnnoyingNotifications);
+				mAnnoyingNotifications = null;
+			} else {
+                int notificationThreshold = Settings.System.getInt(getContentResolver(),
+                        Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD,
+                        0);
+                mAnnoyingNotifications.setValue(Integer.toString(notificationThreshold));
+                mAnnoyingNotifications.setOnPreferenceChangeListener(this);		
+			}
+		}
     }
 
     private void updateLightPulseDescription() {

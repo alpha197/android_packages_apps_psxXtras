@@ -23,7 +23,6 @@ public class StatusbarSettings extends SettingsPreferenceFragment implements OnP
     private static final String STATUS_BAR_SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
 	
 	private CheckBoxPreference mStatusBarShowBatteryPercent;
-	private ListPreference mNavigationBarHeight;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,10 +34,18 @@ public class StatusbarSettings extends SettingsPreferenceFragment implements OnP
 		// Statusbar battery percentage
         mStatusBarShowBatteryPercent =
             (CheckBoxPreference) prefSet.findPreference(STATUS_BAR_SHOW_BATTERY_PERCENT);
-        mStatusBarShowBatteryPercent.setChecked((Settings.System.getInt(getContentResolver(),
-            "status_bar_native_battery_percentage", 0) == 1));
-        mStatusBarShowBatteryPercent.setOnPreferenceChangeListener(this);
-
+		if (mStatusBarShowBatteryPercent != null) {
+            boolean hasNativBatterypercent = getResources().getBoolean(
+                R.bool.config_show_statusbar_native_battery);
+	        if (!hasNativBatterypercent) {
+    		    prefSet.removePreference(mStatusBarShowBatteryPercent);
+				mStatusBarShowBatteryPercent = null;
+    	    } else {
+                mStatusBarShowBatteryPercent.setChecked((Settings.System.getInt(getContentResolver(),
+                    "status_bar_native_battery_percentage", 0) == 1));
+                mStatusBarShowBatteryPercent.setOnPreferenceChangeListener(this);
+            }
+		}
     }
 
     @Override
