@@ -149,5 +149,12 @@
     <string name="powermenu_screenshot_prefs_summary">%1$s</string>
     <string name="powermenu_torch_prefs_title">Torch</string>
     <string name="powermenu_torch_prefs_summary">%1$s</string>
- 
+
+  <!-- Kernel Settings -->
+	<string name="kernel_settings_header">Kernel Settings</string>
+	<string name="kernel_settings_force_fastcharge_title">Force fastcharge</string>
+	<string name="kernel_settings_force_fastcharge_summary_on">fastcharge is forced</string>
+	<string name="kernel_settings_force_fastcharge_summary_off">fastcharge is not forced</string>
+	<string name="kernel_settings_force_fastcharge_summary_unsupported">fastcharge is not supported</string>
+	
 </resources>

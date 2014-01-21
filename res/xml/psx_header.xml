@@ -43,4 +43,10 @@
         android:fragment="net.purespeedx.psxxtras.LockscreenSettings"
         android:title="@string/psx_header_lockscreen" />	
 
+    <!-- Kernel Settings -->
+    <PreferenceScreen
+        android:key="psx_kernel_settings"
+        android:fragment="net.purespeedx.psxxtras.KernelSettings"
+        android:title="@string/kernel_settings_header" />	
+		
 </PreferenceScreen>
