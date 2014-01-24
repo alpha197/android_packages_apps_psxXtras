@@ -24,5 +24,32 @@
         android:title="@string/kernel_settings_force_fastcharge_title"
         android:summary="@string/kernel_settings_force_fastcharge_summary_unsupported"
         android:defaultValue="false" />
+    
+    <ListPreference
+        android:key="kernel_settings_governor"
+        android:dialogTitle="@string/kernel_settings_governor_title"
+        android:title="@string/kernel_settings_governor_title" />
 
+    <PreferenceCategory
+        android:key="kernel_settings_cpu_frequency_category"
+        android:title="@string/kernel_settings_cpu_frequency_title" >
+
+        <ListPreference
+            android:key="kernel_settings_cpu_frequency_min"
+            android:dialogTitle="@string/kernel_settings_cpu_frequency_min_title"
+            android:title="@string/kernel_settings_cpu_frequency_min_title" />
+
+        <ListPreference
+            android:key="kernel_settings_cpu_frequency_max"
+            android:dialogTitle="@string/kernel_settings_cpu_frequency_max_title"
+            android:title="@string/kernel_settings_cpu_frequency_max_title" />
+
+        <CheckBoxPreference
+            android:key="kernel_settings_cpu_frequency_apply"
+            android:title="@string/kernel_settings_cpu_frequency_apply_title"
+            android:summary="@string/kernel_settings_cpu_frequency_apply_summary_disabled"
+            android:defaultValue="false" />
+            
+    </PreferenceCategory>
+        
 </PreferenceScreen>

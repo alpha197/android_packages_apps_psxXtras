@@ -156,5 +156,12 @@
 	<string name="kernel_settings_force_fastcharge_summary_on">fastcharge is forced</string>
 	<string name="kernel_settings_force_fastcharge_summary_off">fastcharge is not forced</string>
 	<string name="kernel_settings_force_fastcharge_summary_unsupported">fastcharge is not supported</string>
-	
+	<string name="kernel_settings_governor_title">Governor</string>
+	<string name="kernel_settings_cpu_frequency_title">CPU frequency</string>
+	<string name="kernel_settings_cpu_frequency_min_title">Minimum frequency</string>
+	<string name="kernel_settings_cpu_frequency_max_title">Maximum frequency</string>
+	<string name="kernel_settings_cpu_frequency_apply_title">Apply on boot</string>
+	<string name="kernel_settings_cpu_frequency_apply_summary_disabled">Do not apply on boot</string>
+	<string name="kernel_settings_cpu_frequency_apply_summary_enabled">Apply on boot</string>
+
 </resources>

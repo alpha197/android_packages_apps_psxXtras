@@ -46,34 +46,14 @@ public class BackgroundIntentService extends IntentService {
     protected void onBootComplete() {
 		Context context = (Context) this;
 		SharedPreferences mPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-	    if (mPreferences == null) { 
-			return;
-		}
+	    if (mPreferences == null) return;
 		boolean firstrun = mPreferences.getBoolean("su_confirmed", false);
-		if (firstrun == false) {
-			return;
-		}
+		if (firstrun == false) 	return;
 		boolean canSu = Helpers.checkSu();
         boolean canBb = Helpers.checkBusybox();
 		if (canSu & canBb) {
 			// check and restore fast charge state if kernel supports fastcharge
-			int kernelstate = 0;
-			try {
-				String mFastChargePath = Helpers.fastcharge_path();
-				if (mFastChargePath != null) {
-					int enabled = Settings.System.getInt(context.getContentResolver(), Settings.System.KERNEL_FORCE_FASTCHARGE, 2);
-					if (enabled == 1) {
-						new CMDProcessor().su.runWaitFor(
-						    "busybox echo 1 > " + mFastChargePath);
-					} else {
-    					new CMDProcessor().su.runWaitFor(
-						    "busybox echo 0 > " + mFastChargePath);
-					    kernelstate = 2;
-					}
-				}
-			} catch (Exception e) {
-				kernelstate = 0;
-			}
+			KernelHelper.SetOnBoot(context);
 		}
 	}
 

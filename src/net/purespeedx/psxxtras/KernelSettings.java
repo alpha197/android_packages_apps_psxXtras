@@ -21,18 +21,30 @@ import com.android.settings.SettingsPreferenceFragment;
 import net.purespeedx.psxxtras.Utils.CMDProcessor;
 import net.purespeedx.psxxtras.Utils.Constants;
 import net.purespeedx.psxxtras.Utils.Helpers;
+import net.purespeedx.psxxtras.Utils.KernelHelper;
 import java.lang.StringBuilder;
  
 public class KernelSettings extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
     private static final String KERNEL_FORCE_FASTCHARGE = "kernel_settings_force_fastcharge";
+    private static final String KERNEL_GOVERNOR = "kernel_settings_governor";
+    private static final String KERNEL_CPU_MIN = "kernel_settings_cpu_frequency_min";
+    private static final String KERNEL_CPU_MAX = "kernel_settings_cpu_frequency_max";
+    private static final String KERNEL_CPU_APPLY = "kernel_settings_cpu_frequency_apply";
     
+	
     private CheckBoxPreference mForceFastcharge;
-    
+    private ListPreference mGovernor;
+    private ListPreference mCpuMin;
+    private ListPreference mCpuMax;
+    private CheckBoxPreference mCpuApply;
+	private Context mContext;
+	 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+		mContext = getActivity();
+		
         addPreferencesFromResource(R.xml.kernel_settings);
         PreferenceScreen prefSet = getPreferenceScreen();
 
@@ -40,7 +52,7 @@ public class KernelSettings extends SettingsPreferenceFragment implements OnPref
 		
 		// Force Fastcharge
         mForceFastcharge =
-            (CheckBoxPreference) prefSet.findPreference(KERNEL_FORCE_FASTCHARGE);
+            (CheckBoxPreference) prefSet.findPreference(KERNEL_FORCE_FASTCHARGE);		
 		String mFastChargePath = Helpers.fastcharge_path();
 		if (mForceFastcharge != null) {
 	        if (mFastChargePath == null) {
@@ -51,25 +63,139 @@ public class KernelSettings extends SettingsPreferenceFragment implements OnPref
                 mForceFastcharge.setOnPreferenceChangeListener(this);
             }
 		}
-        
+		
+		//Governor
+		mGovernor = 
+			(ListPreference) prefSet.findPreference(KERNEL_GOVERNOR);
+		if (mGovernor != null) {
+			if (UpdateGovernor(true) != true) {
+				prefSet.removePreference(mGovernor);
+				mGovernor = null;
+			} else {
+				mGovernor.setOnPreferenceChangeListener(this);
+			}
+        }
+
+		//Min Frequency
+		mCpuMin = 
+			(ListPreference) prefSet.findPreference(KERNEL_CPU_MIN);
+		if (mCpuMin != null) {
+			if (UpdateCpuMin(true) != true) {
+				prefSet.removePreference(mCpuMin);
+				mCpuMin = null;
+			} else {
+				mCpuMin.setOnPreferenceChangeListener(this);
+			}
+        }
+		//Max Frequency
+		mCpuMax = 
+			(ListPreference) prefSet.findPreference(KERNEL_CPU_MAX);
+		if (mCpuMax != null) {
+			if (UpdateCpuMax(true) != true) {
+				prefSet.removePreference(mCpuMax);
+				mCpuMax = null;
+			} else {
+				mCpuMax.setOnPreferenceChangeListener(this);
+			}
+        }
+
+		// Apply on Boot
+        mCpuApply =
+            (CheckBoxPreference) prefSet.findPreference(KERNEL_CPU_APPLY);		
+		if (mCpuApply != null) {
+	        if (mCpuMax == null && mCpuMin == null) {
+    		    prefSet.removePreference(mCpuApply);
+				mCpuApply = null;
+    	    } else {
+				UpdateCpuApplyOnBoot();
+                mCpuApply.setOnPreferenceChangeListener(this);
+            }
+		}
+		
     }
+	
+	public void UpdateCpuApplyOnBoot() {
+        boolean doApply = (Settings.System.getInt(getContentResolver(), Settings.System.KERNEL_CPU_FREQUENCY_APPLY,0) == 1);
+        mCpuApply.setChecked(doApply);
+        if (doApply) {
+            mCpuApply.setSummary(R.string.kernel_settings_cpu_frequency_apply_summary_enabled);
+		} else {
+            mCpuApply.setSummary(R.string.kernel_settings_cpu_frequency_apply_summary_disabled);
+		}
+	}
+	
+	public void SetCpuApplyOnBoot(boolean newValue) {
+	    int enabled=(newValue ? 1 : 0);
+    	Settings.System.putInt(getContentResolver(),Settings.System.KERNEL_CPU_FREQUENCY_APPLY, enabled);
+	    UpdateCpuApplyOnBoot();
+	}
+	
+	
+	public boolean UpdateGovernor(boolean init) {
+		if (init == true) {
+			String[] mAvailableGovernors =KernelHelper.GetAvailableGovernors();
+			mGovernor.setEntries(mAvailableGovernors);
+			mGovernor.setEntryValues(mAvailableGovernors);
+			if (mAvailableGovernors == null) {
+				return false;
+			}
+		}
+		String mActiveGovernor = Helpers.readOneLine(Constants.GOVERNOR_PATH);
+        String mCurrentGovernor = Settings.System.getString(getContentResolver(), Settings.System.KERNEL_GOVERNOR) ;
+		
+		mGovernor.setSummary(mActiveGovernor);
+		mGovernor.setValue(mCurrentGovernor);
+		return true;
+	}
+
+	public boolean UpdateFrequency(boolean init,ListPreference List, String Path,String SettingsPath) {
+		if (init == true) {
+			String[] freqs =KernelHelper.GetAvailableFrequencies();
+			List.setEntries(freqs);
+			List.setEntryValues(freqs);
+			if (freqs == null) {
+				return false;
+			}
+		}
+		String mActiveFreq = Helpers.readOneLine(Path);
+        String mCurrentFreq = Settings.System.getString(getContentResolver(), SettingsPath) ;
+		List.setSummary(mActiveFreq);
+		List.setValue(mCurrentFreq);
+		return true;
+	}
+	
+	public boolean UpdateCpuMin(boolean init) {
+		return UpdateFrequency(init,mCpuMin,Constants.MIN_FREQ_PATH,Settings.System.KERNEL_CPU_FREQUENCY_MIN);
+	}
+
+	public boolean UpdateCpuMax(boolean init) {
+		return UpdateFrequency(init,mCpuMax,Constants.MAX_FREQ_PATH,Settings.System.KERNEL_CPU_FREQUENCY_MAX);
+	}
+		
+	public void SetFrequency(String newValue,ListPreference List, String Path,String SettingsPath) {
+    	Settings.System.putString(getContentResolver(),SettingsPath, newValue);	
+		KernelHelper.SetFrequency(mContext,Path,SettingsPath);
+		UpdateFrequency(false,List,Path,SettingsPath);
+	}
+
+	public void SetMinCpu(String newValue) {
+		SetFrequency(newValue,mCpuMin,Constants.MIN_FREQ_PATH,Settings.System.KERNEL_CPU_FREQUENCY_MIN);
+	}
+
+	public void SetMaxCpu(String newValue) {
+		SetFrequency(newValue,mCpuMax,Constants.MAX_FREQ_PATH,Settings.System.KERNEL_CPU_FREQUENCY_MAX);
+	}
+
+	public void SetGovernor(String newValue) {
+    	Settings.System.putString(getContentResolver(),Settings.System.KERNEL_GOVERNOR, newValue);	
+		KernelHelper.SetGovernor(mContext);
+		UpdateGovernor(false);
+	}
 	
 	public void SetFastCharge(boolean newValue) {
 	    int enabled=(newValue ? 1 : 2);
-		String mFastChargePath = Helpers.fastcharge_path();
-        if (mFastChargePath != null) {
-		    if (enabled == 1) {
-		        new CMDProcessor().su.runWaitFor(
-                "busybox echo 1 > " + mFastChargePath);
-		    } else {
-		        new CMDProcessor().su.runWaitFor(
-                "busybox echo 0 > " + mFastChargePath);
-				enabled = 2;
-			}
-		} else {
-		  enabled = 0;
-		}
-    	Settings.System.putInt(getContentResolver(),"kernel_force_fastcharge", enabled);
+    	Settings.System.putInt(getContentResolver(),Settings.System.KERNEL_FORCE_FASTCHARGE, enabled);
+		KernelHelper.SetFastCharge(mContext);
 	    UpdateFastCharge();
 	}
 
@@ -96,7 +222,6 @@ public class KernelSettings extends SettingsPreferenceFragment implements OnPref
         }
     }
        
-
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {          
         return super.onPreferenceTreeClick(preferenceScreen, preference);
@@ -108,7 +233,19 @@ public class KernelSettings extends SettingsPreferenceFragment implements OnPref
         if (preference == mForceFastcharge) {
             SetFastCharge((Boolean) newValue ? true : false);
             return true;
-        }
+        } else if (preference == mGovernor) {
+			SetGovernor((String) newValue);
+			return true;
+        } else if (preference == mCpuMin) {
+			SetMinCpu((String) newValue);
+			return true;
+        } else if (preference == mCpuMax) {
+			SetMaxCpu((String) newValue);
+			return true;
+        } else if (preference == mCpuApply) {
+            SetCpuApplyOnBoot((Boolean) newValue ? true : false);
+            return true;
+		}	
         return false;
     }
 	
