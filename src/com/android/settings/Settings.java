@@ -391,6 +391,17 @@ public class Settings extends PreferenceActivity
             if (showConfig != null) {
                 if (showConfig == 0) target.remove(i);
             }
+            if (id == R.id.supersu_settings) {
+                // Embedding into Settings is supported from SuperSU v1.85 and up
+                boolean supported = false;
+                try {
+                    supported = (getPackageManager().getPackageInfo("eu.chainfire.supersu", 0).versionCode >= 185);
+                } catch (PackageManager.NameNotFoundException e) {
+                }
+                if (!supported) {
+                    target.remove(i);
+                }
+            }
             if (id == R.id.psx_kernel_settings && !showDev) target.remove(i);
              // Increment if the current one wasn't removed by the Utils code.
             if (i < target.size() && target.get(i) == header) {
