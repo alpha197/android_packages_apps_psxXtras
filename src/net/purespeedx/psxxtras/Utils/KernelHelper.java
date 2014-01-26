@@ -10,6 +10,8 @@ import android.preference.PreferenceManager;
 import android.os.Bundle;
 import android.util.Log;
 import com.android.settings.R;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -20,25 +22,33 @@ public class KernelHelper implements Constants {
 	private static String TAG="psxXtras";
 	private static String cpuOnline="/sys/devices/system/cpu/cpu1/online";
 
+	private static boolean FileExists(String Path) {
+		return new File(Path).exists();
+	}
+	
+	private static boolean Execute(String Command) {
+		CMDProcessor.CommandResult cres=new CMDProcessor().su.runWaitFor(Command);
+		if (!cres.success()) {
+			Log.e(TAG,Command);
+			if (cres.stderr != null && cres.stderr != "") {
+				Log.e(TAG,cres.stderr);
+			} else {
+				Log.e(TAG,"failed without error msg");
+			}
+			return false;
+		}
+		return true;
+	}
+	
 	public static boolean SetFastCharge(Context context) {
 		try {
 			String mFastChargePath = Helpers.fastcharge_path();
 			if (mFastChargePath != null) {
 				int enabled = Settings.System.getInt(context.getContentResolver(), Settings.System.KERNEL_FORCE_FASTCHARGE, 2);
 				if (enabled == 1) {
-					CMDProcessor.CommandResult cres=new CMDProcessor().su.runWaitFor(
-					    "busybox echo 1 > " + mFastChargePath);
-					if (!cres.success()) {
-						Log.e(TAG,cres.stderr);
-					}
-					return cres.success();
+					return Execute("busybox echo 1 > " + mFastChargePath);
 				} else {
-    				CMDProcessor.CommandResult cres=new CMDProcessor().su.runWaitFor(
-					    "busybox echo 0 > " + mFastChargePath);
-					if (!cres.success()) {
-						Log.e(TAG,cres.stderr);
-					}
-				    return cres.success();
+					return Execute("busybox echo 0 > " + mFastChargePath);
 				}
 			}
 		} catch (Exception e) {
@@ -53,24 +63,13 @@ public class KernelHelper implements Constants {
 		boolean result = true;
 		if (governor !=null && governor !="") {
 			for (int i = 0; i < Helpers.getNumOfCpus(); i++) {
-				final StringBuilder sb = new StringBuilder();
-				if (i > 0) {
-					sb.append("echo 1 > ")
-						.append(cpuOnline.replace("cpu1", "cpu" + i)).append(";");
+				final String Path = GOVERNOR_PATH.replace("cpu0", "cpu" + i);
+				if (FileExists(Path)) {
+					final StringBuilder sb = new StringBuilder();
+					sb.append("busybox echo ").append(governor).append(" > ")
+						.append(Path).append(";\n");
+					if (Execute(sb.toString()) != true) result=false;
 				}
-				sb.append("echo ").append(governor).append(" > ")
-					.append(GOVERNOR_PATH.replace("cpu0", "cpu" + i)).append(";");
-				if (i > 0) {
-					sb.append("echo 0 > ")
-						.append(cpuOnline.replace("cpu1", "cpu" + i)).append(";");
-				}
-				sb.append("\n");
-				CMDProcessor.CommandResult cres=new CMDProcessor().su.runWaitFor(sb.toString());			
-				if (!cres.success()) {
-					result = false;
-					Log.e(TAG,sb.toString());
-					Log.e(TAG,cres.stderr);
-				}			
 			}
 			return result;
         } else {
@@ -111,23 +110,12 @@ public class KernelHelper implements Constants {
 		boolean result=true;
 		if (freq !=null && freq !="") {
 			for (int i = 0; i < Helpers.getNumOfCpus(); i++) {
-				final StringBuilder sb = new StringBuilder();
-				if (i > 0) {
-					sb.append("echo 1 > ")
-						.append(cpuOnline.replace("cpu1", "cpu" + i)).append(";");
-				}
-				sb.append("busybox echo ").append(freq).append(" > ")
-					.append(Path.replace("cpu0", "cpu" + i)).append(";");
-				if (i > 0) {
-					sb.append("echo 0 > ")
-						.append(cpuOnline.replace("cpu1", "cpu" + i)).append(";");
-				}
-				sb.append("\n");
-				CMDProcessor.CommandResult cres=new CMDProcessor().su.runWaitFor(sb.toString());			
-				if (!cres.success()) {
-					result = false;
-					Log.e(TAG,sb.toString());
-					Log.e(TAG,cres.stderr);
+				final String mPath = Path.replace("cpu0", "cpu" + i);
+				if (FileExists(mPath)) {
+					final StringBuilder sb = new StringBuilder();
+					sb.append("busybox echo ").append(freq).append(" > ")
+						.append(mPath).append(";\n");
+					if (Execute(sb.toString()) != true) result=false;
 				}
 			}
 			return result;
