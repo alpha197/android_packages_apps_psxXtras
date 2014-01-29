@@ -22,30 +22,35 @@
     <!-- Bars -->
     <PreferenceScreen
         android:key="psx_bars"
+        android:icon="@drawable/ic_settings_bars"
         android:fragment="net.purespeedx.psxxtras.BarsSettings"
         android:title="@string/psx_header_bars" />
 
     <!-- Buttons -->
     <PreferenceScreen
         android:key="psx_buttons"
+        android:icon="@drawable/ic_settings_buttons"
         android:fragment="net.purespeedx.psxxtras.ButtonsSettings"
         android:title="@string/psx_header_buttons" />
                 
     <!-- Interface -->
     <PreferenceScreen
         android:key="psx_user_interface"
+        android:icon="@drawable/ic_settings_interface"
         android:fragment="net.purespeedx.psxxtras.UserInterfaceSettings"
         android:title="@string/psx_header_interface" />
 
     <!-- Lockscreen -->
     <PreferenceScreen
         android:key="psx_lockscreen"
+        android:icon="@drawable/ic_settings_lockscreen"
         android:fragment="net.purespeedx.psxxtras.LockscreenSettings"
         android:title="@string/psx_header_lockscreen" />	
 
     <!-- Kernel Settings -->
     <PreferenceScreen
         android:key="psx_kernel_settings"
+        android:icon="@drawable/psx_header_logo"
         android:fragment="net.purespeedx.psxxtras.KernelSettings"
         android:title="@string/kernel_settings_header" />
 		
