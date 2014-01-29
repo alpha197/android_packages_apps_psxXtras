@@ -50,7 +50,7 @@
     <!-- Kernel Settings -->
     <PreferenceScreen
         android:key="psx_kernel_settings"
-        android:icon="@drawable/psx_header_logo"
+        android:icon="@drawable/ic_settings_kernel"
         android:fragment="net.purespeedx.psxxtras.KernelSettings"
         android:title="@string/kernel_settings_header" />
 		
