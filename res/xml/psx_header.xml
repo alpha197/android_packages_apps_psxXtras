@@ -52,18 +52,6 @@
         android:key="psx_kernel_settings"
         android:icon="@drawable/ic_settings_kernel"
         android:fragment="net.purespeedx.psxxtras.KernelSettings"
-        android:title="@string/kernel_settings_header" />
-		
-	<!-- SuperSU -->
-    <Preference
-        android:key="psx_supersu"
-        android:icon="@drawable/ic_settings_supersu"
-        android:title="@string/supersu_title">
-        <intent
-            android:action="android.intent.action.MAIN"
-            android:targetPackage="eu.chainfire.supersu"
-            android:targetClass="eu.chainfire.supersu.MainActivity" />
-    </Preference>
-		
+        android:title="@string/kernel_settings_header" />	
 		
 </PreferenceScreen>

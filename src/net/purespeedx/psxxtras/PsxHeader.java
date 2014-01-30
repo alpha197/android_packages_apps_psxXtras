@@ -5,8 +5,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.net.Uri;
@@ -31,11 +29,9 @@ public class PsxHeader extends SettingsPreferenceFragment implements OnPreferenc
     private static final String KEY_PSX_USER_INTERFACE = "psx_user_interface";
     private static final String KEY_PSX_LOCKSCREEN = "psx_lockscreen";
     private static final String KEY_PSX_KERNEL_SETTINGS = "psx_kernel_settings";
-	private static final String KEY_PSX_SUPERSU = "psx_supersu";
 	private OnSharedPreferenceChangeListener KernelPrefListner;
 	private Preference kernelSettings;
 	private SharedPreferences mSharedPrefs;
-	private Preference supersu;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -72,32 +68,21 @@ public class PsxHeader extends SettingsPreferenceFragment implements OnPreferenc
 			 if (ps != null) prefSet.removePreference(ps);
 		}
 		
+		KernelPrefListner = new OnSharedPreferenceChangeListener(){
+			public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
+				UpdateKernelSettings();
+			}
+		};
+		mSharedPrefs.registerOnSharedPreferenceChangeListener(KernelPrefListner);
 		kernelSettings = (Preference) findPreference(KEY_PSX_KERNEL_SETTINGS);
 		if (kernelSettings != null) {
-			KernelPrefListner = new OnSharedPreferenceChangeListener(){
-				public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
-					UpdateKernelSettings();
-				}
-			};
-			mSharedPrefs.registerOnSharedPreferenceChangeListener(KernelPrefListner);
 			kernelSettings.setEnabled(false);
 			Startup suTask=new Startup();
 			suTask.setContext(prefSet.getContext());
 			suTask.setSharedPreferences(mSharedPrefs);
 			suTask.execute();
 		}
-		
-		supersu = (Preference) findPreference(KEY_PSX_SUPERSU);
-		if (supersu != null) {
-		    boolean supported = false;
-            try {
-                supported = (getPackageManager().getPackageInfo("eu.chainfire.supersu", 0).versionCode >= 185);
-            } catch (PackageManager.NameNotFoundException e) {
-            }
-            if (!supported) {
-			    prefSet.removePreference(supersu);
-			}
-		}	
+
     }
 	
 	private void UpdateKernelSettings() {
