@@ -17,12 +17,15 @@ import android.provider.Settings;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
+import android.content.res.Resources;
 
 public class StatusbarSettings extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
     private static final String STATUS_BAR_SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
+	private static final String KEY_SWIPE_FOR_QS = "swipe_for_qs";
 	
 	private CheckBoxPreference mStatusBarShowBatteryPercent;
+    private ListPreference mSwipeForQs;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,8 +49,35 @@ public class StatusbarSettings extends SettingsPreferenceFragment implements OnP
                 mStatusBarShowBatteryPercent.setOnPreferenceChangeListener(this);
             }
 		}
+		
+        mSwipeForQs = (ListPreference) findPreference(KEY_SWIPE_FOR_QS);
+		if (mSwipeForQs !=null) {
+			mSwipeForQs.setOnPreferenceChangeListener(this);
+			int mSwipeVal = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
+                                 Settings.System.SWIPE_FOR_QS, 0);
+			updateSwipeForQs(mSwipeVal);	
+		}
+		
     }
 
+	private void updateSwipeForQs(int value) {
+		mSwipeForQs.setValue(String.valueOf(value));
+		Resources res = getResources();
+        String menustate = "";
+        switch(value){
+			case 1:
+				menustate = res.getString(R.string.swipe_for_qs_right);
+				break;
+			case 2:
+				menustate = res.getString(R.string.swipe_for_qs_left);
+				break;
+			default:
+				menustate = res.getString(R.string.swipe_for_qs_off);
+		}
+		mSwipeForQs.setSummary(menustate);	
+	}
+	
+	
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {      	
         return super.onPreferenceTreeClick(preferenceScreen, preference);
@@ -61,6 +91,12 @@ public class StatusbarSettings extends SettingsPreferenceFragment implements OnP
                     "status_bar_native_battery_percentage",
                     (Boolean) newValue ? 1 : 0);
             return true;
+		} else if (preference == mSwipeForQs) {
+            final int val = Integer.valueOf((String) newValue);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.SWIPE_FOR_QS, val);
+            updateSwipeForQs(val);
+            return true;        
         }
         return false;
     }

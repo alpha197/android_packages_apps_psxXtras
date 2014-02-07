@@ -110,6 +110,7 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
 			}
 		}
     }
+	
 
     private void updateLightPulseDescription() {
         if (mNotificationPulse != null) {    
@@ -142,13 +143,13 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
     @Override
     public boolean onPreferenceChange(Preference preference, Object objValue) {
 	    final String key = preference.getKey();
-        if (PREF_LESS_NOTIFICATION_SOUNDS.equals(key)) {
+        if (preference == mAnnoyingNotifications) {
             final int val = Integer.valueOf((String) objValue);
             Settings.System.putInt(getContentResolver(),
                     Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD, val);
 			return true;
-        }        
-        return false;
+		}
+		return false;
     }
     
     @Override

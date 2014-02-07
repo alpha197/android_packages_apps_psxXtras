@@ -129,7 +129,7 @@
     <string name="navigation_bar_height_20">20dp</string>
     <string name="navigation_bar_height_0">0dp (Versteckt)</string>
   
-  <!-- Powermenu Options -->
+    <!-- Powermenu Options -->
     <string name="powermenu_title">Power Menü</string>
     <string name="powermenu_prefs_always">Immer sichtbar</string>
     <string name="powermenu_prefs_onlyunlocked">Nur wenn Entsperrt</string>
@@ -150,7 +150,7 @@
     <string name="powermenu_torch_prefs_title">Taschenlampe</string>
     <string name="powermenu_torch_prefs_summary">%1$s</string>
 
-  <!-- Kernel Settings -->
+    <!-- Kernel Settings -->
 	<string name="kernel_settings_header">Kernel Einstellungen</string>
 	<string name="kernel_settings_force_fastcharge_title">Schnellladen erzwingen</string>
 	<string name="kernel_settings_force_fastcharge_summary_on">Schnelles laden erzwungen</string>
@@ -164,4 +164,10 @@
 	<string name="kernel_settings_cpu_frequency_apply_summary_disabled">Nicht beim starten setzen</string>
 	<string name="kernel_settings_cpu_frequency_apply_summary_enabled">Wird beim starten gesetzt</string>
 
+    <!-- Swipe to QS -->
+	<string name="swipe_for_qs_title">Herunterziehen für QS</string>
+	<string name="swipe_for_qs_off">Aus</string>
+	<string name="swipe_for_qs_right">Rechts</string>
+	<string name="swipe_for_qs_left">Links</string>
+	
 </resources>

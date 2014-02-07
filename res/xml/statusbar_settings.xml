@@ -25,5 +25,13 @@
         android:title="@string/status_bar_show_battery_percent"
         android:summary="@string/status_bar_show_battery_percent_summary"
         android:defaultValue="false" />
- 				
+ 	
+    <ListPreference
+        android:key="swipe_for_qs"
+        android:dialogTitle="@string/swipe_for_qs_title"
+        android:title="@string/swipe_for_qs_title"
+        android:entries="@array/entries_swipe_for_qs"
+        android:entryValues="@array/values_swipe_for_qs"
+        android:defaultValue="0" />
+			
 </PreferenceScreen>
