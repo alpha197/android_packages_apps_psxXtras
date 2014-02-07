@@ -169,5 +169,8 @@
 	<string name="swipe_for_qs_off">Off</string>
 	<string name="swipe_for_qs_right">Right</string>
 	<string name="swipe_for_qs_left">Left</string>
-	
+
+    <!-- Safe headset volume warning -->
+    <string name="safe_headset_volume_warning_title">Volume warning</string>
+    <string name="safe_headset_volume_warning_summary">Show safe headset volume warning</string>	
 </resources>

@@ -46,11 +46,13 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
     private static final String KEY_BATTERY_LIGHT = "battery_light";
     private static final String PREF_LESS_NOTIFICATION_SOUNDS = "less_notification_sounds";
     private static final String KEY_QUIET_HOURS = "quiet_hours_settings";
-	 
+    private static final String KEY_SAFE_HEADSET_VOLUME_WARNING = "safe_headset_volume_warning";
+    
     private PreferenceCategory mLightOptions;
     private PreferenceScreen mNotificationPulse;
     private PreferenceScreen mBatteryPulse;
     private ListPreference mAnnoyingNotifications;
+    private CheckBoxPreference mVolumeWarning;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,11 +63,11 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
 
         boolean hasQuietHours = getResources().getBoolean(
                 R.bool.config_show_userinterface_quiethours);
-	    if (!hasQuietHours) {
-	        Preference ps = (Preference) findPreference(KEY_QUIET_HOURS);
-		    if (ps != null) prefSet.removePreference(ps);
-	    }
-		
+        if (!hasQuietHours) {
+            Preference ps = (Preference) findPreference(KEY_QUIET_HOURS);
+            if (ps != null) prefSet.removePreference(ps);
+        }
+        
         mLightOptions = (PreferenceCategory) prefSet.findPreference(KEY_LIGHT_OPTIONS);
         mNotificationPulse = (PreferenceScreen) findPreference(KEY_NOTIFICATION_PULSE);
         if (mNotificationPulse != null) {
@@ -89,28 +91,33 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
             }
         }
 
-		if ((mNotificationPulse == null) && (mBatteryPulse == null) && (mLightOptions != null)) {
-			prefSet.removePreference(mLightOptions);
-			mLightOptions = null;
-		}
-		
+        if ((mNotificationPulse == null) && (mBatteryPulse == null) && (mLightOptions != null)) {
+            prefSet.removePreference(mLightOptions);
+            mLightOptions = null;
+        }
+        
         mAnnoyingNotifications = (ListPreference) findPreference(PREF_LESS_NOTIFICATION_SOUNDS);
         boolean hasAnnoyingNotifications = getResources().getBoolean(
                 R.bool.config_show_userinterface_lessnotifications);
-		if (mAnnoyingNotifications !=null) {
-		    if (!hasAnnoyingNotifications) {
-		        prefSet.removePreference(mAnnoyingNotifications);
-				mAnnoyingNotifications = null;
-			} else {
+        if (mAnnoyingNotifications !=null) {
+            if (!hasAnnoyingNotifications) {
+                prefSet.removePreference(mAnnoyingNotifications);
+                mAnnoyingNotifications = null;
+            } else {
                 int notificationThreshold = Settings.System.getInt(getContentResolver(),
                         Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD,
                         0);
                 mAnnoyingNotifications.setValue(Integer.toString(notificationThreshold));
-                mAnnoyingNotifications.setOnPreferenceChangeListener(this);		
-			}
-		}
+                mAnnoyingNotifications.setOnPreferenceChangeListener(this);        
+            }
+        }
+        
+        mVolumeWarning = (CheckBoxPreference) findPreference(KEY_SAFE_HEADSET_VOLUME_WARNING);
+        mVolumeWarning.setChecked(Settings.System.getInt(getContentResolver(),
+                    Settings.System.MANUAL_SAFE_MEDIA_VOLUME, 1) == 1);
+        mVolumeWarning.setOnPreferenceChangeListener(this);        
     }
-	
+    
 
     private void updateLightPulseDescription() {
         if (mNotificationPulse != null) {    
@@ -142,14 +149,19 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object objValue) {
-	    final String key = preference.getKey();
+        final String key = preference.getKey();
         if (preference == mAnnoyingNotifications) {
             final int val = Integer.valueOf((String) objValue);
             Settings.System.putInt(getContentResolver(),
                     Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD, val);
+            return true;
+        } else if (preference == mVolumeWarning) {
+            int volumeWarning = (Boolean) objValue ? 1 : 0;
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.MANUAL_SAFE_MEDIA_VOLUME, volumeWarning);
 			return true;
-		}
-		return false;
+        }
+        return false;
     }
     
     @Override

@@ -169,5 +169,8 @@
 	<string name="swipe_for_qs_off">Aus</string>
 	<string name="swipe_for_qs_right">Rechts</string>
 	<string name="swipe_for_qs_left">Links</string>
-	
+
+    <!-- Safe headset volume warning -->
+    <string name="safe_headset_volume_warning_title">Lautstärkenwarnung</string>
+    <string name="safe_headset_volume_warning_summary">Zeige Warnung "Sichere Kopfhörerlautstärke"</string>	
 </resources>
