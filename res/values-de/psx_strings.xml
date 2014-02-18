@@ -279,4 +279,35 @@
     <string name="immersive_mode_on">Immersive Modus aktiv</string>
     <string name="immersive_mode_off">Immersive Modus inaktiv</string>
     <string name="immersive_mode_style">Immersive Stil</string>    
+	
+    <!-- Blacklist preferences -->
+    <string name="blacklist_title">Sperrliste</string>
+    <string name="blacklist_edit_dialog_title">Editiere Sperreinträge</string>
+    <string name="blacklist_prefs">Einstellungen</string>
+    <string name="blacklist_button_delete">Löschen</string>
+    <string name="blacklist_empty_text">Es sind keine Sperreinträge vorhanden. Füge einen Eintrag durch anwählen der (+) Taste hinzu.</string>
+    <string name="blacklist_disabled_empty_text">Um Anrufe oder Nachrichten zu sperren, aktiviere Sperrliste.</string>
+    <string name="blacklist_summary_disabled">Deaktiviert</string>
+    <string name="blacklist_summary">Anrufe und Nachrichten von Nummern in der Liste werden gesperrt</string>
+    <string name="blacklist_notify">Zeige Nachrichten</string>
+    <string name="blacklist_private_numbers_title">Unterdrückte Nummern</string>
+    <string name="blacklist_private_numbers_summary_disabled">Unterdrückte Nummern nicht sperren</string>
+    <string name="blacklist_private_numbers_summary">Blockiere <xliff:g id="type">%s</xliff:g> von unterdrückten Nummern</string>
+    <string name="blacklist_unknown_numbers_title">Unbekannte Nummern</string>
+    <string name="blacklist_unknown_numbers_summary_disabled">Blockiere keine Anrufe oder Nachrichten von nicht in den Kontakten enthaltenen Nummern</string>
+    <string name="blacklist_unknown_numbers_summary">Blockiere eingehende <xliff:g id="type">%s</xliff:g> von nicht in den Kontakten enthaltenen Nummern</string>
+    <string name="blacklist_summary_type_calls_only">Anrufe</string>
+    <string name="blacklist_summary_type_messages_only">Nachrichten</string>
+    <string name="blacklist_summary_type_calls_and_messages">Anrufe und Nachrichten</string>
+    <string name="blacklist_regex_title">Benutze Jokerzeichen</string>
+    <string name="blacklist_regex_summary">Benutze . als Jokerzeichen und * für Fortführend. z.B. 123.* Blockiert alle Nummern die mit 123 beginnen und .*123.* Blockiert alle Nummern in denen 123 vorkommt</string>
+    <string name="blacklist_policy_block_calls">Blockiere eingehende Anrufe</string>
+    <string name="blacklist_policy_block_messages">Blockiere eingehende Nachrichten</string>
+
+    <!-- Blacklist management -->
+    <string name="add_blacklist_number">Add number</string>
+    <string name="remove_blacklist_number_title">Remove number</string>
+    <string name="remove_blacklist_entry">Do you want to remove this blacklist entry?</string>
+    <string name="select_contact">Select contact</string>
+	
 </resources>

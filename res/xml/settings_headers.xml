@@ -20,24 +20,24 @@
     <!-- Bars -->
     <header android:id="@+id/bars_section"
         android:title="@string/header_category_bars" />
-		
+        
     <header
         android:id="@+id/psx_statusbar"
         android:fragment="net.purespeedx.psxxtras.StatusbarSettings"
         android:icon="@drawable/ic_settings_bars"
-        android:title="@string/psx_header_statusbar" />	
+        android:title="@string/psx_header_statusbar" />    
 
     <header
         android:id="@+id/psx_navbar"
         android:fragment="net.purespeedx.psxxtras.NavbarSettings"
         android:icon="@drawable/ic_settings_bars"
-        android:title="@string/psx_header_navbar" />	
+        android:title="@string/psx_header_navbar" />    
 
     <!-- general -->
     <header android:id="@+id/buttons_section"
         android:title="@string/header_category_buttons" />
 
-	<!-- PowerMenu -->
+    <!-- PowerMenu -->
 
     <header
         android:id="@+id/psx_power_menu"
@@ -51,11 +51,11 @@
         android:icon="@drawable/ic_settings_buttons"
         android:fragment="net.purespeedx.psxxtras.ButtonsSettings"
         android:title="@string/psx_header_buttons" />
-		
+        
     <!-- general -->
     <header android:id="@+id/general_section"
         android:title="@string/header_category_general" />
-	
+    
                 
     <!-- Interface -->
     <header
@@ -71,6 +71,13 @@
         android:fragment="net.purespeedx.psxxtras.LockscreenSettings"
         android:title="@string/psx_header_lockscreen" />    
 
+    <!-- Blacklist -->
+    <header
+            android:key="@+id/psx_blacklist"
+            android:title="@string/blacklist_title"
+            android:icon="@drawable/ic_blacklist_calls_on"
+            android:fragment="com.android.settings.blacklist.BlacklistSettings" />        
+            
     <!-- Kernel Settings -->
     <header
         android:id="@+id/psx_kernel_settings"

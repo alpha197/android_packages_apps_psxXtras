@@ -62,7 +62,11 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.android.internal.util.ArrayUtils;
+
 import com.android.settings.accounts.AuthenticatorHelper;
+import com.android.settings.blacklist.BlacklistSettings;
+import com.android.settings.Utils;
+
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -98,7 +102,7 @@ public class Settings extends PreferenceActivity
     static final int DIALOG_ONLY_ONE_HOME = 1;
 
     private static final String FILENAME_PROC_VERSION = "/proc/version";
-
+    private static final String KEY_BLACKLIST = "blacklist";
 
     private String mFragmentClass;
     private int mTopLevelHeaderId;
@@ -133,6 +137,7 @@ public class Settings extends PreferenceActivity
         mConfigs.put(R.id.psx_user_interface, res.getBoolean(R.bool.config_show_psx_userinterface) ? 1 : 0);
         mConfigs.put(R.id.psx_lockscreen, res.getBoolean(R.bool.config_show_psx_lockscreen) ? 1 : 0);
         mConfigs.put(R.id.psx_kernel_settings, res.getBoolean(R.bool.config_show_psx_kernelsettings) ? 1 : 0);
+        mConfigs.put(R.id.psx_blacklist, res.getBoolean(R.bool.config_show_psx_blacklist) ? 1 : 0);
     
         mAuthenticatorHelper = new AuthenticatorHelper();
         mAuthenticatorHelper.updateAuthDescriptions(this);
@@ -363,6 +368,12 @@ public class Settings extends PreferenceActivity
         Intent intent = super.onBuildStartFragmentIntent(fragmentName, args,
                 titleRes, shortTitleRes);
 
+        // Some fragments want split ActionBar; these should stay in sync with
+        // uiOptions for fragments also defined as activities in manifest.
+        if (BlacklistSettings.class.getName().equals(fragmentName)) {
+            intent.putExtra(EXTRA_UI_OPTIONS, ActivityInfo.UIOPTION_SPLIT_ACTION_BAR_WHEN_NARROW);
+        }
+
         intent.setClass(this, SubSettings.class);
         return intent;
     }
@@ -386,7 +397,8 @@ public class Settings extends PreferenceActivity
             showDev= (mKernel.indexOf("psx@pure-speed-kernel") >-1);            
         }
         int i = 0;
-
+        boolean isVoiceCapable = Utils.isVoiceCapable(this);
+        
         final UserManager um = (UserManager) getSystemService(Context.USER_SERVICE);
         mHeaderIndexMap.clear();
         while (i < target.size()) {
@@ -409,6 +421,8 @@ public class Settings extends PreferenceActivity
                 }
             }
             if (id == R.id.psx_kernel_settings && !showDev) target.remove(i);
+            if (id == R.id.psx_blacklist && !isVoiceCapable) target.remove(i);
+            
              // Increment if the current one wasn't removed by the Utils code.
             if (i < target.size() && target.get(i) == header) {
                 // Hold on to the first header, when we need to reset to the top-level
@@ -673,5 +687,5 @@ public class Settings extends PreferenceActivity
 	public static class BarsSettingsActivity extends Settings { /* empty */ }
 	public static class ButtonsSettingsActivity extends Settings { /* empty */ }
 	public static class LockscreenSettingsActivity extends Settings { /* empty */ }
-	public static class PsxHeaderActivity extends Settings { /* empty */ }
+    public static class BlacklistSettingsActivity extends Settings { /* empty */ }
 }

@@ -48,14 +48,12 @@
             android:supportsRtl="true">
 
         <!-- Settings -->
-
         <activity android:name="com.android.settings.Settings"
                 android:label="@string/settings_label_launcher"
                 android:taskAffinity="net.purespeedx.psxxtras"
                 android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.settings.SETTINGS" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -63,8 +61,24 @@
 
         <activity android:name="com.android.settings.SubSettings"
                 android:taskAffinity="net.purespeedx.psxxtras"
-                android:parentActivityName="com.android.settings.Settings">
+                android:parentActivityName="com.android.settings.Settings">				
         </activity>
+		
+        <!-- "Blacklist settings" UI, used only on voice-capable phone devices. -->
+        <activity android:name="com.android.settings.Settings$BlacklistSettingsActivity"
+                android:theme="@android:style/Theme.Holo.DialogWhenLarge"
+                android:uiOptions="splitActionBarWhenNarrow"
+                android:label="@string/blacklist_title"
+                android:taskAffinity=""
+                android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.android.settings.blacklist.BlacklistSettings" />
+        </activity>
+
 
   		<receiver android:enabled="true" android:name="net.purespeedx.psxxtras.Utils.BootReceiver"
 				android:permission="android.permission.RECEIVE_BOOT_COMPLETED">

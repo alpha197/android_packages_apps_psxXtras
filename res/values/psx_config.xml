@@ -23,7 +23,8 @@
   <bool name="config_show_psx_statusbar">false</bool>
   <bool name="config_show_psx_navbar">false</bool>
   <bool name="config_show_psx_kernelsettings">false</bool>
-
+  <bool name="config_show_psx_blacklist">false</bool>
+  
   <!-- PSX-Functions -->
   <bool name="config_show_statusbar_native_battery">false</bool>
   <bool name="config_show_navbar_height">false</bool>
