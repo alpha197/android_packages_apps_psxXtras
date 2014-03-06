@@ -116,5 +116,6 @@
 	
    <!-- Lockscreen widgets -->
     <string name="security_maximize_widgets_title">Maximize lockscreen widgets</string>
+    <string name="security_maximize_widgets_summary">Wether lockscreen widgets should be shown maximized or not</string>
 	
 </resources>

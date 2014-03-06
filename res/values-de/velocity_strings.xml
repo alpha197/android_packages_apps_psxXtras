@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+	<!-- Color Picker -->
+    <string name="dialog_color_picker">Farbauswahl</string>
+    <string name="press_color_to_apply">Drücke die Farbe um zu übernehmen</string>
+    <string name="arrow_right">→</string>
+    <string name="arrow_down">↓</string>
+    <string name="hex">Hex:</string>
+    <string name="hex_hint">#ff000000</string>
+    <string name="set">Set</string>
+    <string name="color_default">Standard</string>
+
+    <!-- Status bar | Clock -->
+    <string name="status_bar_clock">Datum und Zeit</string>
+    <string name="status_bar_clock_title">Datum und Zeit-Stil</string>
+    <string name="clock_title_enable">Ausrichtung</string>
+    <string name="clock_enabled">Aktiv</string>
+    <string name="clock_disabled">Inaktiv</string>
+    <string name="clock_color_title">Farbe</string>
+    <string name="status_bar_clock_style_reset">Farbe zurücksetzen</string>
+    <string name="status_bar_show_clock_title">Zeige Zeit und Datum</string>
+    <string name="status_bar_am_pm_title">AM/PM</string>
+    <string name="status_bar_am_pm_info">24h Format ist aktiv</string>
+    <string name="enable_clock_weekday">Tag der Wocke</string>
+    <string name="enable_clock_weekday_summary">Zeige Wochentag vor der Zeit</string>
+    <string name="right_clock">Zeit Rechts</string>
+    <string name="center_clock">Zeit Mittig</string>
+    <string name="dont_show">Nicht zeigen</string>
+    <string name="clock_date_display">Datum</string>
+    <string name="clock_date_display_summary">Zeige Datum vor der Uhrzeit</string>
+    <string name="clock_date_style">Datumsstil</string>
+    <string name="clock_date_string_edittext_title">Datumsformat z.B. MM/dd/yy</string>
+    <string name="clock_date_string_edittext_summary">Text eingeben</string>
+    <string name="clock_date_format">Datumsformat</string>
+    <string name="am_pm_clock_normal">Normale Schrift</string>
+    <string name="am_pm_clock_small">Kleine Schrift</string>
+    <string name="am_pm_clock_none">Nicht zeigen</string>
+    <string name="clock_date_display_none">Nicht zeigen</string>
+    <string name="clock_date_display_small">Kleine Schrift</string>
+    <string name="clock_date_display_normal">Normale Schrift</string>
+    <string name="clock_date_style_normal">Normal</string>
+    <string name="clock_date_style_lowercase">Kleinbuchstaben</string>
+    <string name="clock_date_style_uppercase">Grossbuchstaben</string>
+    <string name="clock_date_format_custom">Benutzerdef. Format</string>
+    <string name="status_bar_clock_style_reset_message">Farbe zurücksetzen ?</string>
+
+</resources>

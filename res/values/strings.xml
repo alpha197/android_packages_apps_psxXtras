@@ -52,5 +52,9 @@
 
     <!-- SuperSU header name - the app hides itself from launcher based on this resource name being present in com.android.settings -->
     <string name="supersu_title">SuperSU</string>
-		
+	
+    <!-- Menu item to save the IP settings -->
+    <string name="menu_save">Save</string>
+    <!-- Menu ietm to cancel the IP settings -->
+    <string name="menu_cancel">Cancel</string>	
 </resources>

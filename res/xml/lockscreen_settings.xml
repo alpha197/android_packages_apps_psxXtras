@@ -35,8 +35,8 @@ limitations under the License.
         android:title="@string/see_through_title"
         android:summary="@string/see_through_summary" />    
 
-        <CheckBoxPreference
-            android:key="lockscreen_maximize_widgets"
-            android:title="@string/security_maximize_widgets_title"
-            android:enabled="false"/>        
+    <CheckBoxPreference
+        android:key="lockscreen_maximize_widgets"
+        android:title="@string/security_maximize_widgets_title"
+        android:summary="@string/security_maximize_widgets_summary" />    
 </PreferenceScreen>

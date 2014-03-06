@@ -115,5 +115,6 @@
 
    <!-- Lockscreen widgets -->
     <string name="security_maximize_widgets_title">Maximiere Sperrschirm Widgets</string>
+    <string name="security_maximize_widgets_summary">Bestimmt ob die Sperrschirm Widgets maximiert angezeigt werden oder nicht</string>
 	
 </resources>
