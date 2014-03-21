@@ -19,26 +19,10 @@
 package net.purespeedx.psxxtras.Utils;
 
 public interface Constants {
-
-    public static final String TAG = "PerformanceControl";
-    public static final String VERSION_NUM = "2.1.4-omni";
-    //hide flashing kernel/recovery options
-    // NO_FLASH=true > hide flash options
-    // NO_FLASH=false > show flash options
-    public static final Boolean NO_FLASH = false;
-
-    // Fragment IDs
-    public static final int FRAGMENT_ID_CPUSETTINGS = 0;
-    public static final int FRAGMENT_ID_BATTERYINFO = 1;
-    public static final int FRAGMENT_ID_OOMSETTINGS = 2;
-    public static final int FRAGMENT_ID_VM = 3;
-    public static final int FRAGMENT_ID_VOLTAGECONROL = 4;
-    public static final int FRAGMENT_ID_ADVANCED = 5;
-    public static final int FRAGMENT_ID_TIMEINSTATE = 6;
-    public static final int FRAGMENT_ID_CPUINFO = 7;
-    public static final int FRAGMENT_ID_DISKINFO = 8;
-    public static final int FRAGMENT_ID_TOOLS = 9;
-
+    
+    public static final String TAG = "psxXtras-KernelSettings";
+    public static final String NOT_FOUND = "not found";
+    
     // CPU settings
     public static final String CPU_PATH = "/sys/devices/system/cpu/cpu";
     public static final String CPU_FREQ_TAIL = "/cpufreq/scaling_cur_freq";
@@ -82,21 +66,7 @@ public interface Constants {
     public static final String MINFREE_PATH = "/sys/module/lowmemorykiller/parameters/minfree";
     public static final String MINFREE_ADJ_PATH = "/sys/module/lowmemorykiller/parameters/adj";
     public static final String READ_AHEAD_PATH = "/sys/block/mmcblk0/bdi/read_ahead_kb";
-    //"/sys/devices/virtual/bdi/default/read_ahead_kb"
 
-    public static final String INTENT_ACTION_FASTCHARGE = "com.aokp.romcontrol.FCHARGE_CHANGED";
-    public static final String PREF_MINFREE = "pref_minfree";
-    public static final String PREF_MINFREE_BOOT = "pref_minfree_boot";
-    public static final String PREF_READ_AHEAD = "pref_read_ahead";
-    public static final String PREF_READ_AHEAD_BOOT = "pref_read_ahead_boot";
-    public static final String PREF_FASTCHARGE = "pref_fast_charge";
-    //------ MinFree ------
-    public static final String OOM_FOREGROUND_APP = "oom_foreground_app";
-    public static final String OOM_VISIBLE_APP = "oom_visible_app";
-    public static final String OOM_SECONDARY_SERVER = "oom_secondary_server";
-    public static final String OOM_HIDDEN_APP = "oom_hidden_app";
-    public static final String OOM_CONTENT_PROVIDERS = "oom_content_providers";
-    public static final String OOM_EMPTY_APP = "oom_empty_app";
     //------ KSM
     public static final String KSM_RUN_PATH = "/sys/kernel/mm/ksm/run";
     public static final String KSM_FULLSCANS_PATH = "/sys/kernel/mm/ksm/full_scans";
@@ -135,34 +105,6 @@ public interface Constants {
     public static final String BL_TOUCH_ON_PATH = "/sys/class/misc/notification/touchlight_enabled";
     //-------BLN---------
     public static final String PREF_BLN = "pref_bln";
-    //-------PFK---------
-    public static final String PFK_VER = "/sys/class/misc/phantom_kp_filter/version";
-    public static final String PFK_HOME_ON = "pfk_home_on";
-    public static final String PREF_HOME_ALLOWED_IRQ = "pref_home_allowed_irq";
-    public static final String PREF_HOME_REPORT_WAIT = "pref_home_report_wait";
-    public static final String PFK_MENUBACK_ON = "pfk_menuback_on";
-    public static final String PREF_MENUBACK_INTERRUPT_CHECKS = "pref_menuback_interrupt_checks";
-    public static final String PREF_MENUBACK_FIRST_ERR_WAIT = "pref_menuback_first_err_wait";
-    public static final String PREF_MENUBACK_LAST_ERR_WAIT = "pref_menuback_last_err_wait";
-
-    public static final String PFK_HOME_ENABLED = "/sys/class/misc/phantom_kp_filter/home_enabled";
-    public static final String PFK_HOME_ALLOWED_IRQ = "/sys/class/misc/phantom_kp_filter/home_allowed_irqs";
-    public static final String PFK_HOME_REPORT_WAIT = "/sys/class/misc/phantom_kp_filter/home_report_wait";
-    public static final String PFK_HOME_IGNORED_KP = "/sys/class/misc/phantom_kp_filter/home_ignored_kp";
-    public static final String PFK_MENUBACK_ENABLED = "/sys/class/misc/phantom_kp_filter/menuback_enabled";
-    public static final String PFK_MENUBACK_INTERRUPT_CHECKS = "/sys/class/misc/phantom_kp_filter/menuback_interrupt_checks";
-    public static final String PFK_MENUBACK_FIRST_ERR_WAIT = "/sys/class/misc/phantom_kp_filter/menuback_first_err_wait";
-    public static final String PFK_MENUBACK_LAST_ERR_WAIT = "/sys/class/misc/phantom_kp_filter/menuback_last_err_wait";
-    public static final String PFK_MENUBACK_IGNORED_KP = "/sys/class/misc/phantom_kp_filter/menuback_ignored_kp";
-    public static final String PFK_SOB = "pfk_sob";
-    //------------------
-    public static final String DYNAMIC_DIRTY_WRITEBACK_PATH = "/proc/sys/vm/dynamic_dirty_writeback";
-    public static final String DIRTY_WRITEBACK_ACTIVE_PATH = "/proc/sys/vm/dirty_writeback_active_centisecs";
-    public static final String DIRTY_WRITEBACK_SUSPEND_PATH = "/proc/sys/vm/dirty_writeback_suspend_centisecs";
-    public static final String PREF_DYNAMIC_DIRTY_WRITEBACK = "pref_dynamic_dirty_writeback";
-    public static final String PREF_DIRTY_WRITEBACK_ACTIVE = "pref_dynamic_writeback_active";
-    public static final String PREF_DIRTY_WRITEBACK_SUSPEND = "pref_dynamic_writeback_suspend";
-    public static final String DYNAMIC_DIRTY_WRITEBACK_SOB = "dynamic_write_back_sob";
 
     // VM settings
     public static final String PREF_DIRTY_RATIO = "pref_dirty_ratio";
@@ -190,36 +132,15 @@ public interface Constants {
     public static final String COMMON_VDD_PATH = "/sys/devices/system/cpu/cpufreq/vdd_levels";
     public static final String VDD_SYSFS_PATH = "/sys/devices/system/cpu/cpu0/cpufreq/vdd_sysfs_levels";
 
-    //Tools
-    public static final String PREF_SH = "pref_sh";
-    public static final String PREF_WIPE_CACHE = "pref_wipe_cache";
-    public static final String NOT_FOUND = "not found";
-    public static final String FLASH_KERNEL = "pref_kernel_img";
-    public static final String FLASH_RECOVERY = "pref_recovery_img";
-    public static final String RESIDUAL_FILES = "pref_residual_files";
-    public static final String residualfiles[] = {"/data/log", "/data/tombstones", "/data/system/dropbox", "/data/system/usagestats", "/data/anr", "/data/local/tmp"};//add coresponding info in strings
-    public static final String PREF_FIX_PERMS = "pref_fix_perms";
-    public static final String PREF_LOG = "pref_log";
-    public static final String PREF_OPTIM_DB = "pref_optim_db";
-
     //Freezer
     public static final String PREF_FRREZE = "freeze_packs";
     public static final String PREF_UNFRREZE = "unfreeze_packs";
 
-    //zRam
-    public static final String ISZRAM = "busybox echo `busybox zcat /proc/config.gz | busybox grep ZRAM | busybox grep -v ^#'`";
-    public static final String ZRAM_DEV = "/dev/block/zram0";
-    public static final String ZRAM_SIZE_PATH = "/sys/block/zram0/disksize";
-    public static final String ZRAM_RESET_PATH = "/sys/block/zram0/reset";
-    public static final String ZRAM_COMPR_PATH = "/sys/block/zram0/compr_data_size";
-    public static final String ZRAM_ORIG_PATH = "/sys/block/zram0/orig_data_size";
-    public static final String ZRAM_MEMTOT_PATH = "/sys/block/zram0/mem_used_total";
-
-    // PC Settings
-    public static final String PREF_USE_LIGHT_THEME = "use_light_theme";
-    public static final String PREF_WIDGET_BG_COLOR = "widget_bg_color";
-    public static final String PREF_WIDGET_TEXT_COLOR = "widget_text_color";
-
+    //CPU Boost driver
+    public static final String CPUBOOST_INPUT_FREQ ="/sys/module/cpu_boost/parameters/input_boost_freq";
+    public static final String CPUBOOST_INPUT_MS="/sys/module/cpu_boost/parameters/input_boost_ms";
+    public static final String CPUBOOST_BOOST_MS="/sys/module/cpu_boost/parameters/boost_ms";
+    public static final String CPUBOOST_SYNC_THRESHOLD="/sys/module/cpu_boost/parameters/sync_threshold";
 }
 
 

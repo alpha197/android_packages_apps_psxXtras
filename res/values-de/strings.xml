@@ -163,6 +163,17 @@
 	<string name="kernel_settings_cpu_frequency_apply_title">Beim starten setzen</string>
 	<string name="kernel_settings_cpu_frequency_apply_summary_disabled">Nicht beim starten setzen</string>
 	<string name="kernel_settings_cpu_frequency_apply_summary_enabled">Wird beim starten gesetzt</string>
+	<string name="kernel_settings_cpu_inputboost_title">CPU Boost Treiber</string>
+	<string name="kernel_settings_cpu_inputboost_ms">Inputboost</string>
+	<string name="kernel_settings_cpu_inputboost_ms_summary">beschleunigt die CPU für %1$s ms</string>
+	<string name="kernel_settings_cpu_inputboost_freq">Inputboost Takt</string>
+	<string name="kernel_settings_cpu_boost_apply">Beim starten setzen</string>
+	<string name="kernel_settings_cpu_boost_apply_disabled">Nicht beim starten Setzen</string>
+	<string name="kernel_settings_cpu_boost_apply_enabled">Wird beim starten gesetzt</string>
+	<string name="kernel_settings_cpu_boost_ms">Spitzen Boost Zeit</string>
+	<string name="kernel_settings_cpu_boost_ms_summary">beschleunigt die CPU für %1$s ms bei Lastspitzen</string>
+	<string name="kernel_settings_cpu_sync_threshold">Sync Grenzfrequenz</string>
+    <string name="kernel_settings_frequency_summary">Aktuell: %1$s kHz</string>	
 
     <!-- Swipe to QS -->
 	<string name="swipe_for_qs_title">Herunterziehen für QS</string>

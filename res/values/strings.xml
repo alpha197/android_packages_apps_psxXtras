@@ -163,7 +163,17 @@
 	<string name="kernel_settings_cpu_frequency_apply_title">Apply on boot</string>
 	<string name="kernel_settings_cpu_frequency_apply_summary_disabled">Do not apply on boot</string>
 	<string name="kernel_settings_cpu_frequency_apply_summary_enabled">Apply on boot</string>
-
+	<string name="kernel_settings_cpu_inputboost_title">CPU-Boost driver</string>
+	<string name="kernel_settings_cpu_inputboost_ms">Inputboost</string>
+	<string name="kernel_settings_cpu_inputboost_ms_summary">boosts cpu for %1$s ms</string>
+	<string name="kernel_settings_cpu_inputboost_freq">Inputboost frequency</string>
+	<string name="kernel_settings_cpu_boost_apply">Apply on boot</string>
+	<string name="kernel_settings_cpu_boost_apply_disabled">Do not apply on boot</string>
+	<string name="kernel_settings_cpu_boost_apply_enabled">Apply on boot</string>
+	<string name="kernel_settings_cpu_boost_ms">Peak Boost time</string>
+	<string name="kernel_settings_cpu_boost_ms_summary">boosts cpu for %1$s ms on load peaks</string>
+	<string name="kernel_settings_cpu_sync_threshold">Sync threshold frequency</string>
+    <string name="kernel_settings_frequency_summary">Current: %1$s kHz</string>	
     <!-- Swipe to QS -->
 	<string name="swipe_for_qs_title">Pulldown for QS</string>
 	<string name="swipe_for_qs_off">Off</string>

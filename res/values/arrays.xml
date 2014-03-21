@@ -105,13 +105,13 @@
 	
    <!-- Power Menu visibility -->
 
-    <string-array name="entries_powermenu_visible_prefs" translateable="false">
+    <string-array name="entries_powermenu_visible_prefs" translatable="false">
         <item>@string/powermenu_prefs_never</item>
         <item>@string/powermenu_prefs_onlyunlocked</item>
         <item>@string/powermenu_prefs_always</item>
         </string-array>
 
-    <string-array name="values_powermenu_visible_prefs" translateable="false">
+    <string-array name="values_powermenu_visible_prefs" translatable="false">
         <item>0</item>
         <item>1</item>
         <item>2</item>
@@ -119,13 +119,13 @@
 	
 	   <!-- swipe to QS -->
 
-    <string-array name="entries_swipe_for_qs" translateable="false">
+    <string-array name="entries_swipe_for_qs" translatable="false">
         <item>@string/swipe_for_qs_off</item>
         <item>@string/swipe_for_qs_right</item>
         <item>@string/swipe_for_qs_left</item>
         </string-array>
 
-    <string-array name="values_swipe_for_qs" translateable="false">
+    <string-array name="values_swipe_for_qs" translatable="false">
         <item>0</item>
         <item>1</item>
         <item>2</item>
@@ -152,5 +152,6 @@
         <item>5000</item>
         <item>10000</item>
     </integer-array>	
+		
 </resources>
 

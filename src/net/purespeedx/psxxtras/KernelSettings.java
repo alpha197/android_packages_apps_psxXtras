@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.preference.CheckBoxPreference;
+import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
@@ -31,14 +32,25 @@ public class KernelSettings extends SettingsPreferenceFragment implements OnPref
     private static final String KERNEL_CPU_MIN = "kernel_settings_cpu_frequency_min";
     private static final String KERNEL_CPU_MAX = "kernel_settings_cpu_frequency_max";
     private static final String KERNEL_CPU_APPLY = "kernel_settings_cpu_frequency_apply";
+    private static final String KERNEL_INPUTBOOST_MS = "kernel_settings_cpu_inputboost_ms";
+    private static final String KERNEL_INPUTBOOST_FREQ = "kernel_settings_cpu_inputboost_freq";
+    private static final String KERNEL_BOOST_MS = "kernel_settings_cpu_boost_ms";
+    private static final String KERNEL_SYNC_THRESHOLD = "kernel_settings_cpu_sync_threshold";
+    private static final String KERNEL_INPUTBOOST_APPLY = "kernel_settings_cpu_boost_apply";
     
 	
     private CheckBoxPreference mForceFastcharge;
     private ListPreference mGovernor;
     private ListPreference mCpuMin;
     private ListPreference mCpuMax;
+    private EditTextPreference mInputms;
+    private EditTextPreference mBoostms;
+    private ListPreference mInputfreq;
+    private ListPreference mSyncThresFreq;
+    private CheckBoxPreference mInputApply;
     private CheckBoxPreference mCpuApply;
 	private Context mContext;
+    private Resources mResources;
 	 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,7 +60,7 @@ public class KernelSettings extends SettingsPreferenceFragment implements OnPref
         addPreferencesFromResource(R.xml.kernel_settings);
         PreferenceScreen prefSet = getPreferenceScreen();
 
-	    Resources res = getResources();
+	    mResources = getResources();
 		
 		// Force Fastcharge
         mForceFastcharge =
@@ -111,7 +123,69 @@ public class KernelSettings extends SettingsPreferenceFragment implements OnPref
                 mCpuApply.setOnPreferenceChangeListener(this);
             }
 		}
-		
+
+		//Inputboost ms
+		mInputms = 
+			(EditTextPreference) prefSet.findPreference(KERNEL_INPUTBOOST_MS);
+		if (mInputms != null) {
+			if (UpdateInputms(true) != true) {
+				prefSet.removePreference(mInputms);
+				mInputms = null;
+			} else {
+				mInputms.setOnPreferenceChangeListener(this);
+			}
+        }
+
+		//Boost ms
+		mBoostms = 
+			(EditTextPreference) prefSet.findPreference(KERNEL_BOOST_MS);
+		if (mBoostms != null) {
+			if (UpdateBoostms(true) != true) {
+				prefSet.removePreference(mBoostms);
+				mBoostms = null;
+			} else {
+				mBoostms.setOnPreferenceChangeListener(this);
+			}
+        }
+        
+		//Inputboost freq
+		mInputfreq = 
+			(ListPreference) prefSet.findPreference(KERNEL_INPUTBOOST_FREQ);
+		if (mInputms != null) {
+			if (UpdateInputFreq(true) != true) {
+				prefSet.removePreference(mInputfreq);
+				mInputfreq = null;
+			} else {
+				mInputfreq.setOnPreferenceChangeListener(this);
+			}
+        }
+
+		//Sync threshold freq
+		mSyncThresFreq = 
+			(ListPreference) prefSet.findPreference(KERNEL_SYNC_THRESHOLD);
+		if (mSyncThresFreq != null) {
+			if (UpdateSyncFreq(true) != true) {
+				prefSet.removePreference(mSyncThresFreq);
+				mSyncThresFreq = null;
+			} else {
+				mSyncThresFreq.setOnPreferenceChangeListener(this);
+			}
+        }
+        
+
+		// Input Apply on Boot
+        mInputApply =
+            (CheckBoxPreference) prefSet.findPreference(KERNEL_INPUTBOOST_APPLY);		
+		if (mInputApply != null) {
+	        if (mInputfreq == null && mInputms == null) {
+    		    prefSet.removePreference(mInputApply);
+				mInputApply = null;
+    	    } else {
+				UpdateInputApplyOnBoot();
+                mInputApply.setOnPreferenceChangeListener(this);
+            }
+		}
+        
     }
 	
 	public void UpdateCpuApplyOnBoot() {
@@ -121,6 +195,16 @@ public class KernelSettings extends SettingsPreferenceFragment implements OnPref
             mCpuApply.setSummary(R.string.kernel_settings_cpu_frequency_apply_summary_enabled);
 		} else {
             mCpuApply.setSummary(R.string.kernel_settings_cpu_frequency_apply_summary_disabled);
+		}
+	}
+
+	public void UpdateInputApplyOnBoot() {
+        boolean doApply = (Settings.System.getInt(getContentResolver(), Settings.System.KERNEL_INPUTBOOST_APPLY,0) == 1);
+        mInputApply.setChecked(doApply);
+        if (doApply) {
+            mInputApply.setSummary(R.string.kernel_settings_cpu_boost_apply_enabled);
+		} else {
+            mInputApply.setSummary(R.string.kernel_settings_cpu_boost_apply_disabled);
 		}
 	}
 	
@@ -159,7 +243,7 @@ public class KernelSettings extends SettingsPreferenceFragment implements OnPref
 		}
 		String mActiveFreq = Helpers.readOneLine(Path);
         String mCurrentFreq = Settings.System.getString(getContentResolver(), SettingsPath) ;
-		List.setSummary(mActiveFreq);
+        List.setSummary(mResources.getString(R.string.kernel_settings_frequency_summary, mActiveFreq));
 		List.setValue(mCurrentFreq);
 		return true;
 	}
@@ -168,6 +252,30 @@ public class KernelSettings extends SettingsPreferenceFragment implements OnPref
 		return UpdateFrequency(init,mCpuMin,Constants.MIN_FREQ_PATH,Settings.System.KERNEL_CPU_FREQUENCY_MIN);
 	}
 
+	public boolean UpdateInputFreq(boolean init) {
+		return UpdateFrequency(init,mInputfreq,Constants.CPUBOOST_INPUT_FREQ,Settings.System.KERNEL_INPUTBOOST_FREQ);
+	}
+
+	public boolean UpdateSyncFreq(boolean init) {
+		return UpdateFrequency(init,mSyncThresFreq,Constants.CPUBOOST_SYNC_THRESHOLD,Settings.System.KERNEL_SYNC_THRESHOLD_FREQ);
+	}
+    
+	public boolean UpdateInputms(boolean init) {
+		String mActivems = Helpers.readOneLine(Constants.CPUBOOST_INPUT_MS);
+        if (mActivems == "") return false;
+        mInputms.setSummary(mResources.getString(R.string.kernel_settings_cpu_inputboost_ms_summary, mActivems));
+		mInputms.setText(mActivems);
+		return true;   
+	}
+
+	public boolean UpdateBoostms(boolean init) {
+		String mActivems = Helpers.readOneLine(Constants.CPUBOOST_BOOST_MS);
+        if (mActivems == "") return false;
+        mBoostms.setSummary(mResources.getString(R.string.kernel_settings_cpu_boost_ms_summary, mActivems));
+		mBoostms.setText(mActivems);
+		return true;   
+	}
+    
 	public boolean UpdateCpuMax(boolean init) {
 		return UpdateFrequency(init,mCpuMax,Constants.MAX_FREQ_PATH,Settings.System.KERNEL_CPU_FREQUENCY_MAX);
 	}
@@ -184,6 +292,30 @@ public class KernelSettings extends SettingsPreferenceFragment implements OnPref
 
 	public void SetMaxCpu(String newValue) {
 		SetFrequency(newValue,mCpuMax,Constants.MAX_FREQ_PATH,Settings.System.KERNEL_CPU_FREQUENCY_MAX);
+	}
+    
+	public void SetInputBoostFreq(String newValue) {
+    	Settings.System.putString(getContentResolver(),Settings.System.KERNEL_INPUTBOOST_FREQ, newValue);	
+		KernelHelper.SetValue(mContext,Constants.CPUBOOST_INPUT_FREQ,Settings.System.KERNEL_INPUTBOOST_FREQ);
+		UpdateInputFreq(false);
+	}
+
+	public void SetSyncFreq(String newValue) {
+    	Settings.System.putString(getContentResolver(),Settings.System.KERNEL_SYNC_THRESHOLD_FREQ, newValue);	
+		KernelHelper.SetValue(mContext,Constants.CPUBOOST_SYNC_THRESHOLD,Settings.System. KERNEL_SYNC_THRESHOLD_FREQ);
+		UpdateInputFreq(false);
+	}
+    
+	public void SetInputBoostms(String newValue) {
+    	Settings.System.putString(getContentResolver(),Settings.System.KERNEL_INPUTBOOST_MS, newValue);	
+		KernelHelper.SetValue(mContext,Constants.CPUBOOST_INPUT_MS,Settings.System.KERNEL_INPUTBOOST_MS);
+        UpdateInputms(false);
+	}
+    
+	public void SetBoostms(String newValue) {
+    	Settings.System.putString(getContentResolver(),Settings.System.KERNEL_CPUBOOST_MS, newValue);	
+		KernelHelper.SetValue(mContext,Constants.CPUBOOST_BOOST_MS,Settings.System.KERNEL_CPUBOOST_MS);
+        UpdateBoostms(false);
 	}
 
 	public void SetGovernor(String newValue) {
@@ -245,7 +377,19 @@ public class KernelSettings extends SettingsPreferenceFragment implements OnPref
         } else if (preference == mCpuApply) {
             SetCpuApplyOnBoot((Boolean) newValue ? true : false);
             return true;
-		}	
+		} else if (preference == mInputfreq) {
+            SetInputBoostFreq((String) newValue);
+            return true;
+        } else if (preference == mInputms) {
+            SetInputBoostms((String) newValue);          
+           return true;
+		} else if (preference == mSyncThresFreq) {
+            SetSyncFreq((String) newValue);
+            return true;
+        } else if (preference == mBoostms) {
+            SetBoostms((String) newValue);          
+           return true;
+        }
         return false;
     }
 	

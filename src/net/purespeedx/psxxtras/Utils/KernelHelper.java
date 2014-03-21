@@ -57,7 +57,24 @@ public class KernelHelper implements Constants {
 		}
 		return false;
 	}
-	
+    
+	public static boolean SetValue(Context context,String Path,String SettingsPath) {
+		try {
+			if (Path != null) {
+				String value = Settings.System.getString(context.getContentResolver(), SettingsPath);
+                if (value != null && value != "") {
+                    return Execute("busybox echo " + value + " > " + Path);
+                } else {
+                    return false;
+                }
+			}
+		} catch (Exception e) {
+			Log.e(TAG, e.getMessage());
+		    return false;
+		}
+		return false;
+	}
+    	
 	public static boolean SetGovernor(Context context) {
 		String governor = Settings.System.getString(context.getContentResolver(), Settings.System.KERNEL_GOVERNOR);
 		boolean result = true;
@@ -127,11 +144,19 @@ public class KernelHelper implements Constants {
 	public static void SetOnBoot(Context context) {
 		SetFastCharge(context);
 		SetGovernor(context);
-		if (Settings.System.getInt(context.getContentResolver(), Settings.System.KERNEL_FORCE_FASTCHARGE, 0) == 1) {
+		if (Settings.System.getInt(context.getContentResolver(), Settings.System.KERNEL_CPU_FREQUENCY_APPLY, 0) == 1) {
 			Log.i(TAG, "applying CPU frequencies");
 			SetFrequency(context,MIN_FREQ_PATH,Settings.System.KERNEL_CPU_FREQUENCY_MIN);
 			SetFrequency(context,MAX_FREQ_PATH,Settings.System.KERNEL_CPU_FREQUENCY_MAX);
 		}
+		if (Settings.System.getInt(context.getContentResolver(), Settings.System.KERNEL_INPUTBOOST_APPLY, 0) == 1) {
+			Log.i(TAG, "applying CPU Boost Settings");
+			SetValue(context,CPUBOOST_INPUT_FREQ,Settings.System.KERNEL_INPUTBOOST_FREQ);
+			SetValue(context,CPUBOOST_INPUT_MS,Settings.System.KERNEL_INPUTBOOST_MS);
+			SetValue(context,CPUBOOST_BOOST_MS,Settings.System.KERNEL_CPUBOOST_MS);
+			SetValue(context,CPUBOOST_SYNC_THRESHOLD,Settings.System.KERNEL_SYNC_THRESHOLD_FREQ);            
+		}
+        
 	}
 }
 
