@@ -201,5 +201,38 @@
     <string name="increasing_ring_interval_3seconds">3 Sekunden</string>
     <string name="increasing_ring_interval_5seconds">5 Sekunden</string>
     <string name="increasing_ring_interval_10seconds">10 Sekunden</string>	
+
+	   <!-- Lockscreen Notifications -->
+
+    <!-- Categories --> 
+    <string name="general">Allgemein</string>
+    <string name="layout">Layout</string>
+    <string name="privacy">Privatsphäre</string>
+
+    <string name="lockscreen_notifications">Sperrschirm Meldungen</string>
+    <string name="lockscreen_notifications_summary">Zeige offene Meldungen auf dem Sperrschirm</string>
+    <string name="pocket_mode">Taschen-Modus</string>
+    <string name="pocket_mode_summary">Schalte den Bildschirm ein und zeige alle Meldungen wenn das Gerät aus der Tasche genommen wird.Schalte Bildschirm aus, wenn es zurück in die Tasche gesteckt wird</string>
+    <string name="show_always">Immer zeigen</string>
+    <string name="show_always_summary">Schaltet den Bildschirm immer ein, sobald das Gerät aus der Tachen genommen wird, auch wenn keine Nachricht ansteht</string>
+    <string name="hide_low_priority">Verstecke Niedrige Priorität</string>
+    <string name="hide_low_priority_summary">Verstecke Meldungen mit niedriger Priorität wie Google Now Wetter Meldungen</string>
+    <string name="hide_non_clearable">Verstecke Unlöschbare</string>
+    <string name="hide_non_clearable_summary">Verstecke alle nichtlöschbaren Meldungen</string>
+    <string name="dismiss_all">Erlaube Bestätigung aller Meldungen</string>
+    <string name="dismiss_all_summary">Erlaube auch das Bestätigen nicht löschbarer Meldungen. Natürlich werden diese nur vom Sperrschirm entfernt und nicht vom Meldungsschirm</string>
+    <string name="expanded_view">Erweiterte Meldungsansicht</string>
+    <string name="expanded_view_summary">Fügt die Möglichkeit hinzu, durch Langen Druck Meldungen erweitert anzuzeigen.Die erweiterte Ansicht zeigt manchmal privatere Informationen, weshalb dies vielleicht deaktiviert werden sollte</string>
+    <string name="force_expanded_view">Erzwinge erweiterte Ansicht</string>
+    <string name="force_expanded_view_summary">Zeige Meldungen voreingestellt Erweitert.Sie können weiterhin per langen Druck verkleinert werden</string>
+    <string name="wake_on_notification">Aufwachen bei Meldungen</string>
+    <string name="wake_on_notification_summary">Wecke Gerät bei neuen Nachrichten auf</string>
+    <string name="notifications_height">Anzahl Meldungen</string>
+    <string name="notifications_height_summary">Anzahl der Meldungen, die auf einmal gezeigt werden sollen</string>
+    <string name="offset_top">Abstand vom oberen Rand:</string>
+    <string name="privacy_mode">Privater Modus</string>
+    <string name="privacy_mode_summary">Deaktiviere Nachrichtenazeige. Auf diese Art werden nur die Meldungssymbole angezeigt.</string>
+    <string name="excluded_apps_title">Ausgeschlossene Anwendungen</string>
+    <string name="excluded_apps_summary">Ausgeschlossene Anwendungen werden nicht auf dem Sperrbildschirm angezeigt</string>
 	
 </resources>

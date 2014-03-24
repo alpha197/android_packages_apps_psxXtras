@@ -25,7 +25,12 @@ public class LockscreenSettings extends SettingsPreferenceFragment implements On
 
         addPreferencesFromResource(R.xml.lockscreen_settings);
         PreferenceScreen root = getPreferenceScreen();
-	
+        boolean hasLockscreenNotification = getResources().getBoolean(
+                R.bool.config_show_lockscreen_notification);
+    	if (!hasLockscreenNotification) {
+	        Preference ps = (Preference) findPreference("lockscreen_notifications");
+    		 if (ps != null) root.removePreference(ps);
+	    }	
     }
 
     @Override
