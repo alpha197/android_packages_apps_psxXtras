@@ -31,6 +31,6 @@
   <bool name="config_show_userinterface_lessnotifications">false</bool>
   <bool name="config_show_buttons_powermenu">false</bool>
   <bool name="config_show_lockscreen_notification">false</bool>
- 
+  <bool name="config_show_lockscreen_seethrough">false</bool>
 
 </resources>

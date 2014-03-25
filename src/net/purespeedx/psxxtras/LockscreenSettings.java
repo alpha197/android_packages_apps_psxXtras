@@ -19,6 +19,10 @@ import com.android.settings.SettingsPreferenceFragment;
 
 public class LockscreenSettings extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
+    private static final String KEY_SEE_THROUGH = "see_through";
+
+    private CheckBoxPreference mSeeThrough;
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,10 +35,28 @@ public class LockscreenSettings extends SettingsPreferenceFragment implements On
 	        Preference ps = (Preference) findPreference("lockscreen_notifications");
     		 if (ps != null) root.removePreference(ps);
 	    }	
+       // lockscreen see through
+        mSeeThrough = (CheckBoxPreference) root.findPreference(KEY_SEE_THROUGH);
+        if (mSeeThrough != null) {
+            boolean hasLockscreenSeeThrough = getResources().getBoolean(
+                    R.bool.config_show_lockscreen_seethrough);
+            if (!hasLockscreenSeeThrough) {
+                root.removePreference(mSeeThrough);
+                mSeeThrough = null;
+            } else {
+                mSeeThrough.setChecked(Settings.System.getInt(getContentResolver(),
+                        Settings.System.LOCKSCREEN_SEE_THROUGH, 0) == 1);
+            }
+        }
     }
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {      
+       if (preference == mSeeThrough) {
+            Settings.System.putInt(getContentResolver(), Settings.System.LOCKSCREEN_SEE_THROUGH,
+                    mSeeThrough.isChecked() ? 1 : 0);
+            return true;
+        }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 

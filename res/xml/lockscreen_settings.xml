@@ -23,4 +23,9 @@
 	    android:key = "lockscreen_notifications"
         android:title="@string/lockscreen_notifications"
         android:fragment="net.purespeedx.psxxtras.LockscreenNotifications" />	
+		
+    <CheckBoxPreference
+        android:key="see_through"
+        android:title="@string/see_through_title"
+        android:summary="@string/see_through_summary" />		
 </PreferenceScreen>
