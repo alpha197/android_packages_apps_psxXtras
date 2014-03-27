@@ -26,4 +26,20 @@
         android:fragment="net.purespeedx.psxxtras.PowermenuSettings"
         android:title="@string/powermenu_title" />
 		
+   <PreferenceCategory
+        android:key="volume_rocker_category"
+        android:title="@string/pref_volume_rocker_category" >
+    
+	    <CheckBoxPreference
+            android:key="pref_volume_wake"
+            android:title="@string/pref_volume_wake_title"
+            android:summary="@string/pref_volume_wake_summary"
+            android:defaultValue="false" />
+    
+        <CheckBoxPreference
+            android:key="volbtn_music_controls"
+            android:title="@string/volbtn_music_controls_title"
+            android:summary="@string/volbtn_music_controls_summary"
+            android:persistent="false" />		
+    </PreferenceCategory>
 </PreferenceScreen>

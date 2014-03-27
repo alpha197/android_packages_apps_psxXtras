@@ -4,21 +4,22 @@
     <!-- Settings main menu category heading. Rom (Launcher, Themes, System). [CHAR LIMIT=40] -->
     <string name="header_category_rom_settings">Xtra settings</string>
 
-	<!-- Settings Header -->
-	<string name="psx_header_bars">Bars</string>
-	<string name="psx_header_buttons">Buttons</string>
-	<string name="psx_header_interface">Interface</string>
-	<string name="psx_header_lockscreen">Lockscreen</string>
+    <!-- Settings Header -->
+    <string name="psx_header_bars">Bars</string>
+    <string name="psx_header_buttons">Buttons</string>
+    <string name="psx_header_interface">Interface</string>
+    <string name="psx_header_lockscreen">Lockscreen</string>
     <string name="psx_header_statusbar">Status bar</string>
     <string name="psx_header_navbar">Navigation bar</string>
-	
-	<!-- General strings -->
+    
+    <!-- General strings -->
     <string name="ok">OK</string>
     <string name="reset">Reset</string>
     <string name="attention">Attention</string>
     <string name="enabled">Enabled</string>
     <string name="default_string">Default</string>
-	
+	<string name="general_string">General</string>
+    
     <!-- Display settings screen, notification light settings -->
     <string name="display_category_light_options_title">Light options</string>
     <string name="notification_light_general_title">General</string>
@@ -97,7 +98,7 @@
     <!-- time range preference -->
     <string name="start_time_title">Start</string>
     <string name="end_time_title">End</string>
-	
+    
     <!-- Less Notification sounds -->
     <string name="notifications_category_title">Notifications</string>
     <string name="less_notification_sounds_title">Less frequent notification sounds</string>
@@ -115,7 +116,7 @@
 
  <!-- Statusbar show battery percent -->
   <string name="status_bar_show_battery_percent">Show battery percent</string>
-  <string name="status_bar_show_battery_percent_summary">Shows the battery state in percent inside of the battery symbol</string>	
+  <string name="status_bar_show_battery_percent_summary">Shows the battery state in percent inside of the battery symbol</string>    
 
     <!-- Navigation Bar Height -->
     <string name="navigation_bar_height">Navigation bar height</string>
@@ -151,40 +152,40 @@
     <string name="powermenu_torch_prefs_summary">%1$s</string>
 
     <!-- Kernel Settings -->
-	<string name="kernel_settings_header">Kernel Settings</string>
-	<string name="kernel_settings_force_fastcharge_title">Force fastcharge</string>
-	<string name="kernel_settings_force_fastcharge_summary_on">fastcharge is forced</string>
-	<string name="kernel_settings_force_fastcharge_summary_off">fastcharge is not forced</string>
-	<string name="kernel_settings_force_fastcharge_summary_unsupported">fastcharge is not supported</string>
-	<string name="kernel_settings_governor_title">Governor</string>
-	<string name="kernel_settings_cpu_frequency_title">CPU frequency</string>
-	<string name="kernel_settings_cpu_frequency_min_title">Minimum frequency</string>
-	<string name="kernel_settings_cpu_frequency_max_title">Maximum frequency</string>
-	<string name="kernel_settings_cpu_frequency_apply_title">Apply on boot</string>
-	<string name="kernel_settings_cpu_frequency_apply_summary_disabled">Do not apply on boot</string>
-	<string name="kernel_settings_cpu_frequency_apply_summary_enabled">Apply on boot</string>
-	<string name="kernel_settings_cpu_inputboost_title">CPU-Boost driver</string>
-	<string name="kernel_settings_cpu_inputboost_ms">Inputboost</string>
-	<string name="kernel_settings_cpu_inputboost_ms_summary">boosts cpu for %1$s ms</string>
-	<string name="kernel_settings_cpu_inputboost_freq">Inputboost frequency</string>
-	<string name="kernel_settings_cpu_boost_apply">Apply on boot</string>
-	<string name="kernel_settings_cpu_boost_apply_disabled">Do not apply on boot</string>
-	<string name="kernel_settings_cpu_boost_apply_enabled">Apply on boot</string>
-	<string name="kernel_settings_cpu_boost_ms">Peak Boost time</string>
-	<string name="kernel_settings_cpu_boost_ms_summary">boosts cpu for %1$s ms on load peaks</string>
-	<string name="kernel_settings_cpu_sync_threshold">Sync threshold frequency</string>
-    <string name="kernel_settings_frequency_summary">Current: %1$s kHz</string>	
+    <string name="kernel_settings_header">Kernel Settings</string>
+    <string name="kernel_settings_force_fastcharge_title">Force fastcharge</string>
+    <string name="kernel_settings_force_fastcharge_summary_on">fastcharge is forced</string>
+    <string name="kernel_settings_force_fastcharge_summary_off">fastcharge is not forced</string>
+    <string name="kernel_settings_force_fastcharge_summary_unsupported">fastcharge is not supported</string>
+    <string name="kernel_settings_governor_title">Governor</string>
+    <string name="kernel_settings_cpu_frequency_title">CPU frequency</string>
+    <string name="kernel_settings_cpu_frequency_min_title">Minimum frequency</string>
+    <string name="kernel_settings_cpu_frequency_max_title">Maximum frequency</string>
+    <string name="kernel_settings_cpu_frequency_apply_title">Apply on boot</string>
+    <string name="kernel_settings_cpu_frequency_apply_summary_disabled">Do not apply on boot</string>
+    <string name="kernel_settings_cpu_frequency_apply_summary_enabled">Apply on boot</string>
+    <string name="kernel_settings_cpu_inputboost_title">CPU-Boost driver</string>
+    <string name="kernel_settings_cpu_inputboost_ms">Inputboost</string>
+    <string name="kernel_settings_cpu_inputboost_ms_summary">boosts cpu for %1$s ms</string>
+    <string name="kernel_settings_cpu_inputboost_freq">Inputboost frequency</string>
+    <string name="kernel_settings_cpu_boost_apply">Apply on boot</string>
+    <string name="kernel_settings_cpu_boost_apply_disabled">Do not apply on boot</string>
+    <string name="kernel_settings_cpu_boost_apply_enabled">Apply on boot</string>
+    <string name="kernel_settings_cpu_boost_ms">Peak Boost time</string>
+    <string name="kernel_settings_cpu_boost_ms_summary">boosts cpu for %1$s ms on load peaks</string>
+    <string name="kernel_settings_cpu_sync_threshold">Sync threshold frequency</string>
+    <string name="kernel_settings_frequency_summary">Current: %1$s kHz</string>    
     <!-- Swipe to QS -->
-	<string name="swipe_for_qs_title">Pulldown for QS</string>
-	<string name="swipe_for_qs_off">Off</string>
-	<string name="swipe_for_qs_right">Right</string>
-	<string name="swipe_for_qs_left">Left</string>
+    <string name="swipe_for_qs_title">Pulldown for QS</string>
+    <string name="swipe_for_qs_off">Off</string>
+    <string name="swipe_for_qs_right">Right</string>
+    <string name="swipe_for_qs_left">Left</string>
 
     <!-- Safe headset volume warning -->
     <string name="safe_headset_volume_warning_title">Volume warning</string>
-    <string name="safe_headset_volume_warning_summary">Show safe headset volume warning</string>	
-	
-	<!-- Increasing Ringtone -->
+    <string name="safe_headset_volume_warning_summary">Show safe headset volume warning</string>    
+    
+    <!-- Increasing Ringtone -->
 
     <string name="increasing_ring_title">Ascending ringtone</string>
     <!-- Sound settings screen, the caption of the checkbox for making incoming calls increase in volume -->
@@ -199,8 +200,8 @@
     <string name="increasing_ring_interval_2seconds">2 seconds</string>
     <string name="increasing_ring_interval_3seconds">3 seconds</string>
     <string name="increasing_ring_interval_5seconds">5 seconds</string>
-    <string name="increasing_ring_interval_10seconds">10 seconds</string>	
-	
+    <string name="increasing_ring_interval_10seconds">10 seconds</string>    
+    
     <!-- Lockscreen Notifications -->
 
     <!-- Categories --> 
@@ -234,7 +235,28 @@
     <string name="excluded_apps_title">Excluded applications</string>
     <string name="excluded_apps_summary">Excluded applications will not show up as lockscreen notifications</string>
 
-	    <!--Lockscreen See Through-->
+    <!--Lockscreen See Through-->
      <string name="see_through_title">See through</string>
-     <string name="see_through_summary">Shows the content behind your lockscreen, your data may be visible to those around you</string>
+     <string name="see_through_summary">Shows the content behind your lockscreen blurred, your data may be visible to those around you</string>
+     
+    <!-- Double-tap to sleep -->
+    <string name="double_tap_sleep_title">Double-tap to sleep</string>
+    <string name="double_tap_sleep_secure_lockscreen_category">Secure lockscreen</string>
+    <string name="status_bar_double_tap_sleep_status_bar_title">Status bar</string>
+    <string name="status_bar_double_tap_sleep_status_bar_summary">Double tap anywhere on the status bar</string>
+    <string name="status_bar_double_tap_sleep_glowpad_title">Glow pad</string>
+    <string name="status_bar_double_tap_sleep_glowpad_summary">Double tap the glow pad</string>
+    <string name="status_bar_double_tap_sleep_pin_password_title">Pin and Password</string>
+    <string name="status_bar_double_tap_sleep_pin_password_summary">Double tap the text entry view</string>
+    <string name="status_bar_double_tap_sleep_pattern_title">Pattern</string>
+    <string name="status_bar_double_tap_sleep_pattern_summary">Double tap anywhere on the pattern view</string>
+
+    <string name="pref_volume_rocker_category">Volume rocker</string>
+    <!-- Volume rocker wake -->
+    <string name="pref_volume_wake_title">Volume rocker wake</string>
+    <string name="pref_volume_wake_summary">Pressing the volume rocker will wake your Nexus</string>
+
+    <!-- Volume rocker music control -->
+    <string name="volbtn_music_controls_title">Volume rocker music controls</string>
+    <string name="volbtn_music_controls_summary">When screen off, long-pressing the volume rocker will seek music tracks</string>    
 </resources>
