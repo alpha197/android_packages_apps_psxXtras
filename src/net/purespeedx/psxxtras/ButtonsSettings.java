@@ -45,14 +45,31 @@ public class ButtonsSettings extends SettingsPreferenceFragment implements OnPre
 			 if (ps != null) prefSet.removePreference(ps);
 		}
 
+        boolean hasVolumeWake = getResources().getBoolean(
+                R.bool.config_show_volumerocker_wake);
         mVolumeWake = (CheckBoxPreference) findPreference(KEY_VOLUME_WAKE);
-        mVolumeWake.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
-                    Settings.System.VOLUME_WAKE_SCREEN, 0) == 1);
+        if (mVolumeWake != null) {
+            if (!hasVolumeWake) {
+                prefSet.removePreference(mVolumeWake);       
+                mVolumeWake = null;
+            } else {
+                mVolumeWake.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                            Settings.System.VOLUME_WAKE_SCREEN, 0) == 1);
+            }
+        }
 
+        boolean hasVolumeControl = getResources().getBoolean(
+                R.bool.config_show_volumerocker_musiccontrol);  
         mVolBtnMusicCtrl = (CheckBoxPreference) findPreference(KEY_VOLBTN_MUSIC_CTRL);
-        mVolBtnMusicCtrl.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
-                   Settings.System.VOLBTN_MUSIC_CONTROLS, 0) == 1);
-		
+        if (mVolBtnMusicCtrl != null) {
+            if (!hasVolumeControl) {               
+                prefSet.removePreference(mVolBtnMusicCtrl);       
+                mVolBtnMusicCtrl = null;        
+            } else {
+                mVolBtnMusicCtrl.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                        Settings.System.VOLBTN_MUSIC_CONTROLS, 0) == 1);
+            }
+        }
 	}
 
     @Override
