@@ -4,6 +4,7 @@ package net.purespeedx.psxxtras;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
@@ -13,32 +14,31 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.res.Resources;
+import android.database.ContentObserver;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Vibrator;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
+import android.preference.Preference.OnPreferenceChangeListener;
+import android.preference.PreferenceCategory;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
 
-import java.util.List;
-import android.app.Activity;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.os.Vibrator;
-import android.preference.Preference.OnPreferenceChangeListener;
-
 import com.android.settings.R;
 import com.android.settings.Utils;
-import android.preference.PreferenceCategory;
-import android.database.ContentObserver;
-import android.content.res.Resources;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserInterfaceSettings extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
@@ -50,7 +50,10 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
     private static final String KEY_SAFE_HEADSET_VOLUME_WARNING = "safe_headset_volume_warning";
     private static final String KEY_INCREASING_RING = "increasing_ring";
     private static final String KEY_DOUBLE_TAP_TO_SLEEP = "double_tap_sleep";
-    
+    private static final String KEY_IMMERSIVE_MODE = "immersive_mode";
+    private static final String KEY_IMMERSIVE_MODE_STYLE = "immersive_mode_style";
+    private static final String KEY_IMMERSIVE_MODE_STATE = "immersive_mode_state";    
+
     private static final String[] NEED_VOICE_CAPABILITY = {
             KEY_INCREASING_RING
     };
@@ -60,6 +63,10 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
     private PreferenceScreen mBatteryPulse;
     private ListPreference mAnnoyingNotifications;
     private CheckBoxPreference mVolumeWarning;
+    
+    private PreferenceCategory mImmersiveMode;
+    private ListPreference mImmersiveModePref;
+    private CheckBoxPreference mImmersiveModeState;  
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -138,10 +145,40 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
                     getPreferenceScreen().removePreference(pref);
                 }
             }
-        }		
+        }
+
+        boolean hasImmersive = getResources().getBoolean(R.bool.config_show_immersive);
+        mImmersiveMode = (PreferenceCategory) findPreference(KEY_IMMERSIVE_MODE);
+        if (mImmersiveMode != null) {
+            if (!hasImmersive) {
+                prefSet.removePreference(mImmersiveMode);
+                mImmersiveMode = null;
+                mImmersiveModeState = null;
+                mImmersiveModePref = null;
+            } else {
+                mImmersiveModeState = (CheckBoxPreference) mImmersiveMode.findPreference(KEY_IMMERSIVE_MODE_STATE);
+                mImmersiveModeState.setChecked(Settings.System.getInt(getContentResolver(), 
+                            Settings.System.GLOBAL_IMMERSIVE_MODE_STATE, 0) == 1);
+                mImmersiveModeState.setOnPreferenceChangeListener(this);        
+                mImmersiveModePref = (ListPreference) mImmersiveMode.findPreference(KEY_IMMERSIVE_MODE_STYLE);
+                mImmersiveModePref.setOnPreferenceChangeListener(this);
+                int immersiveModeValue = Settings.System.getInt(getContentResolver(),
+                            Settings.System.GLOBAL_IMMERSIVE_MODE_STYLE, 0);
+                mImmersiveModePref.setValue(String.valueOf(immersiveModeValue));		
+                updateImmersiveModeState(immersiveModeValue);
+                updateImmersiveModeSummary(immersiveModeValue);
+            }
+        }
     }
     
-
+    private void updateImmersiveModeState(int value) {
+        if (value >=1) {
+            mImmersiveModeState.setEnabled(true);
+        } else {
+           mImmersiveModeState.setEnabled(false);	
+        }
+    }
+     
     private void updateLightPulseDescription() {
         if (mNotificationPulse != null) {    
             if (Settings.System.getInt(getActivity().getContentResolver(),
@@ -183,9 +220,35 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
             Settings.System.putInt(getContentResolver(),
                     Settings.System.MANUAL_SAFE_MEDIA_VOLUME, volumeWarning);
 			return true;
+        } else if (preference == mImmersiveModePref) {
+            int immersiveModeValue = Integer.valueOf((String) objValue);
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.GLOBAL_IMMERSIVE_MODE_STYLE, immersiveModeValue);
+             updateImmersiveModeSummary(immersiveModeValue);
+             updateImmersiveModeState(immersiveModeValue);
+             return true;
+        } else if (preference == mImmersiveModeState) {
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.GLOBAL_IMMERSIVE_MODE_STATE,
+                    (Boolean) objValue ? 1 : 0);
+            return true;
         }
         return false;
     }
+    
+    private void updateImmersiveModeSummary(int value) {
+        Resources res = getResources();
+        if (value == 0) {
+            /* expanded desktop deactivated */
+            mImmersiveModePref.setSummary(res.getString(R.string.immersive_mode_disabled));
+        } else if (value == 1) {
+            String statusBarPresent = res.getString(R.string.immersive_mode_summary_status_bar);
+            mImmersiveModePref.setSummary(statusBarPresent);
+        } else if (value == 2) {
+            String statusBarPresent = res.getString(R.string.immersive_mode_summary_no_status_bar);
+            mImmersiveModePref.setSummary(statusBarPresent);
+        }
+    }	
     
     @Override
     public void onResume() {

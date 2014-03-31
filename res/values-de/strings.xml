@@ -260,4 +260,18 @@
     <!-- Volume rocker music control -->
     <string name="volbtn_music_controls_title">Musiksteuerung</string>
     <string name="volbtn_music_controls_summary">Bei abgeschalteten Bildschirm wird durch langes drückten der Wippe durch die Tracks gesprungen</string>  	
+	
+	<!-- Immersive mode -->
+    <string name="powermenu_immersive_mode">Immersiv Modus</string>
+    <string name="powermenu_immersive_mode_prefs_summary">%1$s</string>
+    <string name="immersive_mode_summary_status_bar">Mit Statusleiste</string>
+    <string name="immersive_mode_summary_no_status_bar">Ohne Statusleiste</string>
+    <string name="immersive_mode_disabled">Deaktiviert</string>
+    <string name="immersive_mode_status_bar">Mit Statusleiste</string>
+    <string name="immersive_mode_no_status_bar">Ohne Statusleiste</string>
+    <string name="psx_category_immersive_mode">Immersive Modus</string>
+    <string name="immersive_mode_state">Aktiviere Modus</string>
+    <string name="immersive_mode_on">Immersive Modus aktiv</string>
+    <string name="immersive_mode_off">Immersive Modus inaktiv</string>
+    <string name="immersive_mode_style">Immersive Stil</string>	
 </resources>

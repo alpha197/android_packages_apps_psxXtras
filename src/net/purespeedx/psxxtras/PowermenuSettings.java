@@ -19,6 +19,7 @@ package net.purespeedx.psxxtras;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ContentResolver;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
@@ -42,7 +43,8 @@ public class PowermenuSettings extends SettingsPreferenceFragment implements OnP
     private static final String KEY_POWERMENU_USERSWITCH_PREFS ="powermenu_userswitch_prefs";
     private static final String KEY_POWERMENU_SCREENSHOT_PREFS ="powermenu_screenshot_prefs";
     private static final String KEY_POWERMENU_TORCH_PREFS ="powermenu_torch_prefs";
-
+    private static final String KEY_IMMERSIVE_MODE = "powermenu_immersive_mode";
+    
     private ListPreference mPowermenuRebootPrefs;
     private ListPreference mPowermenuShutdownPrefs;
     private ListPreference mPowermenuAirplanemodePrefs;
@@ -50,7 +52,8 @@ public class PowermenuSettings extends SettingsPreferenceFragment implements OnP
     private ListPreference mPowermenuUserswitchPrefs;
     private ListPreference mPowermenuScreenshotPrefs;
     private ListPreference mPowermenuTorchPrefs;
-
+    private ListPreference mPowermenuImmersiveModePrefs;
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,11 +62,12 @@ public class PowermenuSettings extends SettingsPreferenceFragment implements OnP
 
         PreferenceScreen prefSet = getPreferenceScreen();
 
-
+        final ContentResolver cr = getActivity().getContentResolver();
+        
        // Powermenu Reboot selection
         mPowermenuRebootPrefs = (ListPreference) prefSet.findPreference(KEY_POWERMENU_REBOOT_PREFS);
         mPowermenuRebootPrefs.setOnPreferenceChangeListener(this);
-        int mPowermenuRebootPrefsValue = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
+        int mPowermenuRebootPrefsValue = Settings.System.getInt(cr,
                                  Settings.System.POWERMENU_REBOOT_PREFS, 2);
         mPowermenuRebootPrefs.setValue(String.valueOf(mPowermenuRebootPrefsValue));
         updatePowermenuRebootPrefs(mPowermenuRebootPrefsValue);
@@ -71,7 +75,7 @@ public class PowermenuSettings extends SettingsPreferenceFragment implements OnP
         // Powermenu Shutdown selection
         mPowermenuShutdownPrefs = (ListPreference) prefSet.findPreference(KEY_POWERMENU_SHUTDOWN_PREFS);
         mPowermenuShutdownPrefs.setOnPreferenceChangeListener(this);
-        int mPowermenuShutdownPrefsValue = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
+        int mPowermenuShutdownPrefsValue = Settings.System.getInt(cr,
                                  Settings.System.POWERMENU_SHUTDOWN_PREFS, 2);
         mPowermenuShutdownPrefs.setValue(String.valueOf(mPowermenuShutdownPrefsValue));
         updatePowermenuShutdownPrefs(mPowermenuShutdownPrefsValue);
@@ -79,7 +83,7 @@ public class PowermenuSettings extends SettingsPreferenceFragment implements OnP
         // Powermenu Airplane Mode selection
         mPowermenuAirplanemodePrefs = (ListPreference) prefSet.findPreference(KEY_POWERMENU_AIRPLANEMODE_PREFS);
         mPowermenuAirplanemodePrefs.setOnPreferenceChangeListener(this);
-        int mPowermenuAirplanemodePrefsValue = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
+        int mPowermenuAirplanemodePrefsValue = Settings.System.getInt(cr,
                                  Settings.System.POWERMENU_AIRPLANEMODE_PREFS, 2);
         mPowermenuAirplanemodePrefs.setValue(String.valueOf(mPowermenuAirplanemodePrefsValue));
         updatePowermenuAirplanemodePrefs(mPowermenuAirplanemodePrefsValue);
@@ -87,7 +91,7 @@ public class PowermenuSettings extends SettingsPreferenceFragment implements OnP
         // Powermenu Torch selection
         mPowermenuTorchPrefs = (ListPreference) prefSet.findPreference(KEY_POWERMENU_TORCH_PREFS);
         mPowermenuTorchPrefs.setOnPreferenceChangeListener(this);
-        int mPowermenuTorchPrefsValue = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
+        int mPowermenuTorchPrefsValue = Settings.System.getInt(cr,
                                  Settings.System.POWERMENU_TORCH_PREFS, 2);
         mPowermenuTorchPrefs.setValue(String.valueOf(mPowermenuTorchPrefsValue));
         updatePowermenuTorchPrefs(mPowermenuTorchPrefsValue);
@@ -95,7 +99,7 @@ public class PowermenuSettings extends SettingsPreferenceFragment implements OnP
         // Powermenu Silentmode selection
         mPowermenuSilentmodePrefs = (ListPreference) prefSet.findPreference(KEY_POWERMENU_SILENTMODE_PREFS);
         mPowermenuSilentmodePrefs.setOnPreferenceChangeListener(this);
-        int mPowermenuSilentmodePrefsValue = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
+        int mPowermenuSilentmodePrefsValue = Settings.System.getInt(cr,
                                  Settings.System.POWERMENU_SILENTMODE_PREFS, 2);
         mPowermenuSilentmodePrefs.setValue(String.valueOf(mPowermenuSilentmodePrefsValue));
         updatePowermenuSilentmodePrefs(mPowermenuSilentmodePrefsValue);
@@ -105,7 +109,7 @@ public class PowermenuSettings extends SettingsPreferenceFragment implements OnP
 	    if (mPowermenuUserswitchPrefs !=null) {
 		    if (SystemProperties.getBoolean("fw.power_user_switcher", false)) {
                 mPowermenuUserswitchPrefs.setOnPreferenceChangeListener(this);
-                int mPowermenuUserswitchPrefsValue = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
+                int mPowermenuUserswitchPrefsValue = Settings.System.getInt(cr,
                                          Settings.System.POWERMENU_USERSWITCH_PREFS, 2);
                 mPowermenuUserswitchPrefs.setValue(String.valueOf(mPowermenuUserswitchPrefsValue));
                 updatePowermenuUserswitchPrefs(mPowermenuUserswitchPrefsValue);
@@ -115,14 +119,30 @@ public class PowermenuSettings extends SettingsPreferenceFragment implements OnP
             }
 		}
 
-        // Powermenu Userswitch selection
+        // Powermenu Screenshot selection
         mPowermenuScreenshotPrefs = (ListPreference) prefSet.findPreference(KEY_POWERMENU_SCREENSHOT_PREFS);
         mPowermenuScreenshotPrefs.setOnPreferenceChangeListener(this);
         int mPowermenuScreenshotPrefsValue = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
                                  Settings.System.POWERMENU_SCREENSHOT_PREFS, 2);
         mPowermenuScreenshotPrefs.setValue(String.valueOf(mPowermenuScreenshotPrefsValue));
         updatePowermenuScreenshotPrefs(mPowermenuScreenshotPrefsValue);
+
+        // Powermenu Immersive Mode selection
+        boolean hasImmersive = getResources().getBoolean(R.bool.config_show_immersive);
+        mPowermenuImmersiveModePrefs = (ListPreference) prefSet.findPreference(KEY_IMMERSIVE_MODE);
+        if (mPowermenuImmersiveModePrefs !=null) {
+            if (!hasImmersive) {
+                if (mPowermenuImmersiveModePrefs != null) prefSet.removePreference(mPowermenuImmersiveModePrefs);
+                mPowermenuImmersiveModePrefs = null;
+            } else {
+                mPowermenuImmersiveModePrefs.setOnPreferenceChangeListener(this);
+                int ImmersiveModeValue = Settings.System.getInt(
+                        getContentResolver(), Settings.System.POWER_MENU_GLOBAL_IMMERSIVE_MODE_ENABLED, 2);
+                mPowermenuImmersiveModePrefs.setValue(String.valueOf(ImmersiveModeValue));
+                updateImmersiveModeSummary(ImmersiveModeValue);
+            }
         }
+    }
 
    private String getPowerMenuString(int value) {
         Resources res = getResources();
@@ -169,7 +189,10 @@ public class PowermenuSettings extends SettingsPreferenceFragment implements OnP
     private void updatePowermenuTorchPrefs(int value) {
         mPowermenuTorchPrefs.setSummary(getPowerMenuString(value));
     }
-    
+   
+    private void updateImmersiveModeSummary(int value) {
+        mPowermenuImmersiveModePrefs.setSummary(getPowerMenuString(value));
+    }  
     
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         if (preference == mPowermenuRebootPrefs) {
@@ -221,6 +244,13 @@ public class PowermenuSettings extends SettingsPreferenceFragment implements OnP
             updatePowermenuTorchPrefs(mPowermenuTorchPrefsValue);
             getActivity().recreate();
             return true;
+        } else if (preference == mPowermenuImmersiveModePrefs) {
+             int ImmersiveModeValue = Integer.valueOf((String) objValue);
+             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.POWER_MENU_GLOBAL_IMMERSIVE_MODE_ENABLED, ImmersiveModeValue);
+             updateImmersiveModeSummary(ImmersiveModeValue);
+             getActivity().recreate();
+             return true;
         }
         return false;
     }
