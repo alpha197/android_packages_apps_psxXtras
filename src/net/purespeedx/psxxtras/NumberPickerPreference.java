@@ -15,7 +15,8 @@ import android.view.View;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
-import com.android.settings.R;
+import net.purespeedx.psxxtras.R;
+
 /**
 * A {@link DialogPreference} that provides a user with the means to select an integer from a {@link NumberPicker}, and persist it.
 *

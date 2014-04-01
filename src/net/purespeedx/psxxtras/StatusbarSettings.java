@@ -15,9 +15,10 @@ import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
 
-import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import android.content.res.Resources;
+
+import net.purespeedx.psxxtras.R;
 
 public class StatusbarSettings extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 

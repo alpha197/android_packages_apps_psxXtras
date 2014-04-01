@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2010 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<preference-headers
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <!-- Bars -->
+    <header
+		android:id="@+id/psx_bars"
+        android:key="psx_bars"
+        android:icon="@drawable/ic_settings_bars"
+        android:fragment="net.purespeedx.psxxtras.BarsSettings"
+        android:title="@string/psx_header_bars" />
+
+    <!-- Buttons -->
+    <header
+		android:id="@+id/psx_buttons"
+        android:key="psx_buttons"
+        android:icon="@drawable/ic_settings_buttons"
+        android:fragment="net.purespeedx.psxxtras.ButtonsSettings"
+        android:title="@string/psx_header_buttons" />
+                
+    <!-- Interface -->
+    <header
+		android:id="@+id/psx_user_interface"
+        android:key="psx_user_interface"
+        android:icon="@drawable/ic_settings_interface"
+        android:fragment="net.purespeedx.psxxtras.UserInterfaceSettings"
+        android:title="@string/psx_header_interface" />
+
+    <!-- Lockscreen -->
+    <header
+		android:id="@+id/psx_lockscreen"
+        android:key="psx_lockscreen"
+        android:icon="@drawable/ic_settings_lockscreen"
+        android:fragment="net.purespeedx.psxxtras.LockscreenSettings"
+        android:title="@string/psx_header_lockscreen" />	
+
+    <!-- Kernel Settings -->
+    <header
+		android:id="@+id/psx_kernel_settings"
+        android:key="psx_kernel_settings"
+        android:icon="@drawable/ic_settings_kernel"
+        android:fragment="net.purespeedx.psxxtras.KernelSettings"
+        android:title="@string/kernel_settings_header" />	
+
+</preference-headers>

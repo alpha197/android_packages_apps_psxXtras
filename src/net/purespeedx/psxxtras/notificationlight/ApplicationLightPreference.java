@@ -37,7 +37,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.android.settings.R;
+import net.purespeedx.psxxtras.R;
 
 public class ApplicationLightPreference extends DialogPreference {
 

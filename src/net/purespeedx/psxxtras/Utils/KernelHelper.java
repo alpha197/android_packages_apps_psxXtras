@@ -9,7 +9,6 @@ import android.provider.Settings;
 import android.preference.PreferenceManager;
 import android.os.Bundle;
 import android.util.Log;
-import com.android.settings.R;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;

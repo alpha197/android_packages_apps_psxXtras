@@ -32,7 +32,6 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import com.android.settings.R;
 
 import java.text.Collator;
 import java.util.ArrayList;
@@ -42,6 +41,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import net.purespeedx.psxxtras.R;
 /**
 * A preference that lists installed applications, with icons, as a multi choice list.
 *

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.settings;
+package net.purespeedx.psxxtras;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -33,7 +33,7 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.android.settings.R;
+import net.purespeedx.psxxtras.R;
 
 public class IncreasingRingPreference extends VolumePreference implements
         CheckBox.OnCheckedChangeListener {

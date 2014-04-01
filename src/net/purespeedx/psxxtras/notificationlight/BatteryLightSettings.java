@@ -28,8 +28,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
+
+import net.purespeedx.psxxtras.R;
 
 public class BatteryLightSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {

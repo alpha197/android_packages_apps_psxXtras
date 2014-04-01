@@ -34,11 +34,12 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
 
-import com.android.settings.R;
 import com.android.settings.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import net.purespeedx.psxxtras.R;
 
 public class UserInterfaceSettings extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 

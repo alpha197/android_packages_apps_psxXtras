@@ -31,7 +31,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.android.settings.R;
+import net.purespeedx.psxxtras.R;
 
 public class TimeRangePreference extends Preference implements
     View.OnClickListener {

@@ -14,8 +14,9 @@ import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
 
-import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
+
+import net.purespeedx.psxxtras.R;
 
 public class LockscreenSettings extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 

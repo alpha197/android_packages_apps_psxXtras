@@ -52,7 +52,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 
 import java.util.ArrayList;
@@ -62,6 +61,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
+
+import net.purespeedx.psxxtras.R;
 
 public class NotificationLightSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener, AdapterView.OnItemLongClickListener {

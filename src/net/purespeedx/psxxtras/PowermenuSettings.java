@@ -31,8 +31,9 @@ import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.os.SystemProperties;
 
-import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
+
+import net.purespeedx.psxxtras.R;
 
 public class PowermenuSettings extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 

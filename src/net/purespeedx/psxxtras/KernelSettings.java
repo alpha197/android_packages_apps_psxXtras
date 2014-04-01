@@ -16,7 +16,6 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
-import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 
 import net.purespeedx.psxxtras.Utils.CMDProcessor;
@@ -24,6 +23,8 @@ import net.purespeedx.psxxtras.Utils.Constants;
 import net.purespeedx.psxxtras.Utils.Helpers;
 import net.purespeedx.psxxtras.Utils.KernelHelper;
 import java.lang.StringBuilder;
+ 
+import net.purespeedx.psxxtras.R;
  
 public class KernelSettings extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 

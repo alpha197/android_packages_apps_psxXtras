@@ -7,8 +7,9 @@ import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
 
-import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
+
+import net.purespeedx.psxxtras.R;
 
 public class DoubleTapToSleepSettings extends SettingsPreferenceFragment {
 

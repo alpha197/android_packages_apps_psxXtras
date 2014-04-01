@@ -20,11 +20,12 @@ import android.text.TextUtils;
 import android.view.WindowManager;
 
 import com.android.settings.SettingsPreferenceFragment;
-import com.android.settings.R;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+
+import net.purespeedx.psxxtras.R;
 
 public class LockscreenNotifications extends SettingsPreferenceFragment implements Preference.OnPreferenceChangeListener {
 

@@ -9,7 +9,6 @@ import android.provider.Settings;
 import android.preference.PreferenceManager;
 import android.os.Bundle;
 
-import com.android.settings.R;
 
 public class BackgroundIntentService extends IntentService {
     // you could provide more options here, should you need them

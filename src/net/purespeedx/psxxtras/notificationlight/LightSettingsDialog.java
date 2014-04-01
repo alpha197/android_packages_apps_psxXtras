@@ -41,12 +41,13 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
-import com.android.settings.R;
 import net.purespeedx.psxxtras.notificationlight.ColorPickerView.OnColorChangedListener;
 
 import java.util.ArrayList;
 import java.util.IllegalFormatException;
 import java.util.Locale;
+
+import net.purespeedx.psxxtras.R;
 
 public class LightSettingsDialog extends AlertDialog implements
         ColorPickerView.OnColorChangedListener, TextWatcher, OnFocusChangeListener {

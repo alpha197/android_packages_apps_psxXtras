@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright 2014, Team PSX
+<!-- Copyright (C) 2007 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -16,25 +16,7 @@
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-  <!-- PSX-Headers -->
-  <bool name="config_show_psx_bars">false</bool>
-  <bool name="config_show_psx_buttons">false</bool>
-  <bool name="config_show_psx_userinterface">false</bool>
-  <bool name="config_show_psx_lockscreen">false</bool>
-  <bool name="config_show_psx_statusbar">false</bool>
-  <bool name="config_show_psx_navbar">false</bool>
-
-  <!-- PSX-Functions -->
-  <bool name="config_show_statusbar_native_battery">false</bool>
-  <bool name="config_show_navbar_height">false</bool>
-  <bool name="config_show_userinterface_quiethours">false</bool>
-  <bool name="config_show_userinterface_lessnotifications">false</bool>
-  <bool name="config_show_buttons_powermenu">false</bool>
-  <bool name="config_show_lockscreen_notification">false</bool>
-  <bool name="config_show_lockscreen_seethrough">false</bool>
-  <bool name="config_show_volumerocker_wake">false</bool>
-  <bool name="config_show_volumerocker_musiccontrol">false</bool>
-  <bool name="config_show_doubletap_to_sleep">false</bool>
-  <bool name="config_show_immersive">false</bool>
+      <!-- LED Flashlight -->
+    <bool name="has_led_flash">false</bool>
 
 </resources>

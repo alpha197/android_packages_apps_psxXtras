@@ -16,9 +16,9 @@ import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
 
-import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 
+import net.purespeedx.psxxtras.R;
 public class ButtonsSettings extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
     private static final String KEY_POWER_MENU = "power_menu";
