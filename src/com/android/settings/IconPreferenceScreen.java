@@ -25,6 +25,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import net.purespeedx.psxxtras.R;
+
 public class IconPreferenceScreen extends Preference {
 
     private Drawable mIcon;
