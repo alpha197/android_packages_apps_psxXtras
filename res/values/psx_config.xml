@@ -17,12 +17,12 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
   <!-- PSX-Headers -->
-  <bool name="config_show_psx_bars">false</bool>
   <bool name="config_show_psx_buttons">false</bool>
   <bool name="config_show_psx_userinterface">false</bool>
   <bool name="config_show_psx_lockscreen">false</bool>
   <bool name="config_show_psx_statusbar">false</bool>
   <bool name="config_show_psx_navbar">false</bool>
+  <bool name="config_show_psx_kernelsettings">false</bool>
 
   <!-- PSX-Functions -->
   <bool name="config_show_statusbar_native_battery">false</bool>

@@ -11,6 +11,9 @@
     <string name="psx_header_lockscreen">Lockscreen</string>
     <string name="psx_header_statusbar">Status bar</string>
     <string name="psx_header_navbar">Navigation bar</string>
+	<string name="header_category_general">General</string>
+	<string name="header_category_bars">Bars</string>
+	<string name="header_category_buttons">Buttons</string>
     
     <!-- General strings -->
     <string name="ok">OK</string>

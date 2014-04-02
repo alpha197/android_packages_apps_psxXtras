@@ -34,6 +34,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.INetworkManagementService;
@@ -103,7 +104,9 @@ public class Settings extends PreferenceActivity
 
 
     protected HashMap<Integer, Integer> mHeaderIndexMap = new HashMap<Integer, Integer>();
+    protected HashMap<Integer, Integer> mConfigs = new HashMap<Integer, Integer>();
 
+    
     private AuthenticatorHelper mAuthenticatorHelper;
     private Header mLastHeader;
     private boolean mListeningToAccountUpdates;
@@ -113,7 +116,17 @@ public class Settings extends PreferenceActivity
         if (getIntent().hasExtra(EXTRA_UI_OPTIONS)) {
             getWindow().setUiOptions(getIntent().getIntExtra(EXTRA_UI_OPTIONS, 0));
         }
+        
+        Resources res = getResources();
 
+        mConfigs.clear();
+        mConfigs.put(R.id.psx_statusbar, res.getBoolean(R.bool.config_show_psx_statusbar) ? 1 : 0);
+        mConfigs.put(R.id.psx_navbar, res.getBoolean(R.bool.config_show_psx_navbar) ? 1 : 0);
+        mConfigs.put(R.id.psx_buttons, res.getBoolean(R.bool.config_show_psx_buttons) ? 1 : 0);
+        mConfigs.put(R.id.psx_user_interface, res.getBoolean(R.bool.config_show_psx_userinterface) ? 1 : 0);
+        mConfigs.put(R.id.psx_lockscreen, res.getBoolean(R.bool.config_show_psx_lockscreen) ? 1 : 0);
+        mConfigs.put(R.id.psx_kernel_settings, res.getBoolean(R.bool.config_show_psx_kernelsettings) ? 1 : 0);
+        
         mAuthenticatorHelper = new AuthenticatorHelper();
         mAuthenticatorHelper.updateAuthDescriptions(this);
         mAuthenticatorHelper.onAccountsUpdated(this, null);
@@ -367,7 +380,10 @@ public class Settings extends PreferenceActivity
             Header header = target.get(i);
             // Ids are integers, so downcasting
             int id = (int) header.id;
-
+            Integer showConfig = mConfigs.get(id);
+            if (showConfig != null) {
+                if (showConfig == 0) target.remove(i);
+            }
             // Increment if the current one wasn't removed by the Utils code.
             if (i < target.size() && target.get(i) == header) {
                 // Hold on to the first header, when we need to reset to the top-level

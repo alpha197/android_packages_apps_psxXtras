@@ -11,6 +11,9 @@
     <string name="psx_header_lockscreen">Sperrbildschirm</string>
     <string name="psx_header_statusbar">Statusleiste</string>
     <string name="psx_header_navbar">Navigationsleiste</string>
+	<string name="header_category_general">Allgemeines</string>
+	<string name="header_category_bars">Leisten</string>
+	<string name="header_category_buttons">Tasten</string>
     
     <!-- General strings -->
     <string name="ok">OK</string>

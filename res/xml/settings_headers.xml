@@ -17,45 +17,65 @@
 <preference-headers
         xmlns:android="http://schemas.android.com/apk/res/android">
 
-
     <!-- Bars -->
+    <header android:id="@+id/bars_section"
+        android:title="@string/header_category_bars" />
+		
     <header
-		android:id="@+id/psx_bars"
-        android:key="psx_bars"
+        android:id="@+id/psx_statusbar"
+        android:fragment="net.purespeedx.psxxtras.StatusbarSettings"
         android:icon="@drawable/ic_settings_bars"
-        android:fragment="net.purespeedx.psxxtras.BarsSettings"
-        android:title="@string/psx_header_bars" />
+        android:title="@string/psx_header_statusbar" />	
+
+    <header
+        android:id="@+id/psx_navbar"
+        android:fragment="net.purespeedx.psxxtras.NavbarSettings"
+        android:icon="@drawable/ic_settings_bars"
+        android:title="@string/psx_header_navbar" />	
+
+    <!-- general -->
+    <header android:id="@+id/buttons_section"
+        android:title="@string/header_category_buttons" />
+
+	<!-- PowerMenu -->
+
+    <header
+        android:id="@+id/psx_power_menu"
+        android:icon="@drawable/ic_settings_buttons"
+        android:fragment="net.purespeedx.psxxtras.PowermenuSettings"
+        android:title="@string/powermenu_title" />
 
     <!-- Buttons -->
     <header
-		android:id="@+id/psx_buttons"
-        android:key="psx_buttons"
+        android:id="@+id/psx_buttons"
         android:icon="@drawable/ic_settings_buttons"
         android:fragment="net.purespeedx.psxxtras.ButtonsSettings"
         android:title="@string/psx_header_buttons" />
+		
+    <!-- general -->
+    <header android:id="@+id/general_section"
+        android:title="@string/header_category_general" />
+	
                 
     <!-- Interface -->
     <header
-		android:id="@+id/psx_user_interface"
-        android:key="psx_user_interface"
+        android:id="@+id/psx_user_interface"
         android:icon="@drawable/ic_settings_interface"
         android:fragment="net.purespeedx.psxxtras.UserInterfaceSettings"
         android:title="@string/psx_header_interface" />
 
     <!-- Lockscreen -->
     <header
-		android:id="@+id/psx_lockscreen"
-        android:key="psx_lockscreen"
+        android:id="@+id/psx_lockscreen"
         android:icon="@drawable/ic_settings_lockscreen"
         android:fragment="net.purespeedx.psxxtras.LockscreenSettings"
-        android:title="@string/psx_header_lockscreen" />	
+        android:title="@string/psx_header_lockscreen" />    
 
     <!-- Kernel Settings -->
     <header
-		android:id="@+id/psx_kernel_settings"
-        android:key="psx_kernel_settings"
+        android:id="@+id/psx_kernel_settings"
         android:icon="@drawable/ic_settings_kernel"
         android:fragment="net.purespeedx.psxxtras.KernelSettings"
-        android:title="@string/kernel_settings_header" />	
+        android:title="@string/kernel_settings_header" />    
 
 </preference-headers>
