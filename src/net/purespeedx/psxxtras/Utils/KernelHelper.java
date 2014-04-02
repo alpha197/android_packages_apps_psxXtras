@@ -24,7 +24,8 @@ public class KernelHelper implements Constants {
     private static boolean FileExists(String Path) {
         return new File(Path).exists();
     }
-    
+
+    /*
     private static boolean Execute(String Command) {
         CMDProcessor.CommandResult cres=new CMDProcessor().su.runWaitFor(Command);
         if (!cres.success()) {
@@ -38,17 +39,14 @@ public class KernelHelper implements Constants {
         }
         return true;
     }
+    */
     
     public static boolean SetFastCharge(Context context) {
         try {
             String mFastChargePath = Helpers.fastcharge_path();
             if (mFastChargePath != null) {
                 int enabled = Settings.System.getInt(context.getContentResolver(), Settings.System.KERNEL_FORCE_FASTCHARGE, 2);
-                if (enabled == 1) {
-                    return Execute("busybox echo 1 > " + mFastChargePath);
-                } else {
-                    return Execute("busybox echo 0 > " + mFastChargePath);
-                }
+                return SetValueDirect(mFastChargePath,String.valueOf(enabled));
             }
         } catch (Exception e) {
             Log.e(TAG, e.getMessage());
@@ -56,11 +54,13 @@ public class KernelHelper implements Constants {
         }
         return false;
     }
-    
-    public static boolean SetValueDirect(Context context,String Path,String value) {
+      
+    public static boolean SetValueDirect(String Path,String value) {
         try {
             if (value != null && value != "") {
-                return Execute("busybox echo " + value + " > " + Path);
+                boolean result=Helpers.writeOneLine(Path,value);
+                // if (result == false) result=Execute("busybox echo " + value + " > " + Path);
+                return result;
             } else {
                 return false;
             }    
@@ -74,7 +74,7 @@ public class KernelHelper implements Constants {
         try {
             if (Path != null) {
                 String value = Settings.System.getString(context.getContentResolver(), SettingsPath);
-                return SetValueDirect(context,Path,value);
+                return SetValueDirect(Path,value);
             }
         } catch (Exception e) {
             Log.e(TAG, e.getMessage());
@@ -90,10 +90,7 @@ public class KernelHelper implements Constants {
             for (int i = 0; i < Helpers.getNumOfCpus(); i++) {
                 final String Path = GOVERNOR_PATH.replace("cpu0", "cpu" + i);
                 if (FileExists(Path)) {
-                    final StringBuilder sb = new StringBuilder();
-                    sb.append("busybox echo ").append(governor).append(" > ")
-                        .append(Path).append(";\n");
-                    if (Execute(sb.toString()) != true) result=false;
+                    result =SetValueDirect(Path,governor);
                 }
             }
             return result;
@@ -133,21 +130,14 @@ public class KernelHelper implements Constants {
     public static String[] GetAvailableCpus() {
         String[] result =null;
         try {
-            String Count=Helpers.readOneLine(CPUS_POSSIBLE);
-            if (Count !=null && Count != "") {
-                String[] mMinMax=Count.split("-");
-                if (mMinMax != null && (mMinMax.length == 2)) {
-                    int min = Integer.parseInt(mMinMax[0]);
-                    int max = Integer.parseInt(mMinMax[1]);
-                    int cur = min;
-                    result = new String[(max-min)+1];
-                    while(cur <= max)
-                    {
-                        result[cur-min]= String.valueOf(cur + 1);
-                        cur++;
-                    }                    
-                }
-            }
+            int Count=Helpers.getNumOfCpus();
+            int cur = 0;
+            result = new String[Count];
+            while(cur < Count)
+            {
+                result[cur]= String.valueOf(cur + 1);
+                cur++;
+            }                    
         } catch (Exception e) {
             Log.e(TAG, e.getMessage());
             result = null;
@@ -162,10 +152,7 @@ public class KernelHelper implements Constants {
             for (int i = 0; i < Helpers.getNumOfCpus(); i++) {
                 final String mPath = Path.replace("cpu0", "cpu" + i);
                 if (FileExists(mPath)) {
-                    final StringBuilder sb = new StringBuilder();
-                    sb.append("busybox echo ").append(freq).append(" > ")
-                        .append(mPath).append(";\n");
-                    if (Execute(sb.toString()) != true) result=false;
+                    result=SetValueDirect(mPath,freq);
                 }
             }
             return result;

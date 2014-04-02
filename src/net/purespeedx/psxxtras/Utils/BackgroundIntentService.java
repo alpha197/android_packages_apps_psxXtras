@@ -47,7 +47,7 @@ public class BackgroundIntentService extends IntentService {
     protected void onBootComplete() {
         Log.i(TAG, "Checking for kernelsettings");
         Context context = (Context) this;
-        SharedPreferences mPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        /*SharedPreferences mPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         if (mPreferences == null) {
                 Log.i(TAG, "there are no SharedPreferences");
                 return;
@@ -59,12 +59,12 @@ public class BackgroundIntentService extends IntentService {
         }
         boolean canSu = Helpers.checkSu();
         boolean canBb = Helpers.checkBusybox();
-        if (canSu & canBb) {
+        if (canSu & canBb) { */
             KernelHelper.SetOnBoot(context);
-        } else {
+        /*} else {
             if (!canSu) Log.i(TAG, "No SU rights !");
-            if (!canBb) Log.i(TAG, "No Busybox !");
-        }
+            if (!canBb) Log.i(TAG, "No Busybox !"); 
+        } */
     }
 
 }

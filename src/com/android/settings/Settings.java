@@ -27,6 +27,7 @@ import android.app.ProgressDialog;
 import android.app.admin.DevicePolicyManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -36,8 +37,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener;    
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.INetworkManagementService;
@@ -106,19 +105,24 @@ public class Settings extends PreferenceActivity
     private Header mCurrentHeader;
     private Header mParentHeader;
     private boolean mInLocalHeaderSwitch;
-    private SharedPreferences mSharedPrefs;
     
 
     protected HashMap<Integer, Integer> mHeaderIndexMap = new HashMap<Integer, Integer>();
     protected HashMap<Integer, Integer> mConfigs = new HashMap<Integer, Integer>();
 
+    private static final String PREF_FILE = "development";
+    private static final String PREF_SHOW = "show";
     
     private AuthenticatorHelper mAuthenticatorHelper;
     private Header mLastHeader;
     private boolean mListeningToAccountUpdates;
     
-    private boolean ShowKernel;
     private ProgressDialog progressDialog;
+
+    private SharedPreferences mDevelopmentPreferences;
+    private SharedPreferences.OnSharedPreferenceChangeListener mDevelopmentPreferencesListener;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if (getIntent().hasExtra(EXTRA_UI_OPTIONS)) {
@@ -126,19 +130,14 @@ public class Settings extends PreferenceActivity
         }
                
         Resources res = getResources();
-        mSharedPrefs=PreferenceManager.getDefaultSharedPreferences(this);
-        boolean suConfirmed = mSharedPrefs.getBoolean("su_confirmed", false);
-            if (!suConfirmed) {
-                progressDialog = ProgressDialog.show(this, "", "Checking SU...");
-                boolean canSu = Helpers.checkSu();
-                boolean canBb = Helpers.checkBusybox();
-                suConfirmed = (canSu & canBb);
-                SharedPreferences.Editor e = mSharedPrefs.edit();
-                e.putBoolean("su_confirmed", suConfirmed);
-                e.commit();
-                progressDialog.dismiss();
-            }
-        ShowKernel = suConfirmed;
+        
+        mDevelopmentPreferences = getSharedPreferences(PREF_FILE,
+                    Context.MODE_PRIVATE);
+
+        
+        /*progressDialog = ProgressDialog.show(this, "", "Checking SU...");
+        ShowKernel = Helpers.checkSu();
+        progressDialog.dismiss(); */
         
         mConfigs.clear();
         mConfigs.put(R.id.psx_statusbar, res.getBoolean(R.bool.config_show_psx_statusbar) ? 1 : 0);
@@ -210,6 +209,15 @@ public class Settings extends PreferenceActivity
     public void onResume() {
         super.onResume();
 
+        mDevelopmentPreferencesListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+            @Override
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                invalidateHeaders();
+            }
+        };
+        mDevelopmentPreferences.registerOnSharedPreferenceChangeListener(
+                mDevelopmentPreferencesListener);
+
         ListAdapter listAdapter = getListAdapter();
         if (listAdapter instanceof HeaderAdapter) {
             ((HeaderAdapter) listAdapter).resume();
@@ -226,7 +234,9 @@ public class Settings extends PreferenceActivity
         if (listAdapter instanceof HeaderAdapter) {
             ((HeaderAdapter) listAdapter).pause();
         }
-
+        mDevelopmentPreferences.unregisterOnSharedPreferenceChangeListener(
+                mDevelopmentPreferencesListener);
+        mDevelopmentPreferencesListener = null;
     }
 
     @Override
@@ -392,8 +402,10 @@ public class Settings extends PreferenceActivity
             updateHeaderList(headers);
         }
     }
-
+   
     private void updateHeaderList(List<Header> target) {
+        final boolean showDev = (android.provider.Settings.Global.getInt(getContentResolver(),
+                android.provider.Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, 0) != 0);
         int i = 0;
 
         final UserManager um = (UserManager) getSystemService(Context.USER_SERVICE);
@@ -406,7 +418,7 @@ public class Settings extends PreferenceActivity
             if (showConfig != null) {
                 if (showConfig == 0) target.remove(i);
             }
-            if (id == R.id.psx_kernel_settings && !ShowKernel) target.remove(i);
+            if (id == R.id.psx_kernel_settings && !showDev) target.remove(i);
              // Increment if the current one wasn't removed by the Utils code.
             if (i < target.size() && target.get(i) == header) {
                 // Hold on to the first header, when we need to reset to the top-level
