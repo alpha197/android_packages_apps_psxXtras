@@ -31,7 +31,6 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -109,18 +108,12 @@ public class Settings extends PreferenceActivity
 
     protected HashMap<Integer, Integer> mHeaderIndexMap = new HashMap<Integer, Integer>();
     protected HashMap<Integer, Integer> mConfigs = new HashMap<Integer, Integer>();
-
-    private static final String PREF_FILE = "development";
-    private static final String PREF_SHOW = "show";
-    
+   
     private AuthenticatorHelper mAuthenticatorHelper;
     private Header mLastHeader;
     private boolean mListeningToAccountUpdates;
     
     private ProgressDialog progressDialog;
-
-    private SharedPreferences mDevelopmentPreferences;
-    private SharedPreferences.OnSharedPreferenceChangeListener mDevelopmentPreferencesListener;
 
 
     @Override
@@ -130,15 +123,7 @@ public class Settings extends PreferenceActivity
         }
                
         Resources res = getResources();
-        
-        mDevelopmentPreferences = getSharedPreferences(PREF_FILE,
-                    Context.MODE_PRIVATE);
-
-        
-        /*progressDialog = ProgressDialog.show(this, "", "Checking SU...");
-        ShowKernel = Helpers.checkSu();
-        progressDialog.dismiss(); */
-        
+                
         mConfigs.clear();
         mConfigs.put(R.id.psx_statusbar, res.getBoolean(R.bool.config_show_psx_statusbar) ? 1 : 0);
         mConfigs.put(R.id.psx_navbar, res.getBoolean(R.bool.config_show_psx_navbar) ? 1 : 0);
@@ -209,15 +194,6 @@ public class Settings extends PreferenceActivity
     public void onResume() {
         super.onResume();
 
-        mDevelopmentPreferencesListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
-            @Override
-            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-                invalidateHeaders();
-            }
-        };
-        mDevelopmentPreferences.registerOnSharedPreferenceChangeListener(
-                mDevelopmentPreferencesListener);
-
         ListAdapter listAdapter = getListAdapter();
         if (listAdapter instanceof HeaderAdapter) {
             ((HeaderAdapter) listAdapter).resume();
@@ -234,9 +210,6 @@ public class Settings extends PreferenceActivity
         if (listAdapter instanceof HeaderAdapter) {
             ((HeaderAdapter) listAdapter).pause();
         }
-        mDevelopmentPreferences.unregisterOnSharedPreferenceChangeListener(
-                mDevelopmentPreferencesListener);
-        mDevelopmentPreferencesListener = null;
     }
 
     @Override
