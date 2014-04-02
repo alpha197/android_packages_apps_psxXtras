@@ -66,28 +66,50 @@
             android:dialogTitle="@string/kernel_settings_cpu_sync_threshold"
             android:title="@string/kernel_settings_cpu_sync_threshold" />
 
-		<EditTextPreference
-			android:key="kernel_settings_cpu_inputboost_ms"
-			android:summary="@string/kernel_settings_cpu_inputboost_ms_summary"
-			android:title="@string/kernel_settings_cpu_inputboost_ms"
-			android:defaultValue="1000"
-			android:inputType="number"
-         />			
+        <EditTextPreference
+            android:key="kernel_settings_cpu_inputboost_ms"
+            android:summary="@string/kernel_settings_cpu_inputboost_ms_summary"
+            android:title="@string/kernel_settings_cpu_inputboost_ms"
+            android:defaultValue="1000"
+            android:inputType="number"
+         />            
 
-		<EditTextPreference
-			android:key="kernel_settings_cpu_boost_ms"
-			android:summary="@string/kernel_settings_cpu_boost_ms_summary"
-			android:title="@string/kernel_settings_cpu_boost_ms"
-			android:defaultValue="20"
-			android:inputType="number"
-         />			
-		 
+        <EditTextPreference
+            android:key="kernel_settings_cpu_boost_ms"
+            android:summary="@string/kernel_settings_cpu_boost_ms_summary"
+            android:title="@string/kernel_settings_cpu_boost_ms"
+            android:defaultValue="20"
+            android:inputType="number"
+         />            
+         
         <CheckBoxPreference
             android:key="kernel_settings_cpu_boost_apply"
             android:title="@string/kernel_settings_cpu_boost_apply"
             android:summary="@string/kernel_settings_cpu_boost_apply_disabled"
             />
-			
-			
+            
     </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="kernel_settings_msmhotplug_title"
+        android:title="@string/kernel_settings_msmhotplug_title" >
+
+        <ListPreference
+            android:key="kernel_settings_msmhotplug_min_cpus_online"
+            android:dialogTitle="@string/kernel_settings_msmhotplug_min_cpus_online"
+            android:title="@string/kernel_settings_msmhotplug_min_cpus_online" />
+
+        <ListPreference
+            android:key="kernel_settings_msmhotplug_max_cpus_online"
+            android:dialogTitle="@string/kernel_settings_msmhotplug_max_cpus_online"
+            android:title="@string/kernel_settings_msmhotplug_max_cpus_online" />
+
+        <CheckBoxPreference
+            android:key="kernel_settings_msmhotplug_apply"
+            android:title="@string/kernel_settings_msmhotplug_apply"
+            android:summary="@string/kernel_settings_cpu_boost_apply_disabled"
+            />
+            
+    </PreferenceCategory>
+        
 </PreferenceScreen>

@@ -141,6 +141,12 @@ public interface Constants {
     public static final String CPUBOOST_INPUT_MS="/sys/module/cpu_boost/parameters/input_boost_ms";
     public static final String CPUBOOST_BOOST_MS="/sys/module/cpu_boost/parameters/boost_ms";
     public static final String CPUBOOST_SYNC_THRESHOLD="/sys/module/cpu_boost/parameters/sync_threshold";
+    
+    //MSM-Hotplug
+    public static final String CPUS_POSSIBLE = "/sys/devices/system/cpu/possible";
+    public static final String MSMHOTPLUG_MIN_CPUS = "/sys/module/msm_hotplug/min_cpus_online";
+    public static final String MSMHOTPLUG_MAX_CPUS = "/sys/module/msm_hotplug/max_cpus_online";
+    
 }
 
 

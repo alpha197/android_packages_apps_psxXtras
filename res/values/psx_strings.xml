@@ -11,9 +11,9 @@
     <string name="psx_header_lockscreen">Lockscreen</string>
     <string name="psx_header_statusbar">Status bar</string>
     <string name="psx_header_navbar">Navigation bar</string>
-	<string name="header_category_general">General</string>
-	<string name="header_category_bars">Bars</string>
-	<string name="header_category_buttons">Buttons</string>
+    <string name="header_category_general">General</string>
+    <string name="header_category_bars">Bars</string>
+    <string name="header_category_buttons">Buttons</string>
     
     <!-- General strings -->
     <string name="ok">OK</string>
@@ -21,7 +21,7 @@
     <string name="attention">Attention</string>
     <string name="enabled">Enabled</string>
     <string name="default_string">Default</string>
-	<string name="general_string">General</string>
+    <string name="general_string">General</string>
     
     <!-- Display settings screen, notification light settings -->
     <string name="display_category_light_options_title">Light options</string>
@@ -177,7 +177,13 @@
     <string name="kernel_settings_cpu_boost_ms">Peak Boost time</string>
     <string name="kernel_settings_cpu_boost_ms_summary">boosts cpu for %1$s ms on load peaks</string>
     <string name="kernel_settings_cpu_sync_threshold">Sync threshold frequency</string>
-    <string name="kernel_settings_frequency_summary">Current: %1$s kHz</string>    
+    <string name="kernel_settings_frequency_summary">Current: %1$s kHz</string>
+    <string name="kernel_settings_msmhotplug_title">MSM-Hotplug</string>
+    <string name="kernel_settings_msmhotplug_min_cpus_online">Min CPUs</string>
+    <string name="kernel_settings_msmhotplug_max_cpus_online">Max CPUs</string>
+    <string name="kernel_settings_msmhotplug_apply">Apply on boot</string>
+    <string name="kernel_settings_msmhotplug_summary">Current: %1$s CPUs</string>    
+    
     <!-- Swipe to QS -->
     <string name="swipe_for_qs_title">Pulldown for QS</string>
     <string name="swipe_for_qs_off">Off</string>
@@ -262,8 +268,8 @@
     <!-- Volume rocker music control -->
     <string name="volbtn_music_controls_title">Volume rocker music controls</string>
     <string name="volbtn_music_controls_summary">When screen off, long-pressing the volume rocker will seek music tracks</string>    
-	
-	<!-- Immersive mode -->
+    
+    <!-- Immersive mode -->
     <string name="powermenu_immersive_mode">Immersive mode</string>
     <string name="powermenu_immersive_mode_prefs_summary">%1$s</string>
     <string name="immersive_mode_summary_status_bar">With status bar</string>
@@ -276,5 +282,5 @@
     <string name="immersive_mode_on">Immersive mode enabled</string>
     <string name="immersive_mode_off">Immersive mode disabled</string>
     <string name="immersive_mode_style">Immersive style</string>
-    	
+        
 </resources>

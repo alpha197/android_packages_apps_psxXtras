@@ -23,6 +23,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.app.ProgressDialog;
 import android.app.admin.DevicePolicyManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -35,6 +36,8 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;    
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.INetworkManagementService;
@@ -45,6 +48,7 @@ import android.os.UserManager;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -69,6 +73,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import net.purespeedx.psxxtras.R;
+import net.purespeedx.psxxtras.Utils.Helpers;
 
 /**
  * Top-level settings activity to handle single pane and double pane UI layout.
@@ -101,7 +106,8 @@ public class Settings extends PreferenceActivity
     private Header mCurrentHeader;
     private Header mParentHeader;
     private boolean mInLocalHeaderSwitch;
-
+    private SharedPreferences mSharedPrefs;
+    
 
     protected HashMap<Integer, Integer> mHeaderIndexMap = new HashMap<Integer, Integer>();
     protected HashMap<Integer, Integer> mConfigs = new HashMap<Integer, Integer>();
@@ -110,15 +116,30 @@ public class Settings extends PreferenceActivity
     private AuthenticatorHelper mAuthenticatorHelper;
     private Header mLastHeader;
     private boolean mListeningToAccountUpdates;
-
+    
+    private boolean ShowKernel;
+    private ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if (getIntent().hasExtra(EXTRA_UI_OPTIONS)) {
             getWindow().setUiOptions(getIntent().getIntExtra(EXTRA_UI_OPTIONS, 0));
         }
-        
+               
         Resources res = getResources();
-
+        mSharedPrefs=PreferenceManager.getDefaultSharedPreferences(this);
+        boolean suConfirmed = mSharedPrefs.getBoolean("su_confirmed", false);
+            if (!suConfirmed) {
+                progressDialog = ProgressDialog.show(this, "", "Checking SU...");
+                boolean canSu = Helpers.checkSu();
+                boolean canBb = Helpers.checkBusybox();
+                suConfirmed = (canSu & canBb);
+                SharedPreferences.Editor e = mSharedPrefs.edit();
+                e.putBoolean("su_confirmed", suConfirmed);
+                e.commit();
+                progressDialog.dismiss();
+            }
+        ShowKernel = suConfirmed;
+        
         mConfigs.clear();
         mConfigs.put(R.id.psx_statusbar, res.getBoolean(R.bool.config_show_psx_statusbar) ? 1 : 0);
         mConfigs.put(R.id.psx_navbar, res.getBoolean(R.bool.config_show_psx_navbar) ? 1 : 0);
@@ -126,7 +147,7 @@ public class Settings extends PreferenceActivity
         mConfigs.put(R.id.psx_user_interface, res.getBoolean(R.bool.config_show_psx_userinterface) ? 1 : 0);
         mConfigs.put(R.id.psx_lockscreen, res.getBoolean(R.bool.config_show_psx_lockscreen) ? 1 : 0);
         mConfigs.put(R.id.psx_kernel_settings, res.getBoolean(R.bool.config_show_psx_kernelsettings) ? 1 : 0);
-        
+    
         mAuthenticatorHelper = new AuthenticatorHelper();
         mAuthenticatorHelper.updateAuthDescriptions(this);
         mAuthenticatorHelper.onAccountsUpdated(this, null);
@@ -169,8 +190,9 @@ public class Settings extends PreferenceActivity
             getActionBar().setDisplayHomeAsUpEnabled(false);
             getActionBar().setHomeButtonEnabled(false);
         }
+               
     }
-
+   
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -384,7 +406,8 @@ public class Settings extends PreferenceActivity
             if (showConfig != null) {
                 if (showConfig == 0) target.remove(i);
             }
-            // Increment if the current one wasn't removed by the Utils code.
+            if (id == R.id.psx_kernel_settings && !ShowKernel) target.remove(i);
+             // Increment if the current one wasn't removed by the Utils code.
             if (i < target.size() && target.get(i) == header) {
                 // Hold on to the first header, when we need to reset to the top-level
                 if (mFirstHeader == null &&
