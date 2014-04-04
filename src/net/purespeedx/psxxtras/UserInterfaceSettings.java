@@ -77,7 +77,7 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
         PreferenceScreen prefSet = getPreferenceScreen();
 
         boolean hasDT2S = getResources().getBoolean(
-                R.bool.config_show_buttons_powermenu);
+                R.bool.config_show_doubletap_to_sleep);
 		if (!hasDT2S) {
 		     Preference ps = (Preference) findPreference(KEY_DOUBLE_TAP_TO_SLEEP);
 			 if (ps != null) prefSet.removePreference(ps);
