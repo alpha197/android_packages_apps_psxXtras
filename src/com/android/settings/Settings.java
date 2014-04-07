@@ -97,6 +97,8 @@ public class Settings extends PreferenceActivity
 
     static final int DIALOG_ONLY_ONE_HOME = 1;
 
+    private static final String FILENAME_PROC_VERSION = "/proc/version";
+
 
     private String mFragmentClass;
     private int mTopLevelHeaderId;
@@ -377,8 +379,12 @@ public class Settings extends PreferenceActivity
     }
    
     private void updateHeaderList(List<Header> target) {
-        final boolean showDev = (android.provider.Settings.Global.getInt(getContentResolver(),
+        boolean showDev = (android.provider.Settings.Global.getInt(getContentResolver(),
                 android.provider.Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, 0) != 0);
+        if (showDev) {
+            String mKernel = Helpers.readOneLine(FILENAME_PROC_VERSION).toLowerCase();
+            showDev= (mKernel.indexOf("psx@pure-speed-kernel") >-1);            
+        }
         int i = 0;
 
         final UserManager um = (UserManager) getSystemService(Context.USER_SERVICE);
