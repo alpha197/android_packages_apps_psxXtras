@@ -133,114 +133,117 @@ public class KernelSettings extends SettingsPreferenceFragment implements OnPref
             }
         }
 
-        //Inputboost ms
-        mInputms = 
-            (EditTextPreference) prefSet.findPreference(KERNEL_INPUTBOOST_MS);
-        if (mInputms != null) {
-            if (UpdateInputms(true) != true) {
-                prefSet.removePreference(mInputms);
-                mInputms = null;
-            } else {
-                mInputms.setOnPreferenceChangeListener(this);
-            }
-        }
-
-        //Boost ms
-        mBoostms = 
-            (EditTextPreference) prefSet.findPreference(KERNEL_BOOST_MS);
-        if (mBoostms != null) {
-            if (UpdateBoostms(true) != true) {
-                prefSet.removePreference(mBoostms);
-                mBoostms = null;
-            } else {
-                mBoostms.setOnPreferenceChangeListener(this);
-            }
-        }
-        
-        //Inputboost freq
-        mInputfreq = 
-            (ListPreference) prefSet.findPreference(KERNEL_INPUTBOOST_FREQ);
-        if (mInputms != null) {
-            if (UpdateInputFreq(true) != true) {
-                prefSet.removePreference(mInputfreq);
-                mInputfreq = null;
-            } else {
-                mInputfreq.setOnPreferenceChangeListener(this);
-            }
-        }
-
-        //Sync threshold freq
-        mSyncThresFreq = 
-            (ListPreference) prefSet.findPreference(KERNEL_SYNC_THRESHOLD);
-        if (mSyncThresFreq != null) {
-            if (UpdateSyncFreq(true) != true) {
-                prefSet.removePreference(mSyncThresFreq);
-                mSyncThresFreq = null;
-            } else {
-                mSyncThresFreq.setOnPreferenceChangeListener(this);
-            }
-        }
-        
-
-        // Input Apply on Boot
-        mInputApply =
-            (CheckBoxPreference) prefSet.findPreference(KERNEL_INPUTBOOST_APPLY);        
-        if (mInputApply != null) {
-            if (mInputfreq == null && mInputms == null) {
-                prefSet.removePreference(mInputApply);
-                mInputApply = null;
-            } else {
-                UpdateInputApplyOnBoot();
-                mInputApply.setOnPreferenceChangeListener(this);
-            }
-        }
-        
         PreferenceCategory inputcat = (PreferenceCategory) prefSet.findPreference(KERNEL_INPUTBOOST_TITLE); 
-        if (inputcat !=null && mInputApply == null) {
-            prefSet.removePreference(inputcat);            
-        }               
-        
-        //MSM-HotPlug Min Frequency
-        mMsmHotplugMinCpus = 
-            (ListPreference) prefSet.findPreference(KERNEL_MSMHOTPLUG_MIN_CPUS_ONLINE);
-        if (mMsmHotplugMinCpus != null) {
-            if (UpdateMsmCpuMin(true) != true) {
-                prefSet.removePreference(mMsmHotplugMinCpus);
-                mMsmHotplugMinCpus = null;
-            } else {
-                mMsmHotplugMinCpus.setOnPreferenceChangeListener(this);
+        if (inputcat != null) {
+            //Inputboost ms
+            mInputms = 
+                (EditTextPreference) inputcat.findPreference(KERNEL_INPUTBOOST_MS);
+            if (mInputms != null) {
+                if (UpdateInputms(true) != true) {
+                    inputcat.removePreference(mInputms);
+                    mInputms = null;
+                } else {
+                    mInputms.setOnPreferenceChangeListener(this);
+                }
             }
-        }
 
-        //MSM-HotPlug Max Frequency
-        mMsmHotplugMaxCpus = 
-            (ListPreference) prefSet.findPreference(KERNEL_MSMHOTPLUG_MAX_CPUS_ONLINE);
-        if (mMsmHotplugMaxCpus != null) {
-            if (UpdateMsmCpuMax(true) != true) {
-                prefSet.removePreference(mMsmHotplugMaxCpus);
-                mMsmHotplugMaxCpus = null;
-            } else {
-                mMsmHotplugMaxCpus.setOnPreferenceChangeListener(this);
+            //Boost ms
+            mBoostms = 
+                (EditTextPreference) inputcat.findPreference(KERNEL_BOOST_MS);
+            if (mBoostms != null) {
+                if (UpdateBoostms(true) != true) {
+                    inputcat.removePreference(mBoostms);
+                    mBoostms = null;
+                } else {
+                    mBoostms.setOnPreferenceChangeListener(this);
+                }
             }
-        }
         
-        // Apply on Boot
-        mMsmHotplugApply =
-            (CheckBoxPreference) prefSet.findPreference(KERNEL_MSMHOTPLUG_APPLY);        
-        if (mMsmHotplugApply != null) {
-            if (mMsmHotplugMinCpus == null && mMsmHotplugMaxCpus == null) {
-                prefSet.removePreference(mMsmHotplugApply);
-                mMsmHotplugApply = null;
-            } else {
-                UpdateMsmHotPlugApplyOnBoot();
-                mMsmHotplugApply.setOnPreferenceChangeListener(this);
+            //Inputboost freq
+            mInputfreq = 
+                (ListPreference) inputcat.findPreference(KERNEL_INPUTBOOST_FREQ);
+            if (mInputfreq != null) {
+                if (UpdateInputFreq(true) != true) {
+                    inputcat.removePreference(mInputfreq);
+                    mInputfreq = null;
+                } else {
+                    mInputfreq.setOnPreferenceChangeListener(this);
+                }
             }
+
+            //Sync threshold freq
+            mSyncThresFreq = 
+                (ListPreference) inputcat.findPreference(KERNEL_SYNC_THRESHOLD);
+            if (mSyncThresFreq != null) {
+                if (UpdateSyncFreq(true) != true) {
+                    inputcat.removePreference(mSyncThresFreq);
+                    mSyncThresFreq = null;
+                } else {
+                    mSyncThresFreq.setOnPreferenceChangeListener(this);
+                }
+            }      
+
+            // Input Apply on Boot
+            mInputApply =
+                (CheckBoxPreference) inputcat.findPreference(KERNEL_INPUTBOOST_APPLY);        
+            if (mInputApply != null) {
+                if (mInputfreq == null && mInputms == null) {
+                    inputcat.removePreference(mInputApply);
+                    mInputApply = null;
+                } else {
+                    UpdateInputApplyOnBoot();
+                    mInputApply.setOnPreferenceChangeListener(this);
+                }
+            }
+        
+            if (mInputApply == null) {
+                prefSet.removePreference(inputcat);            
+            }               
         }
         
         PreferenceCategory msm = (PreferenceCategory) prefSet.findPreference(KERNEL_MSMHOTPLUG_TITLE); 
-        if (msm !=null && mMsmHotplugApply == null) {
-            prefSet.removePreference(msm);
-        }        
+        if (msm != null) {
+            //MSM-HotPlug Min Frequency
+            mMsmHotplugMinCpus = 
+                (ListPreference) msm.findPreference(KERNEL_MSMHOTPLUG_MIN_CPUS_ONLINE);
+            if (mMsmHotplugMinCpus != null) {
+                if (UpdateMsmCpuMin(true) != true) {
+                    msm.removePreference(mMsmHotplugMinCpus);
+                    mMsmHotplugMinCpus = null;
+                } else {
+                    mMsmHotplugMinCpus.setOnPreferenceChangeListener(this);
+                }
+            }
+
+            //MSM-HotPlug Max Frequency
+            mMsmHotplugMaxCpus = 
+                (ListPreference) msm.findPreference(KERNEL_MSMHOTPLUG_MAX_CPUS_ONLINE);
+            if (mMsmHotplugMaxCpus != null) {
+                if (UpdateMsmCpuMax(true) != true) {
+                    msm.removePreference(mMsmHotplugMaxCpus);
+                    mMsmHotplugMaxCpus = null;
+                } else {
+                    mMsmHotplugMaxCpus.setOnPreferenceChangeListener(this);
+                }
+            }
+        
+            // Apply on Boot
+            mMsmHotplugApply =
+                (CheckBoxPreference) msm.findPreference(KERNEL_MSMHOTPLUG_APPLY);        
+            if (mMsmHotplugApply != null) {
+                if (mMsmHotplugMinCpus == null && mMsmHotplugMaxCpus == null) {
+                    msm.removePreference(mMsmHotplugApply);
+                    mMsmHotplugApply = null;
+                } else {
+                    UpdateMsmHotPlugApplyOnBoot();
+                    mMsmHotplugApply.setOnPreferenceChangeListener(this);
+                }
+            }
+        
+            if (mMsmHotplugApply == null) {
+                prefSet.removePreference(msm);
+            }
+        }
     }
     
     public void UpdateCpuApplyOnBoot() {
@@ -295,6 +298,7 @@ public class KernelSettings extends SettingsPreferenceFragment implements OnPref
     public boolean UpdateGovernor(boolean init) {
         if (init == true) {
             String[] mAvailableGovernors =KernelHelper.GetAvailableGovernors();
+            
             mGovernor.setEntries(mAvailableGovernors);
             mGovernor.setEntryValues(mAvailableGovernors);
             if (mAvailableGovernors == null) {
@@ -310,6 +314,8 @@ public class KernelSettings extends SettingsPreferenceFragment implements OnPref
     }
 
     public boolean UpdateCpuCount(boolean init,ListPreference List, String Path,String SettingsPath) {
+        String mActiveCnt = Helpers.readOneLine(Path);
+        if (mActiveCnt == null || mActiveCnt == "") return false;
         if (init == true) {
             String[] cnt =KernelHelper.GetAvailableCpus();
             if (cnt == null) {
@@ -318,7 +324,6 @@ public class KernelSettings extends SettingsPreferenceFragment implements OnPref
             List.setEntries(cnt);
             List.setEntryValues(cnt);
         }
-        String mActiveCnt = Helpers.readOneLine(Path);
         List.setSummary(mResources.getString(R.string.kernel_settings_msmhotplug_summary, mActiveCnt));
         if (SettingsPath != "") {
             String mCurrentCnt = Settings.System.getString(getContentResolver(), SettingsPath) ;
@@ -329,6 +334,8 @@ public class KernelSettings extends SettingsPreferenceFragment implements OnPref
     
     
     public boolean UpdateFrequency(boolean init,ListPreference List, String Path,String SettingsPath) {
+        String mActiveFreq = Helpers.readOneLine(Path);
+        if (mActiveFreq == null || mActiveFreq == "") return false;
         if (init == true) {
             String[] freqs =KernelHelper.GetAvailableFrequencies();
             List.setEntries(freqs);
@@ -337,7 +344,6 @@ public class KernelSettings extends SettingsPreferenceFragment implements OnPref
                 return false;
             }
         }
-        String mActiveFreq = Helpers.readOneLine(Path);
         List.setSummary(mResources.getString(R.string.kernel_settings_frequency_summary, mActiveFreq));
         if (SettingsPath != "") {
             String mCurrentFreq = Settings.System.getString(getContentResolver(), SettingsPath) ;
@@ -368,7 +374,7 @@ public class KernelSettings extends SettingsPreferenceFragment implements OnPref
     
     public boolean UpdateInputms(boolean init) {
         String mActivems = Helpers.readOneLine(Constants.CPUBOOST_INPUT_MS);
-        if (mActivems == "") return false;
+        if (mActivems == null || mActivems == "") return false;
         mInputms.setSummary(mResources.getString(R.string.kernel_settings_cpu_inputboost_ms_summary, mActivems));
         mInputms.setText(mActivems);
         return true;   
@@ -376,7 +382,7 @@ public class KernelSettings extends SettingsPreferenceFragment implements OnPref
 
     public boolean UpdateBoostms(boolean init) {
         String mActivems = Helpers.readOneLine(Constants.CPUBOOST_BOOST_MS);
-        if (mActivems == "") return false;
+        if (mActivems == null || mActivems == "") return false;
         mBoostms.setSummary(mResources.getString(R.string.kernel_settings_cpu_boost_ms_summary, mActivems));
         mBoostms.setText(mActivems);
         return true;   
