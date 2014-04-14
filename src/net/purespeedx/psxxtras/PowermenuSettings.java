@@ -44,7 +44,6 @@ public class PowermenuSettings extends SettingsPreferenceFragment implements OnP
     private static final String KEY_POWERMENU_USERSWITCH_PREFS ="powermenu_userswitch_prefs";
     private static final String KEY_POWERMENU_SCREENSHOT_PREFS ="powermenu_screenshot_prefs";
     private static final String KEY_POWERMENU_TORCH_PREFS ="powermenu_torch_prefs";
-    private static final String KEY_IMMERSIVE_MODE = "powermenu_immersive_mode";
     
     private ListPreference mPowermenuRebootPrefs;
     private ListPreference mPowermenuShutdownPrefs;
@@ -53,7 +52,6 @@ public class PowermenuSettings extends SettingsPreferenceFragment implements OnP
     private ListPreference mPowermenuUserswitchPrefs;
     private ListPreference mPowermenuScreenshotPrefs;
     private ListPreference mPowermenuTorchPrefs;
-    private ListPreference mPowermenuImmersiveModePrefs;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -128,21 +126,6 @@ public class PowermenuSettings extends SettingsPreferenceFragment implements OnP
         mPowermenuScreenshotPrefs.setValue(String.valueOf(mPowermenuScreenshotPrefsValue));
         updatePowermenuScreenshotPrefs(mPowermenuScreenshotPrefsValue);
 
-        // Powermenu Immersive Mode selection
-        boolean hasImmersive = getResources().getBoolean(R.bool.config_show_immersive);
-        mPowermenuImmersiveModePrefs = (ListPreference) prefSet.findPreference(KEY_IMMERSIVE_MODE);
-        if (mPowermenuImmersiveModePrefs !=null) {
-            if (!hasImmersive) {
-                if (mPowermenuImmersiveModePrefs != null) prefSet.removePreference(mPowermenuImmersiveModePrefs);
-                mPowermenuImmersiveModePrefs = null;
-            } else {
-                mPowermenuImmersiveModePrefs.setOnPreferenceChangeListener(this);
-                int ImmersiveModeValue = Settings.System.getInt(
-                        getContentResolver(), Settings.System.POWER_MENU_GLOBAL_IMMERSIVE_MODE_ENABLED, 2);
-                mPowermenuImmersiveModePrefs.setValue(String.valueOf(ImmersiveModeValue));
-                updateImmersiveModeSummary(ImmersiveModeValue);
-            }
-        }
     }
 
    private String getPowerMenuString(int value) {
@@ -190,11 +173,7 @@ public class PowermenuSettings extends SettingsPreferenceFragment implements OnP
     private void updatePowermenuTorchPrefs(int value) {
         mPowermenuTorchPrefs.setSummary(getPowerMenuString(value));
     }
-   
-    private void updateImmersiveModeSummary(int value) {
-        mPowermenuImmersiveModePrefs.setSummary(getPowerMenuString(value));
-    }  
-    
+       
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         if (preference == mPowermenuRebootPrefs) {
             int mPowermenuRebootPrefsValue = Integer.valueOf((String) objValue);
@@ -245,13 +224,6 @@ public class PowermenuSettings extends SettingsPreferenceFragment implements OnP
             updatePowermenuTorchPrefs(mPowermenuTorchPrefsValue);
             getActivity().recreate();
             return true;
-        } else if (preference == mPowermenuImmersiveModePrefs) {
-             int ImmersiveModeValue = Integer.valueOf((String) objValue);
-             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
-                    Settings.System.POWER_MENU_GLOBAL_IMMERSIVE_MODE_ENABLED, ImmersiveModeValue);
-             updateImmersiveModeSummary(ImmersiveModeValue);
-             getActivity().recreate();
-             return true;
         }
         return false;
     }
