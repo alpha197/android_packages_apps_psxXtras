@@ -69,22 +69,4 @@
             android:fragment="net.purespeedx.psxxtras.notificationlight.NotificationLightSettings" />
 
     </PreferenceCategory>
-
-
-    <PreferenceCategory
-	   android:key="immersive_mode"
-       android:title="@string/psx_category_immersive_mode" >
-          
-       <ListPreference
-            android:key="immersive_mode_style"
-            android:title="@string/immersive_mode_style"
-            android:entries="@array/immersive_mode_entries"
-            android:entryValues="@array/immersive_mode_values"/>
-
-       <CheckBoxPreference android:key="immersive_mode_state"
-            android:title="@string/immersive_mode_state"
-            android:summaryOn="@string/immersive_mode_on"
-            android:summaryOff="@string/immersive_mode_off" />    
-			
-    </PreferenceCategory>	
 </PreferenceScreen>

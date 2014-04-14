@@ -264,21 +264,7 @@
     <!-- Volume rocker wake -->
     <string name="pref_volume_wake_title">Volume rocker wake</string>
     <string name="pref_volume_wake_summary">Pressing the volume rocker will wake your Nexus</string>
-   
-    <!-- Immersive mode -->
-    <string name="powermenu_immersive_mode">Immersive mode</string>
-    <string name="powermenu_immersive_mode_prefs_summary">%1$s</string>
-    <string name="immersive_mode_summary_status_bar">With status bar</string>
-    <string name="immersive_mode_summary_no_status_bar">Without status bar</string>
-    <string name="immersive_mode_disabled">disabled</string>
-    <string name="immersive_mode_status_bar">With status bar</string>
-    <string name="immersive_mode_no_status_bar">Without status bar</string>
-    <string name="psx_category_immersive_mode">Immersive mode</string>
-    <string name="immersive_mode_state">Enable mode</string>
-    <string name="immersive_mode_on">Immersive mode enabled</string>
-    <string name="immersive_mode_off">Immersive mode disabled</string>
-    <string name="immersive_mode_style">Immersive style</string>
-        
+          
     <!-- Blacklist preferences -->
     <string name="blacklist_title">Blacklist</string>
     <string name="blacklist_edit_dialog_title">Edit blacklist entry</string>
