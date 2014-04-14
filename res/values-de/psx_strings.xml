@@ -273,5 +273,11 @@
     <string name="remove_blacklist_number_title">Remove number</string>
     <string name="remove_blacklist_entry">Do you want to remove this blacklist entry?</string>
     <string name="select_contact">Select contact</string>
-	
+
+	<!-- Battery Icon -->
+	<string name="battery_icon_title">Battery Symbol</string>
+	<string name="battery_bar">Nur Symbol</string>
+	<string name="battery_bar_percent">Symbol mit Prozent</string>
+	<string name="battery_circle">Nur Kreis</string>
+	<string name="battery_circle_percent">Kreis mit Prozent</string>	
 </resources>

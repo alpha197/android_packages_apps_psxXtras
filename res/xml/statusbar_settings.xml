@@ -24,5 +24,14 @@
         android:title="@string/swipe_for_qs_title"
         android:summary="@string/swipe_for_qs_summary"
 		android:persistent="false" />	
-            
+
+    <ListPreference
+        android:key="battery_icon_title"
+        android:dialogTitle="@string/battery_icon_title"
+        android:title="@string/battery_icon_title"
+        android:summary="@string/battery_bar"
+        android:entries="@array/battery_values"
+        android:entryValues="@array/battery_entries"
+        android:defaultValue="0" />		
+		
 </PreferenceScreen>

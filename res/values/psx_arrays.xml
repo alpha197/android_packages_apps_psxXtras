@@ -102,7 +102,7 @@
         <item>20</item>
         <item>0</item>
     </string-array>
-	
+    
    <!-- Power Menu visibility -->
 
     <string-array name="entries_powermenu_visible_prefs" translatable="false">
@@ -115,24 +115,10 @@
         <item>0</item>
         <item>1</item>
         <item>2</item>
-    </string-array> 	
-	
-	   <!-- swipe to QS -->
-
-    <string-array name="entries_swipe_for_qs" translatable="false">
-        <item>@string/swipe_for_qs_off</item>
-        <item>@string/swipe_for_qs_right</item>
-        <item>@string/swipe_for_qs_left</item>
-        </string-array>
-
-    <string-array name="values_swipe_for_qs" translatable="false">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-    </string-array> 	
-
-	<!-- Increasing Ringtone -->
-	
+    </string-array>     
+    
+    <!-- Increasing Ringtone -->
+    
    <string-array name="increasing_ring_interval_entries" translatable="false">
         <item>@string/increasing_ring_interval_eachring</item>
         <item>@string/increasing_ring_interval_half_second</item>
@@ -151,7 +137,7 @@
         <item>3000</item>
         <item>5000</item>
         <item>10000</item>
-    </integer-array>	
+    </integer-array>    
 
     <!-- Phone blacklist management -->
     <string-array name="blacklist_policy_unknown_entries" translatable="false">
@@ -170,6 +156,21 @@
 
     <string-array name="blacklist_policy_private_values" translatable="false">
         <item>1</item>
+    </string-array>
+
+    <!-- battery icon -->
+    <string-array name="battery_values" translatable="false">
+        <item>@string/battery_bar</item>
+        <item>@string/battery_bar_percent</item>
+        <item>@string/battery_circle</item>
+        <item>@string/battery_circle_percent</item>
+    </string-array>
+    
+    <string-array name="battery_entries" translateable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
     </string-array>
 
 </resources>
