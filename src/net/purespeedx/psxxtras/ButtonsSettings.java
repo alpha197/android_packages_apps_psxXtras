@@ -21,7 +21,6 @@ import com.android.settings.SettingsPreferenceFragment;
 import net.purespeedx.psxxtras.R;
 public class ButtonsSettings extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
-    private static final String KEY_VOLUME_ROCKER_CATEGORY = "pref_volume_rocker_category";
     private static final String KEY_VOLUME_WAKE = "pref_volume_wake";
 
     private CheckBoxPreference mVolumeWake;
@@ -35,17 +34,10 @@ public class ButtonsSettings extends SettingsPreferenceFragment implements OnPre
 		ContentResolver resolver = getActivity().getContentResolver();	
 		PreferenceScreen prefSet = getPreferenceScreen();
 
-        boolean hasVolumeWake = getResources().getBoolean(
-                R.bool.config_show_volumerocker_wake);
         mVolumeWake = (CheckBoxPreference) findPreference(KEY_VOLUME_WAKE);
         if (mVolumeWake != null) {
-            if (!hasVolumeWake) {
-                prefSet.removePreference(mVolumeWake);       
-                mVolumeWake = null;
-            } else {
-                mVolumeWake.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
-                            Settings.System.VOLUME_WAKE_SCREEN, 0) == 1);
-            }
+            mVolumeWake.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                        Settings.System.VOLUME_WAKE_SCREEN, 0) == 1);
         }
 	}
 

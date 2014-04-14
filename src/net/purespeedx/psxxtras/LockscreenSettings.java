@@ -30,24 +30,11 @@ public class LockscreenSettings extends SettingsPreferenceFragment implements On
 
         addPreferencesFromResource(R.xml.lockscreen_settings);
         PreferenceScreen root = getPreferenceScreen();
-        boolean hasLockscreenNotification = getResources().getBoolean(
-                R.bool.config_show_lockscreen_notification);
-    	if (!hasLockscreenNotification) {
-	        Preference ps = (Preference) findPreference("lockscreen_notifications");
-    		 if (ps != null) root.removePreference(ps);
-	    }	
        // lockscreen see through
         mSeeThrough = (CheckBoxPreference) root.findPreference(KEY_SEE_THROUGH);
         if (mSeeThrough != null) {
-            boolean hasLockscreenSeeThrough = getResources().getBoolean(
-                    R.bool.config_show_lockscreen_seethrough);
-            if (!hasLockscreenSeeThrough) {
-                root.removePreference(mSeeThrough);
-                mSeeThrough = null;
-            } else {
-                mSeeThrough.setChecked(Settings.System.getInt(getContentResolver(),
-                        Settings.System.LOCKSCREEN_SEE_THROUGH, 0) == 1);
-            }
+            mSeeThrough.setChecked(Settings.System.getInt(getContentResolver(),
+                    Settings.System.LOCKSCREEN_SEE_THROUGH, 0) == 1);
         }
     }
 

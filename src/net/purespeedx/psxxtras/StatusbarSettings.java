@@ -39,16 +39,9 @@ public class StatusbarSettings extends SettingsPreferenceFragment implements OnP
         mStatusBarShowBatteryPercent =
             (CheckBoxPreference) prefSet.findPreference(STATUS_BAR_SHOW_BATTERY_PERCENT);
 		if (mStatusBarShowBatteryPercent != null) {
-            boolean hasNativBatterypercent = getResources().getBoolean(
-                R.bool.config_show_statusbar_native_battery);
-	        if (!hasNativBatterypercent) {
-    		    prefSet.removePreference(mStatusBarShowBatteryPercent);
-				mStatusBarShowBatteryPercent = null;
-    	    } else {
-                mStatusBarShowBatteryPercent.setChecked((Settings.System.getInt(getContentResolver(),
-                    "status_bar_native_battery_percentage", 0) == 1));
-                mStatusBarShowBatteryPercent.setOnPreferenceChangeListener(this);
-            }
+            mStatusBarShowBatteryPercent.setChecked((Settings.System.getInt(getContentResolver(),
+                "status_bar_native_battery_percentage", 0) == 1));
+            mStatusBarShowBatteryPercent.setOnPreferenceChangeListener(this);
 		}
 		
         mSwipeForQs = (ListPreference) findPreference(KEY_SWIPE_FOR_QS);

@@ -47,10 +47,8 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
     private static final String KEY_NOTIFICATION_PULSE = "notification_pulse";
     private static final String KEY_BATTERY_LIGHT = "battery_light";
     private static final String PREF_LESS_NOTIFICATION_SOUNDS = "less_notification_sounds";
-    private static final String KEY_QUIET_HOURS = "quiet_hours_settings";
     private static final String KEY_SAFE_HEADSET_VOLUME_WARNING = "safe_headset_volume_warning";
     private static final String KEY_INCREASING_RING = "increasing_ring";
-    private static final String KEY_DOUBLE_TAP_TO_SLEEP = "double_tap_sleep";
 
     private static final String[] NEED_VOICE_CAPABILITY = {
             KEY_INCREASING_RING
@@ -69,21 +67,7 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
 
         addPreferencesFromResource(R.xml.user_interface_settings);
         PreferenceScreen prefSet = getPreferenceScreen();
-
-        boolean hasDT2S = getResources().getBoolean(
-                R.bool.config_show_doubletap_to_sleep);
-		if (!hasDT2S) {
-		     Preference ps = (Preference) findPreference(KEY_DOUBLE_TAP_TO_SLEEP);
-			 if (ps != null) prefSet.removePreference(ps);
-		}
-        
-        boolean hasQuietHours = getResources().getBoolean(
-                R.bool.config_show_userinterface_quiethours);
-        if (!hasQuietHours) {
-            Preference ps = (Preference) findPreference(KEY_QUIET_HOURS);
-            if (ps != null) prefSet.removePreference(ps);
-        }
-        
+                
         mLightOptions = (PreferenceCategory) prefSet.findPreference(KEY_LIGHT_OPTIONS);
         mNotificationPulse = (PreferenceScreen) findPreference(KEY_NOTIFICATION_PULSE);
         if (mNotificationPulse != null) {
@@ -113,19 +97,12 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
         }
         
         mAnnoyingNotifications = (ListPreference) findPreference(PREF_LESS_NOTIFICATION_SOUNDS);
-        boolean hasAnnoyingNotifications = getResources().getBoolean(
-                R.bool.config_show_userinterface_lessnotifications);
         if (mAnnoyingNotifications !=null) {
-            if (!hasAnnoyingNotifications) {
-                prefSet.removePreference(mAnnoyingNotifications);
-                mAnnoyingNotifications = null;
-            } else {
-                int notificationThreshold = Settings.System.getInt(getContentResolver(),
-                        Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD,
-                        0);
-                mAnnoyingNotifications.setValue(Integer.toString(notificationThreshold));
-                mAnnoyingNotifications.setOnPreferenceChangeListener(this);        
-            }
+            int notificationThreshold = Settings.System.getInt(getContentResolver(),
+                    Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD,
+                    0);
+            mAnnoyingNotifications.setValue(Integer.toString(notificationThreshold));
+            mAnnoyingNotifications.setOnPreferenceChangeListener(this);        
         }
         
         mVolumeWarning = (CheckBoxPreference) findPreference(KEY_SAFE_HEADSET_VOLUME_WARNING);

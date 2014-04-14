@@ -113,7 +113,6 @@ public class Settings extends PreferenceActivity
     
 
     protected HashMap<Integer, Integer> mHeaderIndexMap = new HashMap<Integer, Integer>();
-    protected HashMap<Integer, Integer> mConfigs = new HashMap<Integer, Integer>();
    
     private AuthenticatorHelper mAuthenticatorHelper;
     private Header mLastHeader;
@@ -129,16 +128,7 @@ public class Settings extends PreferenceActivity
         }
                
         Resources res = getResources();
-                
-        mConfigs.clear();
-        mConfigs.put(R.id.psx_statusbar, res.getBoolean(R.bool.config_show_psx_statusbar) ? 1 : 0);
-        mConfigs.put(R.id.psx_navbar, res.getBoolean(R.bool.config_show_psx_navbar) ? 1 : 0);
-        mConfigs.put(R.id.psx_buttons, res.getBoolean(R.bool.config_show_psx_buttons) ? 1 : 0);
-        mConfigs.put(R.id.psx_user_interface, res.getBoolean(R.bool.config_show_psx_userinterface) ? 1 : 0);
-        mConfigs.put(R.id.psx_lockscreen, res.getBoolean(R.bool.config_show_psx_lockscreen) ? 1 : 0);
-        mConfigs.put(R.id.psx_kernel_settings, res.getBoolean(R.bool.config_show_psx_kernelsettings) ? 1 : 0);
-        mConfigs.put(R.id.psx_blacklist, res.getBoolean(R.bool.config_show_psx_blacklist) ? 1 : 0);
-    
+                   
         mAuthenticatorHelper = new AuthenticatorHelper();
         mAuthenticatorHelper.updateAuthDescriptions(this);
         mAuthenticatorHelper.onAccountsUpdated(this, null);
@@ -405,10 +395,6 @@ public class Settings extends PreferenceActivity
             Header header = target.get(i);
             // Ids are integers, so downcasting
             int id = (int) header.id;
-            Integer showConfig = mConfigs.get(id);
-            if (showConfig != null) {
-                if (showConfig == 0) target.remove(i);
-            }
             if (id == R.id.supersu_settings) {
                 // Embedding into Settings is supported from SuperSU v1.85 and up
                 boolean supported = false;

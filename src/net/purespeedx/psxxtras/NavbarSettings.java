@@ -36,19 +36,12 @@ public class NavbarSettings extends SettingsPreferenceFragment implements OnPref
         mNavigationBarHeight = 
 		    (ListPreference) prefSet.findPreference(KEY_NAVIGATION_BAR_HEIGHT);
 	    if (mNavigationBarHeight != null) {
-            boolean hasNavbarheight = getResources().getBoolean(
-                    R.bool.config_show_navbar_height);
-    	    if (!hasNavbarheight) {
-         	    prefSet.removePreference(mNavigationBarHeight);
-				mNavigationBarHeight = null;
-	        } else {
-                mNavigationBarHeight.setOnPreferenceChangeListener(this);
-                int statusNavigationBarHeight = Settings.System.getInt(getActivity().getApplicationContext()
-                        .getContentResolver(),
-                        Settings.System.NAVIGATION_BAR_HEIGHT, 48);
-                mNavigationBarHeight.setValue(String.valueOf(statusNavigationBarHeight));
-                mNavigationBarHeight.setSummary(mNavigationBarHeight.getEntry());		
-			}
+            mNavigationBarHeight.setOnPreferenceChangeListener(this);
+            int statusNavigationBarHeight = Settings.System.getInt(getActivity().getApplicationContext()
+                    .getContentResolver(),
+                    Settings.System.NAVIGATION_BAR_HEIGHT, 48);
+            mNavigationBarHeight.setValue(String.valueOf(statusNavigationBarHeight));
+            mNavigationBarHeight.setSummary(mNavigationBarHeight.getEntry());		
 		}
     }
 
