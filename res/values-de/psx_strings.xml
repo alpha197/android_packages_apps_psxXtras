@@ -241,18 +241,6 @@
      <string name="see_through_title">Durchscheinend</string>
      <string name="see_through_summary">Zeigt den Inhalt hinter dem Sperrbildschirm verschwommen, deine Daten werden möglicherweise sichtbar für Andere</string>
      
-    <!-- Double-tap to sleep -->
-    <string name="double_tap_sleep_title">Doppeltippen für Standby</string>
-    <string name="double_tap_sleep_secure_lockscreen_category">Sperrbildschirm</string>
-    <string name="status_bar_double_tap_sleep_status_bar_title">Statusleiste</string>
-    <string name="status_bar_double_tap_sleep_status_bar_summary">Irgendwo auf der Statusleiste</string>
-    <string name="status_bar_double_tap_sleep_glowpad_title">Slider</string>
-    <string name="status_bar_double_tap_sleep_glowpad_summary">Doppeltippen auf dem Slider</string>
-    <string name="status_bar_double_tap_sleep_pin_password_title">Pin und Passwort</string>
-    <string name="status_bar_double_tap_sleep_pin_password_summary">Irgendwo auf dem Textfeld</string>
-    <string name="status_bar_double_tap_sleep_pattern_title">Pattern</string>
-    <string name="status_bar_double_tap_sleep_pattern_summary">Irgendwo auf dem Patternfeld</string>    
-
     <string name="pref_volume_rocker_category">Lautstärkenwippe</string>
     <!-- Volume rocker wake -->
     <string name="pref_volume_wake_title">Wecken</string>
