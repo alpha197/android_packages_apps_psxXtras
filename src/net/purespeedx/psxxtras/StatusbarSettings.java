@@ -22,7 +22,6 @@ import net.purespeedx.psxxtras.R;
 
 public class StatusbarSettings extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
-    private static final String STATUS_BAR_SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
 	private static final String KEY_SWIPE_FOR_QS = "swipe_for_qs";
 	
 	private CheckBoxPreference mStatusBarShowBatteryPercent;
@@ -34,16 +33,7 @@ public class StatusbarSettings extends SettingsPreferenceFragment implements OnP
 
         addPreferencesFromResource(R.xml.statusbar_settings);
 		PreferenceScreen prefSet = getPreferenceScreen();
-		
-		// Statusbar battery percentage
-        mStatusBarShowBatteryPercent =
-            (CheckBoxPreference) prefSet.findPreference(STATUS_BAR_SHOW_BATTERY_PERCENT);
-		if (mStatusBarShowBatteryPercent != null) {
-            mStatusBarShowBatteryPercent.setChecked((Settings.System.getInt(getContentResolver(),
-                "status_bar_native_battery_percentage", 0) == 1));
-            mStatusBarShowBatteryPercent.setOnPreferenceChangeListener(this);
-		}
-		
+				
         mSwipeForQs = (ListPreference) findPreference(KEY_SWIPE_FOR_QS);
 		if (mSwipeForQs !=null) {
 			mSwipeForQs.setOnPreferenceChangeListener(this);
@@ -80,12 +70,7 @@ public class StatusbarSettings extends SettingsPreferenceFragment implements OnP
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
 	    //Statusbar battery percentage
-	    if (preference == mStatusBarShowBatteryPercent) {
-            Settings.System.putInt(getContentResolver(),
-                    "status_bar_native_battery_percentage",
-                    (Boolean) newValue ? 1 : 0);
-            return true;
-		} else if (preference == mSwipeForQs) {
+		if (preference == mSwipeForQs) {
             final int val = Integer.valueOf((String) newValue);
             Settings.System.putInt(getContentResolver(),
                     Settings.System.SWIPE_FOR_QS, val);

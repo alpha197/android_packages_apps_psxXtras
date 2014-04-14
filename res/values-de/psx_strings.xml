@@ -117,10 +117,6 @@
     <string name="less_notification_sounds_2m">2 Minuten</string>
     <string name="less_notification_sounds_5m">5 Minuten</string>
 
- <!-- Statusbar show battery percent -->
-  <string name="status_bar_show_battery_percent">Zeige Batterie Prozent</string>
-  <string name="status_bar_show_battery_percent_summary">Zeige Ladezustand in Prozent innerhalb des Batteriesymbols</string>    
-
     <!-- Navigation Bar Height -->
     <string name="navigation_bar_height">Höhe der Navigationsleiste</string>
     <string name="navigation_bar_height_48">48dp (default)</string>
