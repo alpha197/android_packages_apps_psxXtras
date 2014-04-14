@@ -147,7 +147,7 @@
     <string name="powermenu_userswitch_prefs_summary">%1$s</string>
     <string name="powermenu_screenshot_prefs_title">Screenshot</string>
     <string name="powermenu_screenshot_prefs_summary">%1$s</string>
-    <string name="powermenu_torch_prefs_title">Lampe</string>
+    <string name="powermenu_torch_prefs_title">Leuchte</string>
     <string name="powermenu_torch_prefs_summary">%1$s</string>
 
     <!-- Kernel Settings -->
