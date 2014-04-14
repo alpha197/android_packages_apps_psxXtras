@@ -182,9 +182,7 @@
     
     <!-- Swipe to QS -->
     <string name="swipe_for_qs_title">Pulldown for QS</string>
-    <string name="swipe_for_qs_off">Off</string>
-    <string name="swipe_for_qs_right">Right</string>
-    <string name="swipe_for_qs_left">Left</string>
+	<string name="swipe_for_qs_summary">pulldown on the right side opens Quicksettings"</string>
 
     <!-- Safe headset volume warning -->
     <string name="safe_headset_volume_warning_title">Volume warning</string>

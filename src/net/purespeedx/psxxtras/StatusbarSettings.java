@@ -24,8 +24,7 @@ public class StatusbarSettings extends SettingsPreferenceFragment implements OnP
 
 	private static final String KEY_SWIPE_FOR_QS = "swipe_for_qs";
 	
-	private CheckBoxPreference mStatusBarShowBatteryPercent;
-    private ListPreference mSwipeForQs;
+	private CheckBoxPreference mSwipeForQs;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,33 +33,15 @@ public class StatusbarSettings extends SettingsPreferenceFragment implements OnP
         addPreferencesFromResource(R.xml.statusbar_settings);
 		PreferenceScreen prefSet = getPreferenceScreen();
 				
-        mSwipeForQs = (ListPreference) findPreference(KEY_SWIPE_FOR_QS);
+        mSwipeForQs = (CheckBoxPreference) findPreference(KEY_SWIPE_FOR_QS);
 		if (mSwipeForQs !=null) {
 			mSwipeForQs.setOnPreferenceChangeListener(this);
-			int mSwipeVal = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
-                                 Settings.System.SWIPE_FOR_QS, 0);
-			updateSwipeForQs(mSwipeVal);	
+			mSwipeForQs.setChecked(Settings.System.getInt(getContentResolver(),
+                                 Settings.System.QUICK_SETTINGS_QUICK_PULL_DOWN, 0) == 1);
 		}
 		
     }
 
-	private void updateSwipeForQs(int value) {
-		mSwipeForQs.setValue(String.valueOf(value));
-		Resources res = getResources();
-        String menustate = "";
-        switch(value){
-			case 1:
-				menustate = res.getString(R.string.swipe_for_qs_right);
-				break;
-			case 2:
-				menustate = res.getString(R.string.swipe_for_qs_left);
-				break;
-			default:
-				menustate = res.getString(R.string.swipe_for_qs_off);
-		}
-		mSwipeForQs.setSummary(menustate);	
-	}
-	
 	
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {      	
@@ -71,10 +52,9 @@ public class StatusbarSettings extends SettingsPreferenceFragment implements OnP
     public boolean onPreferenceChange(Preference preference, Object newValue) {
 	    //Statusbar battery percentage
 		if (preference == mSwipeForQs) {
-            final int val = Integer.valueOf((String) newValue);
+            final int val = (Boolean) newValue ? 1 : 2;
             Settings.System.putInt(getContentResolver(),
-                    Settings.System.SWIPE_FOR_QS, val);
-            updateSwipeForQs(val);
+                    Settings.System.QUICK_SETTINGS_QUICK_PULL_DOWN, val);
             return true;        
         }
         return false;
