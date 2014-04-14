@@ -23,10 +23,8 @@ public class ButtonsSettings extends SettingsPreferenceFragment implements OnPre
 
     private static final String KEY_VOLUME_ROCKER_CATEGORY = "pref_volume_rocker_category";
     private static final String KEY_VOLUME_WAKE = "pref_volume_wake";
-    private static final String KEY_VOLBTN_MUSIC_CTRL = "volbtn_music_controls";    
 
     private CheckBoxPreference mVolumeWake;
-    private CheckBoxPreference mVolBtnMusicCtrl;    
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,19 +47,6 @@ public class ButtonsSettings extends SettingsPreferenceFragment implements OnPre
                             Settings.System.VOLUME_WAKE_SCREEN, 0) == 1);
             }
         }
-
-        boolean hasVolumeControl = getResources().getBoolean(
-                R.bool.config_show_volumerocker_musiccontrol);  
-        mVolBtnMusicCtrl = (CheckBoxPreference) findPreference(KEY_VOLBTN_MUSIC_CTRL);
-        if (mVolBtnMusicCtrl != null) {
-            if (!hasVolumeControl) {               
-                prefSet.removePreference(mVolBtnMusicCtrl);       
-                mVolBtnMusicCtrl = null;        
-            } else {
-                mVolBtnMusicCtrl.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
-                        Settings.System.VOLBTN_MUSIC_CONTROLS, 0) == 1);
-            }
-        }
 	}
 
     @Override
@@ -70,11 +55,6 @@ public class ButtonsSettings extends SettingsPreferenceFragment implements OnPre
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.VOLUME_WAKE_SCREEN,
                     mVolumeWake.isChecked()
-                    ? 1 : 0);
-         } else if (preference == mVolBtnMusicCtrl) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.VOLBTN_MUSIC_CONTROLS,
-                    mVolBtnMusicCtrl.isChecked()
                     ? 1 : 0);
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);

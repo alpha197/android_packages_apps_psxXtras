@@ -34,7 +34,6 @@
   <bool name="config_show_lockscreen_notification">false</bool>
   <bool name="config_show_lockscreen_seethrough">false</bool>
   <bool name="config_show_volumerocker_wake">false</bool>
-  <bool name="config_show_volumerocker_musiccontrol">false</bool>
   <bool name="config_show_doubletap_to_sleep">false</bool>
   <bool name="config_show_immersive">false</bool>
 
