@@ -239,6 +239,13 @@
      <string name="see_through_title">Durchscheinend</string>
      <string name="see_through_summary">Zeigt den Inhalt hinter dem Sperrbildschirm verschwommen, deine Daten werden möglicherweise sichtbar für Andere</string>
      
+    <!-- Double-tap to sleep -->
+    <string name="double_tap_sleep_title">Doppeltippen für Standby</string>
+    <string name="status_bar_double_tap_sleep_status_bar_title">Statusleiste</string>
+    <string name="status_bar_double_tap_sleep_status_bar_summary">Statusleiste doppeltippen für Standby</string>
+    <string name="status_bar_double_tap_sleep_lockscreen_title">Sperrbildschirm</string>
+    <string name="status_bar_double_tap_sleep_lockscreen_summary">Sperrbildschirm doppeltippen für Standby</string>    
+
     <string name="pref_volume_rocker_category">Lautstärkenwippe</string>
     <!-- Volume rocker wake -->
     <string name="pref_volume_wake_title">Wecken</string>

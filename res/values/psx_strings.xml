@@ -242,6 +242,13 @@
      <string name="see_through_title">See through</string>
      <string name="see_through_summary">Shows the content behind your lockscreen blurred, your data may be visible to those around you</string>
      
+    <!-- Double-tap to sleep -->
+    <string name="double_tap_sleep_title">Double-tap to sleep</string>
+    <string name="status_bar_double_tap_sleep_status_bar_title">Status bar</string>
+    <string name="status_bar_double_tap_sleep_status_bar_summary">Double tap on the status bar to send device to standby</string>
+    <string name="status_bar_double_tap_sleep_lockscreen_title">Lockscreen</string>
+    <string name="status_bar_double_tap_sleep_lockscreen_summary">Double tap on Lockscreen to send device to standby</string>
+
     <string name="pref_volume_rocker_category">Volume rocker</string>
     <!-- Volume rocker wake -->
     <string name="pref_volume_wake_title">Volume rocker wake</string>

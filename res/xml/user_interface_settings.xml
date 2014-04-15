@@ -18,20 +18,25 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
     android:title="@string/psx_header_interface">
-		
-    <CheckBoxPreference
-            android:key="safe_headset_volume_warning"
-            android:title="@string/safe_headset_volume_warning_title"
-            android:summary="@string/safe_headset_volume_warning_summary"
-            android:persistent="false" />	
 
+     <PreferenceScreen
+        android:fragment="net.purespeedx.psxxtras.DoubleTapToSleepSettings"
+        android:key="double_tap_sleep"
+        android:title="@string/double_tap_sleep_title" />	
+		
     <net.purespeedx.psxxtras.IncreasingRingPreference
         android:key="increasing_ring"
         android:title="@string/increasing_ring_title"
         android:dialogTitle="@string/increasing_ring_title"
         android:persistent="false"
         android:streamType="ring" />
-			
+
+    <CheckBoxPreference
+            android:key="safe_headset_volume_warning"
+            android:title="@string/safe_headset_volume_warning_title"
+            android:summary="@string/safe_headset_volume_warning_summary"
+            android:persistent="false" />	
+		
  	<PreferenceCategory
         android:title="@string/notifications_category_title" >
 
@@ -43,7 +48,7 @@
             android:entryValues="@array/less_notification_sounds_values" />
 
     </PreferenceCategory>
-            
+
     <PreferenceScreen
         android:key="quiet_hours_settings"
         android:fragment="net.purespeedx.psxxtras.QuietHours"
