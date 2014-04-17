@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+   Copyright 2013 The ParanoidAndroid Project
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  
+    <!-- Navigation bar settings -->
+
+    <string name="navigation_bar">Navigationsleiste</string>
+    <string name="navigation_ring_title">Schnellstart</string>
+    
+    <!-- Navigation ring shortcuts -->
+    <string name="navring_target_reset_message">Sollen alle Benutzerdefinierten Navigationsleisten Schnellstart-Verknüfungen gelöscht werden?</string>
+    <string name="navring_target_reset">Navigationsleisten Schnellstart-Verknüfungen gelöscht</string>
+    <string name="navring_action_open_ime_switcher">Öffne IME Wechsler</string>
+    <string name="navring_action_kill_app">Lösche App</string>
+    <string name="navring_action_none">Keiner</string>
+    <string name="navring_action_take_screenshot">Bildschirmfoto</string>
+    <string name="navring_action_ring_vibrate">Klingeln/Vibrieren</string>
+    <string name="navring_action_ring_silent">Klingeln/Ruhig</string>
+    <string name="navring_action_ring_vibrate_silent">Klingeln/Vibrieren/Ruhe</string>
+    <string name="navring_action_screen_off">Bildschirm aus</string>
+    <string name="navring_action_torch">Lampe umschalten</string>
+    <string name="navring_action_google_now">Google Now</string>
+    <string name="navring_choose_action_title">Wähle Aktion</string>
+
+    <string name="lockscreen_target_info">Ziehe Schieber auf das gewünschte Ziel um eine Verknüpfung zu definieren</string>
+
+    <!-- Description of the unlock target in the Slide unlock screen. [CHAR LIMIT=NONE] --> 
+    <string name="description_target_unlock">Entsperren</string>
+    <!-- Description of the unlock target in the Slide unlock screen. [CHAR LIMIT=NONE] -->
+    <string name="description_target_search">Suche</string>
+    <!-- Description of the sound on target in the Slide unlock screen. [CHAR LIMIT=NONE] -->
+    <string name="description_target_soundon">Ton an</string>
+    <!-- Description of the silent target in the Slide unlock screen. [CHAR LIMIT=NONE] -->
+    <string name="description_target_silent">Ruhe</string>
+    <!-- Description of the camera target in the Slide unlock screen. [CHAR LIMIT=NONE] -->
+    <string name="description_target_camera">Kamera</string>
+    <!-- Description of the up direction in which one can to slide the handle in the Slide unlock       screen. [CHAR LIMIT=NONE] -->
+    <string name="description_direction_up">Schiebe hoch für <xliff:g id="target_description"               example="Unlock">%s</xliff:g>.</string>
+    <!-- Description of the down direction in which one can to slide the handle in the Slide unlock     screen. [CHAR LIMIT=NONE] -->
+    <string name="description_direction_down">Schiebe runter für <xliff:g id="target_description"           example="Unlock">%s</xliff:g>.</string>
+    <!-- Description of the left direction in which one can to slide the handle in the Slide unlock     screen. [CHAR LIMIT=NONE] -->
+    <string name="description_direction_left">"Schiebe links für <xliff:g id="target_description"          example="Unlock">%s</xliff:g>.</string>
+    <!-- Description of the right direction in which one can to slide the handle in the Slide unlock    screen. [CHAR LIMIT=NONE] -->
+    <string name="description_direction_right">Schiebe rechts für <xliff:g id="target_description"         example="Unlock">%s</xliff:g>.</string>
+
+    <!-- Reset Profiles -->
+    <string name="profile_reset_title">Zurücksetzen</string>
+    <string name="profile_reset_message">Alle benutzerdefinierten Profile und App-Gruppen zurücksetzen ?</string>
+
+    <!-- Lock Screen Shortcuts -->
+    <string name="lockscreen_target_reset_title">Zurücksetzen</string>
+    <string name="lockscreen_target_reset_message">Alle benutzerdefinierten Sperrbildschirm-Ziele zurücksetzen?</string>
+    <string name="lockscreen_target_empty">Leer</string>
+    <string name="picker_activities">Aktivitäten</string>
+    <string name="select_custom_app_title">Wähle Benutzerapp</string>
+    <string name="select_custom_activity_title">Wähle Benutzer-Aktivität</string>
+
+    <!-- Title for application group setting screen -->
+    <string name="profile_applist_title">Apps</string>
+    <!-- UI debug setting: title for app picker dialog [CHAR LIMIT=50] -->
+    <string name="select_application">Wähle Programm</string>
+    <!-- Button label to save a Wi-Fi network configuration -->
+    <string name="wifi_save">Speichern</string>	
+</resources>
