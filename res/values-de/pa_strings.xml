@@ -37,8 +37,6 @@
     <string name="navring_action_google_now">Google Now</string>
     <string name="navring_choose_action_title">Wähle Aktion</string>
 
-    <string name="lockscreen_target_info">Ziehe Schieber auf das gewünschte Ziel um eine Verknüpfung zu definieren</string>
-
     <!-- Description of the unlock target in the Slide unlock screen. [CHAR LIMIT=NONE] --> 
     <string name="description_target_unlock">Entsperren</string>
     <!-- Description of the unlock target in the Slide unlock screen. [CHAR LIMIT=NONE] -->
@@ -76,7 +74,7 @@
     <string name="icon_picker_pack_title">Symbol Packet</string>
 
     <!-- Lock Screen Shortcuts -->
-    <string name="lockscreen_target_info">Ziehe Schieber zum gewünschte Ziel um Verknüpfung zu definieren</string>
+    <string name="lockscreen_target_info">Ziehe Schieber auf das gewünschte Ziel um eine Verknüpfung zu definieren</string>
     <string name="lockscreen_target_title">Schieberverknüfung</string>
     <string name="lockscreen_target_summary">Editiere benutzerdefinierte Sperrschirm-Verknüfungen</string>
     <string name="lockscreen_target_reset">Sperrshirm Verknüfungen zurücksetzen</string>
