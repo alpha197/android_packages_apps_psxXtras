@@ -62,18 +62,57 @@
     <string name="profile_reset_title">Zurücksetzen</string>
     <string name="profile_reset_message">Alle benutzerdefinierten Profile und App-Gruppen zurücksetzen ?</string>
 
-    <!-- Lock Screen Shortcuts -->
-    <string name="lockscreen_target_reset_title">Zurücksetzen</string>
-    <string name="lockscreen_target_reset_message">Alle benutzerdefinierten Sperrbildschirm-Ziele zurücksetzen?</string>
-    <string name="lockscreen_target_empty">Leer</string>
-    <string name="picker_activities">Aktivitäten</string>
-    <string name="select_custom_app_title">Wähle Benutzerapp</string>
-    <string name="select_custom_activity_title">Wähle Benutzer-Aktivität</string>
-
     <!-- Title for application group setting screen -->
     <string name="profile_applist_title">Apps</string>
     <!-- UI debug setting: title for app picker dialog [CHAR LIMIT=50] -->
     <string name="select_application">Wähle Programm</string>
     <!-- Button label to save a Wi-Fi network configuration -->
     <string name="wifi_save">Speichern</string>	
+	
+    <!-- String for IconPicker -->
+    <string name="icon_picker_title">Wähle Symbolquelle</string>
+    <string name="icon_picker_system_icons_title">Systemsymbol</string>
+    <string name="icon_picker_gallery_title">Gallerie</string>
+    <string name="icon_picker_pack_title">Symbol Packet</string>
+
+    <!-- Lock Screen Shortcuts -->
+    <string name="lockscreen_target_info">Ziehe Schieber zum gewünschte Ziel um Verknüpfung zu definieren</string>
+    <string name="lockscreen_target_title">Schieberverknüfung</string>
+    <string name="lockscreen_target_summary">Editiere benutzerdefinierte Sperrschirm-Verknüfungen</string>
+    <string name="lockscreen_target_reset">Sperrshirm Verknüfungen zurücksetzen</string>
+    <string name="lockscreen_target_reset_title">Zurücksetzen</string>
+    <string name="lockscreen_target_reset_message">Alle benutzerdefinierten Sperrbildschirm-Ziele zurücksetzen?</string>
+    <string name="lockscreen_target_empty">Leer</string>
+    <string name="lockscreen_target_edit_title">Editiere Verknüfungenund Symbol</string>
+    <string name="lockscreen_target_edit_msg">Wähle oder ändere gewünschte Anwendung oder Aktivität und das gewünschte Symbol</string>
+
+    <!-- Lock screen shortcuts -->
+    <string name="picker_activities">Aktivitäten</string>
+    <string name="select_custom_app_title">Wähle Benutzerapp</string>
+    <string name="select_custom_activity_title">Wähle Benutzer-Aktivität</string>
+    <string name="icon_picker_choose_icon_title">Wähle Symbol</string>
+    <string name="icon_picker_alarm">Alarm</string>
+    <string name="icon_picker_browser">Browser</string>
+    <string name="icon_picker_calendar">Kalender</string>
+    <string name="icon_picker_camera">Kamera</string>
+    <string name="icon_picker_chrome">Chrome</string>
+    <string name="icon_picker_contacts">Kontakte</string>
+    <string name="icon_picker_email">Email</string>
+    <string name="icon_picker_email2">Email Holo</string>
+    <string name="icon_picker_facebook">Facebook</string>
+    <string name="icon_picker_gallery">Gallerie</string>
+    <string name="icon_picker_google_small">Google (klein)</string>
+    <string name="icon_picker_googleplus">Google Plus</string>
+    <string name="icon_picker_googletalk">Hangouts</string>
+    <string name="icon_picker_maps">Maps</string>
+    <string name="icon_picker_movie">Movie</string>
+    <string name="icon_picker_music">Music</string>
+    <string name="icon_picker_nav_normal">Navigation</string>
+    <string name="icon_picker_phone">Telefon</string>
+    <string name="icon_picker_podcast">Podcast</string>
+    <string name="icon_picker_rss">Rss</string>
+    <string name="icon_picker_search">Suche</string>
+    <string name="icon_picker_sms">Nachrichten</string>
+    <string name="icon_picker_twitter">Twitter</string>
+	
 </resources>

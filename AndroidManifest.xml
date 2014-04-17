@@ -89,5 +89,10 @@
 		</receiver>		
         
 		<service android:name="net.purespeedx.psxxtras.Utils.BackgroundIntentService" />"   		
-    </application>
+
+        <activity android:name="com.android.settings.cyanogenmod.LockscreenTargets" />
+
+        <activity android:name="com.android.settings.cyanogenmod.LockscreenInterface" />
+
+     </application>
 </manifest>
