@@ -113,4 +113,8 @@
     <string name="icon_picker_search">Search</string>
     <string name="icon_picker_sms">Messaging</string>
     <string name="icon_picker_twitter">Twitter</string>
+	
+   <!-- Lockscreen widgets -->
+    <string name="security_maximize_widgets_title">Maximize lockscreen widgets</string>
+	
 </resources>

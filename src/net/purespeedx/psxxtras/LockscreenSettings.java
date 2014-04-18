@@ -3,6 +3,7 @@ package net.purespeedx.psxxtras;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -13,6 +14,9 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
+import android.util.DisplayMetrics;
+import android.view.DisplayInfo;
+import android.view.WindowManager;
 
 import com.android.settings.SettingsPreferenceFragment;
 
@@ -21,8 +25,10 @@ import net.purespeedx.psxxtras.R;
 public class LockscreenSettings extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
     private static final String KEY_SEE_THROUGH = "see_through";
-
+    private static final String LOCKSCREEN_MAXIMIZE_WIDGETS = "lockscreen_maximize_widgets";
+    
     private CheckBoxPreference mSeeThrough;
+    private CheckBoxPreference mMaximizeKeyguardWidgets;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,16 @@ public class LockscreenSettings extends SettingsPreferenceFragment implements On
             mSeeThrough.setChecked(Settings.System.getInt(getContentResolver(),
                     Settings.System.LOCKSCREEN_SEE_THROUGH, 0) == 1);
         }
+        mMaximizeKeyguardWidgets = (CheckBoxPreference) root.findPreference(LOCKSCREEN_MAXIMIZE_WIDGETS);
+        if (mMaximizeKeyguardWidgets != null) {
+            if (isTablet()) {
+                root.removePreference(root.findPreference(LOCKSCREEN_MAXIMIZE_WIDGETS));
+                mMaximizeKeyguardWidgets = null;
+            } else {
+                mMaximizeKeyguardWidgets.setChecked(Settings.System.getInt(getContentResolver(),
+                        Settings.System.LOCKSCREEN_MAXIMIZE_WIDGETS, 0) == 1);
+            }
+        }
     }
 
     @Override
@@ -44,6 +60,9 @@ public class LockscreenSettings extends SettingsPreferenceFragment implements On
             Settings.System.putInt(getContentResolver(), Settings.System.LOCKSCREEN_SEE_THROUGH,
                     mSeeThrough.isChecked() ? 1 : 0);
             return true;
+        } else if (preference == mMaximizeKeyguardWidgets) {
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.LOCKSCREEN_MAXIMIZE_WIDGETS, isToggled(preference) ? 1 : 0);
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
@@ -53,4 +72,14 @@ public class LockscreenSettings extends SettingsPreferenceFragment implements On
         // TODO Auto-generated method stub
         return false;
     }
+
+    private boolean isToggled(Preference pref) {
+        return ((CheckBoxPreference) pref).isChecked();
+    }
+  
+    private boolean isTablet() {
+        return (getActivity().getApplicationContext().getResources().getConfiguration().screenLayout
+            & Configuration.SCREENLAYOUT_SIZE_MASK)
+            >= Configuration.SCREENLAYOUT_SIZE_LARGE;
+    }    
 }
