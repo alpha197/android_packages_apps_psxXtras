@@ -76,12 +76,12 @@
     <!-- Lock Screen Shortcuts -->
     <string name="lockscreen_target_info">Ziehe Schieber auf das gewünschte Ziel, um eine Verknüpfung zu definieren</string>
     <string name="lockscreen_target_title">Schieberverknüfung</string>
-    <string name="lockscreen_target_summary">Editiere benutzerdefinierte Sperrschirm-Verknüfungen</string>
-    <string name="lockscreen_target_reset">Sperrshirm Verknüfungen zurücksetzen</string>
+    <string name="lockscreen_target_summary">Editiere benutzerdefinierte Sperrschirm-Verknüpfungen</string>
+    <string name="lockscreen_target_reset">Sperrschirm Verknüpfungen zurücksetzen</string>
     <string name="lockscreen_target_reset_title">Zurücksetzen</string>
     <string name="lockscreen_target_reset_message">Alle benutzerdefinierten Sperrbildschirm-Ziele zurücksetzen?</string>
     <string name="lockscreen_target_empty">Leer</string>
-    <string name="lockscreen_target_edit_title">Editiere Verknüfungenund Symbol</string>
+    <string name="lockscreen_target_edit_title">Editiere Verknüpfungen und Symbol</string>
     <string name="lockscreen_target_edit_msg">Wähle oder ändere gewünschte Anwendung oder Aktivität und das gewünschte Symbol</string>
 
     <!-- Lock screen shortcuts -->
