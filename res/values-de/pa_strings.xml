@@ -23,8 +23,8 @@
     <string name="navigation_ring_title">Schnellstart</string>
     
     <!-- Navigation ring shortcuts -->
-    <string name="navring_target_reset_message">Sollen alle Benutzerdefinierten Navigationsleisten Schnellstart-Verknüfungen gelöscht werden?</string>
-    <string name="navring_target_reset">Navigationsleisten Schnellstart-Verknüfungen gelöscht</string>
+    <string name="navring_target_reset_message">Sollen alle benutzerdefinierten Navigationsleisten Schnellstart-Verknüpfungen gelöscht werden?</string>
+    <string name="navring_target_reset">Navigationsleisten Schnellstart-Verknüpfungen gelöscht</string>
     <string name="navring_action_open_ime_switcher">Öffne IME Wechsler</string>
     <string name="navring_action_kill_app">Lösche App</string>
     <string name="navring_action_none">Keiner</string>
@@ -74,7 +74,7 @@
     <string name="icon_picker_pack_title">Symbol Packet</string>
 
     <!-- Lock Screen Shortcuts -->
-    <string name="lockscreen_target_info">Ziehe Schieber auf das gewünschte Ziel um eine Verknüpfung zu definieren</string>
+    <string name="lockscreen_target_info">Ziehe Schieber auf das gewünschte Ziel, um eine Verknüpfung zu definieren</string>
     <string name="lockscreen_target_title">Schieberverknüfung</string>
     <string name="lockscreen_target_summary">Editiere benutzerdefinierte Sperrschirm-Verknüfungen</string>
     <string name="lockscreen_target_reset">Sperrshirm Verknüfungen zurücksetzen</string>
