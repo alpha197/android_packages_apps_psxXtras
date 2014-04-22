@@ -75,7 +75,7 @@
 
     <!-- Lock Screen Shortcuts -->
     <string name="lockscreen_target_info">Ziehe Schieber auf das gewünschte Ziel, um eine Verknüpfung zu definieren</string>
-    <string name="lockscreen_target_title">Schieberverknüfung</string>
+    <string name="lockscreen_target_title">Schieberverknüpfung</string>
     <string name="lockscreen_target_summary">Editiere benutzerdefinierte Sperrschirm-Verknüpfungen</string>
     <string name="lockscreen_target_reset">Sperrschirm Verknüpfungen zurücksetzen</string>
     <string name="lockscreen_target_reset_title">Zurücksetzen</string>
@@ -114,7 +114,7 @@
     <string name="icon_picker_twitter">Twitter</string>
 
    <!-- Lockscreen widgets -->
-    <string name="security_maximize_widgets_title">Maximiere Sperrschirm Widgets</string>
-    <string name="security_maximize_widgets_summary">Bestimmt ob die Sperrschirm Widgets maximiert angezeigt werden oder nicht</string>
+    <string name="security_maximize_widgets_title">Maximiere Sperrschirm-Widgets</string>
+    <string name="security_maximize_widgets_summary">Bestimmt, ob die Sperrschirm-Widgets maximiert angezeigt werden oder nicht</string>
 	
 </resources>
