@@ -33,7 +33,7 @@
     <string name="notification_light_enabled">Aktiv</string>
     <string name="notification_light_disabled">Inaktiv</string>
     <string name="notification_light_default_value">Default</string>
-    <string name="notification_light_missed_call_title">Verpasste Anrufe</string>
+    <string name="notification_light_missed_call_title">Entgangene Anrufe</string>
     <string name="notification_light_voicemail_title">Sprachnachricht</string>
     <string name="notification_light_choose_app">Wähle Anwendung</string>
     <string name="notification_light_add">Hinzufügen</string>
@@ -61,12 +61,12 @@
     <string name="pulse_speed_fast">Schnell</string>
     <string name="pulse_speed_normal">Normal</string>
     <string name="pulse_speed_slow">Langsam</string>
-    <string name="pulse_speed_very_slow">Sehr Langsam</string>
+    <string name="pulse_speed_very_slow">Sehr langsam</string>
 
     <!-- Battery light settings -->
     <string name="battery_reset_title">Zurücksetzen</string>
     <string name="battery_light_title">Batterie-Licht</string>
-    <string name="battery_low_pulse_title">Blinken wenn Batterie schwach</string>
+    <string name="battery_low_pulse_title">Blinken, wenn Batterie schwach</string>
     <string name="battery_light_list_title">Ladefarben</string>
     <string name="battery_light_low_color_title">Batterie schwach</string>
     <string name="battery_light_medium_color_title">Teilweise geladen</string>
@@ -80,7 +80,7 @@
     <string name="quiet_hours_enabled">Aktiviere stille Stunden</string>
     <string name="quiet_hours_enabled_on">Stille Stunden werden erzwungen</string>
     <string name="quiet_hours_enabled_off">Benachrichtigungen werden normal angezeigt</string>
-    <string name="quiet_hours_start">Anfang stille Stunden</string>
+    <string name="quiet_hours_start">Beginn stille Stunden</string>
     <string name="quiet_hours_start_summary">Wann sollen die stillen Stunden beginnen</string>
     <string name="quiet_hours_end">Ende stille Stunden</string>
     <string name="quiet_hours_end_summary">Wann sollen die stillen Stunden enden</string>
@@ -128,12 +128,12 @@
     <string name="navigation_bar_height_28">28dp</string>
     <string name="navigation_bar_height_24">24dp</string>
     <string name="navigation_bar_height_20">20dp</string>
-    <string name="navigation_bar_height_0">0dp (Versteckt)</string>
+    <string name="navigation_bar_height_0">0dp (versteckt)</string>
   
     <!-- Powermenu Options -->
     <string name="powermenu_title">Power Menü</string>
     <string name="powermenu_prefs_always">Immer sichtbar</string>
-    <string name="powermenu_prefs_onlyunlocked">Nur wenn Entsperrt</string>
+    <string name="powermenu_prefs_onlyunlocked">Nur wenn entsperrt</string>
     <string name="powermenu_prefs_never">Niemals sichtbar</string>
 
     <string name="powermenu_reboot_prefs_title">Neustart</string>
@@ -162,15 +162,15 @@
     <string name="kernel_settings_cpu_frequency_min_title">Mindest Takt</string>
     <string name="kernel_settings_cpu_frequency_max_title">Maximal Takt</string>
     <string name="kernel_settings_cpu_frequency_apply_title">Beim Starten setzen</string>
-    <string name="kernel_settings_cpu_frequency_apply_summary_disabled">Nicht beim starten setzen</string>
-    <string name="kernel_settings_cpu_frequency_apply_summary_enabled">Wird beim starten gesetzt</string>
+    <string name="kernel_settings_cpu_frequency_apply_summary_disabled">Nicht beim Starten setzen</string>
+    <string name="kernel_settings_cpu_frequency_apply_summary_enabled">Wird beim Starten gesetzt</string>
     <string name="kernel_settings_cpu_inputboost_title">CPU Boost Treiber</string>
     <string name="kernel_settings_cpu_inputboost_ms">Inputboost</string>
     <string name="kernel_settings_cpu_inputboost_ms_summary">beschleunigt die CPU für %1$s ms</string>
     <string name="kernel_settings_cpu_inputboost_freq">Inputboost Takt</string>
     <string name="kernel_settings_cpu_boost_apply">Beim Starten setzen</string>
-    <string name="kernel_settings_cpu_boost_apply_disabled">Nicht beim starten Setzen</string>
-    <string name="kernel_settings_cpu_boost_apply_enabled">Wird beim starten gesetzt</string>
+    <string name="kernel_settings_cpu_boost_apply_disabled">Nicht beim Starten setzen</string>
+    <string name="kernel_settings_cpu_boost_apply_enabled">Wird beim Starten gesetzt</string>
     <string name="kernel_settings_cpu_boost_ms">Spitzen Boost Zeit</string>
     <string name="kernel_settings_cpu_boost_ms_summary">beschleunigt die CPU für %1$s ms bei Lastspitzen</string>
     <string name="kernel_settings_cpu_sync_threshold">Sync Grenzfrequenz</string>
@@ -213,7 +213,7 @@
     <string name="lockscreen_notifications">Sperrschirm Meldungen</string>
     <string name="lockscreen_notifications_summary">Zeige offene Meldungen auf dem Sperrschirm</string>
     <string name="pocket_mode">Taschen-Modus</string>
-    <string name="pocket_mode_summary">Schalte den Bildschirm ein und zeige alle Meldungen wenn das Gerät aus der Tasche genommen wird.Schalte Bildschirm aus, wenn es zurück in die Tasche gesteckt wird</string>
+    <string name="pocket_mode_summary">Schalte den Bildschirm ein und zeige alle Meldungen, wenn das Gerät aus der Tasche genommen wird. Schalte Bildschirm aus, wenn es zurück in die Tasche gesteckt wird</string>
     <string name="show_always">Immer zeigen</string>
     <string name="show_always_summary">Schaltet den Bildschirm immer ein, sobald das Gerät aus der Tachen genommen wird, auch wenn keine Nachricht ansteht</string>
     <string name="hide_low_priority">Verstecke Niedrige Priorität</string>
@@ -223,22 +223,22 @@
     <string name="dismiss_all">Erlaube Bestätigung aller Meldungen</string>
     <string name="dismiss_all_summary">Erlaube auch das Bestätigen nicht löschbarer Meldungen. Natürlich werden diese nur vom Sperrschirm entfernt und nicht vom Meldungsschirm</string>
     <string name="expanded_view">Erweiterte Meldungsansicht</string>
-    <string name="expanded_view_summary">Fügt die Möglichkeit hinzu, durch Langen Druck Meldungen erweitert anzuzeigen.Die erweiterte Ansicht zeigt manchmal privatere Informationen, weshalb dies vielleicht deaktiviert werden sollte</string>
+    <string name="expanded_view_summary">Fügt die Möglichkeit hinzu, durch langen Druck Meldungen erweitert anzuzeigen. Die erweiterte Ansicht zeigt manchmal privatere Informationen, weshalb dies vielleicht deaktiviert werden sollte</string>
     <string name="force_expanded_view">Erzwinge erweiterte Ansicht</string>
-    <string name="force_expanded_view_summary">Zeige Meldungen voreingestellt Erweitert.Sie können weiterhin per langen Druck verkleinert werden</string>
+    <string name="force_expanded_view_summary">Zeige Meldungen voreingestellt erweitert. Sie können weiterhin per langem Druck verkleinert werden</string>
     <string name="wake_on_notification">Aufwachen bei Meldungen</string>
     <string name="wake_on_notification_summary">Wecke Gerät bei neuen Nachrichten auf</string>
     <string name="notifications_height">Anzahl Meldungen</string>
     <string name="notifications_height_summary">Anzahl der Meldungen, die auf einmal gezeigt werden sollen</string>
     <string name="offset_top">Abstand vom oberen Rand:</string>
     <string name="privacy_mode">Privater Modus</string>
-    <string name="privacy_mode_summary">Deaktiviere Nachrichtenazeige. Auf diese Art werden nur die Meldungssymbole angezeigt.</string>
+    <string name="privacy_mode_summary">Deaktiviere Nachrichtenanzeige. Auf diese Art werden nur die Meldungssymbole angezeigt.</string>
     <string name="excluded_apps_title">Ausgeschlossene Anwendungen</string>
     <string name="excluded_apps_summary">Ausgeschlossene Anwendungen werden nicht auf dem Sperrbildschirm angezeigt</string>
 
     <!--Lockscreen See Through-->
      <string name="see_through_title">Durchscheinend</string>
-     <string name="see_through_summary">Zeigt den Inhalt hinter dem Sperrbildschirm verschwommen, deine Daten werden möglicherweise sichtbar für Andere</string>
+     <string name="see_through_summary">Zeigt den Inhalt hinter dem Sperrbildschirm verschwommen, deine Daten werden möglicherweise sichtbar für andere</string>
      
     <!-- Double-tap to sleep -->
     <string name="double_tap_sleep_title">Doppeltippen für Standby</string>
@@ -247,7 +247,7 @@
     <string name="status_bar_double_tap_sleep_lockscreen_title">Sperrbildschirm</string>
     <string name="status_bar_double_tap_sleep_lockscreen_summary">Sperrbildschirm doppeltippen für Standby</string>    
 
-    <string name="pref_volume_rocker_category">Lautstärkenwippe</string>
+    <string name="pref_volume_rocker_category">Lautstärkewippe</string>
     <!-- Volume rocker wake -->
     <string name="pref_volume_wake_title">Wecken</string>
     <string name="pref_volume_wake_summary">Drücken der Wippe weckt das Gerät</string>
@@ -257,7 +257,7 @@
     <string name="blacklist_edit_dialog_title">Editiere Sperreinträge</string>
     <string name="blacklist_prefs">Einstellungen</string>
     <string name="blacklist_button_delete">Löschen</string>
-    <string name="blacklist_empty_text">Es sind keine Sperreinträge vorhanden. Füge einen Eintrag durch anwählen der (+) Taste hinzu.</string>
+    <string name="blacklist_empty_text">Es sind keine Sperreinträge vorhanden. Füge einen Eintrag mit der (+) Taste hinzu.</string>
     <string name="blacklist_disabled_empty_text">Um Anrufe oder Nachrichten zu sperren, aktiviere Sperrliste.</string>
     <string name="blacklist_summary_disabled">Deaktiviert</string>
     <string name="blacklist_summary">Anrufe und Nachrichten von Nummern in der Liste werden gesperrt</string>
@@ -272,7 +272,7 @@
     <string name="blacklist_summary_type_messages_only">Nachrichten</string>
     <string name="blacklist_summary_type_calls_and_messages">Anrufe und Nachrichten</string>
     <string name="blacklist_regex_title">Benutze Jokerzeichen</string>
-    <string name="blacklist_regex_summary">Benutze . als Jokerzeichen und * für Fortführend. z.B. 123.* Blockiert alle Nummern die mit 123 beginnen und .*123.* Blockiert alle Nummern in denen 123 vorkommt</string>
+    <string name="blacklist_regex_summary">Benutze . als Jokerzeichen und * für fortführend. Z.B. 123.* Blockiert alle Nummern, die mit 123 beginnen und .*123.* blockiert alle Nummern, in denen 123 vorkommt</string>
     <string name="blacklist_policy_block_calls">Blockiere eingehende Anrufe</string>
     <string name="blacklist_policy_block_messages">Blockiere eingehende Nachrichten</string>
 
