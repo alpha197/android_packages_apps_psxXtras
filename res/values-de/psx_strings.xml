@@ -180,7 +180,7 @@
 
     <!-- Swipe to QS -->
     <string name="swipe_for_qs_title">Herunterziehen für QS</string>
-	<string name="swipe_for_qs_summary">Herunterziehen an der rechten Seite öffnet die Quicksettings"</string>
+	<string name="swipe_for_qs_summary">Herunterziehen der Statusleiste an der rechten Seite öffnet die Schnelleinstellungen"</string>
 
     <!-- Safe headset volume warning -->
     <string name="safe_headset_volume_warning_title">Lautstärkenwarnung</string>
@@ -283,11 +283,23 @@
     <string name="select_contact">Select contact</string>
 
 	<!-- Battery Icon -->
-	<string name="battery_icon_title">Battery Symbol</string>
+	<string name="battery_icon_title">Batterie Symbol</string>
+	<string name="statusbar_battery_title">In Statusleiste</string>
 	<string name="battery_bar">Nur Symbol</string>
 	<string name="battery_bar_percent">Symbol mit Prozent</string>
 	<string name="battery_circle">Nur Kreis</string>
 	<string name="battery_circle_percent">Kreis mit Prozent</string>	
+	<string name="battery_percent_only">Nur Prozent</string>
+	<string name="battery_hide">Ohne</string>
+	
+	<string name="battery_bolt_title">Zeige Ladesymbol</string>
+	<string name="battery_bolt_summary">Zeige Ladesymbol während des Ladens</string>
+	<string name="battery_empty_title">Zeige Warnungssymbol</string>
+	<string name="battery_empty_summary">Zeige Warnzeichen bei weniger als 5%</string>
+	<string name="battery_full_title">Zeige 100%</string>
+	<string name="battery_full_summary">Zeige auch 100% Wert</string>
+	
+	<string name="quicksettings_battery_title">In Schnelleinstellungen</string>
 	
     <!-- Notification Reminders -->
     <string name="noti_reminder_category">Meldungserinnerung</string>

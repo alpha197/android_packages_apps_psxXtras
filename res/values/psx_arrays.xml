@@ -159,20 +159,38 @@
     </string-array>
 
     <!-- battery icon -->
-    <string-array name="battery_values" translatable="false">
+    <string-array name="statusbar_battery_values" translatable="false">
+        <item>@string/battery_bar</item>
+        <item>@string/battery_bar_percent</item>
+        <item>@string/battery_circle</item>
+        <item>@string/battery_circle_percent</item>
+		<item>@string/battery_percent_only</item>
+		<item>@string/battery_hide</item>
+    </string-array>
+    
+    <string-array name="statusbar_battery_entries" translateable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+		<item>4</item>
+		<item>5</item>
+    </string-array>
+
+    <string-array name="quicksettings_battery_values" translatable="false">
         <item>@string/battery_bar</item>
         <item>@string/battery_bar_percent</item>
         <item>@string/battery_circle</item>
         <item>@string/battery_circle_percent</item>
     </string-array>
     
-    <string-array name="battery_entries" translateable="false">
+    <string-array name="quicksettings_battery_entries" translateable="false">
         <item>0</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
     </string-array>
-
+	
     <!-- Notification reminder flip interval -->
     <string-array name="noti_reminder_interval_entries">
         <item>@string/noti_reminder_interval_1s</item>

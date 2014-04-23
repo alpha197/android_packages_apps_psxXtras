@@ -25,7 +25,11 @@ import net.purespeedx.psxxtras.R;
 public class StatusbarSettings extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
 	private static final String KEY_SWIPE_FOR_QS = "swipe_for_qs";
-	private static final String KEY_BATTERY_ICON = "battery_icon_title";
+	private static final String KEY_BATTERY_ICON = "statusbar_battery_title";
+	private static final String KEY_QS_BATTERY_ICON = "quicksettings_battery_title";
+	private static final String KEY_BATTERY_BOLT = "battery_bolt";
+	private static final String KEY_BATTERY_EMPTY = "battery_empty";
+	private static final String KEY_BATTERY_FULL = "battery_full";
     
     private static final String NOTIFICATION_DRAWER_QS_SETTINGS = "notification_drawer_qs_settings";
 
@@ -36,6 +40,10 @@ public class StatusbarSettings extends SettingsPreferenceFragment implements OnP
     
 	private CheckBoxPreference mSwipeForQs;
 	private ListPreference mBatteryIcon;
+	private ListPreference mQsBatteryIcon;
+	private CheckBoxPreference mBatteryEmpty;
+	private CheckBoxPreference mBatteryBolt;
+	private CheckBoxPreference mBatteryFull;
     
     private CheckBoxPreference mReminder;
     private ListPreference mReminderMode;
@@ -57,13 +65,29 @@ public class StatusbarSettings extends SettingsPreferenceFragment implements OnP
 		}
 	
         mBatteryIcon = (ListPreference) findPreference(KEY_BATTERY_ICON);
+        mQsBatteryIcon = (ListPreference) findPreference(KEY_QS_BATTERY_ICON);
+        mBatteryBolt = (CheckBoxPreference) findPreference(KEY_BATTERY_BOLT);
+        mBatteryEmpty= (CheckBoxPreference) findPreference(KEY_BATTERY_EMPTY);
+        mBatteryFull= (CheckBoxPreference) findPreference(KEY_BATTERY_FULL);
+        
         if (mBatteryIcon !=null) {
             mBatteryIcon.setOnPreferenceChangeListener(this);
-            int BatteryValue = Settings.System.getInt(getContentResolver(),
-                                 Settings.System.STATUS_BAR_BATTERY_STYLE, 0);
-            mBatteryIcon.setValue(String.valueOf(BatteryValue));
-            updateBatteryIcon(BatteryValue);            
         }
+        if (mQsBatteryIcon !=null) {
+            mQsBatteryIcon.setOnPreferenceChangeListener(this);
+        }
+        if (mBatteryBolt !=null) {
+            mBatteryBolt.setOnPreferenceChangeListener(this);
+        }
+        if (mBatteryEmpty !=null) {
+            mBatteryEmpty.setOnPreferenceChangeListener(this);
+        }
+        if (mBatteryFull !=null) {
+            mBatteryFull.setOnPreferenceChangeListener(this);
+        }
+        
+        updateBatteryIcon();            
+        
         mReminder = (CheckBoxPreference) findPreference(PREF_NOTI_REMINDER_ENABLED);
         mReminder.setChecked(Settings.System.getIntForUser(getContentResolver(),
                 Settings.System.REMINDER_ALERT_ENABLED, 0, UserHandle.USER_CURRENT) == 1);
@@ -98,7 +122,7 @@ public class StatusbarSettings extends SettingsPreferenceFragment implements OnP
         mReminderInterval.setOnPreferenceChangeListener(this);
         updateReminderIntervalSummary(interval);        
     }
-
+    
    private String getBatterystring(int value) {
         Resources res = getResources();
         String menustate = "";
@@ -112,17 +136,51 @@ public class StatusbarSettings extends SettingsPreferenceFragment implements OnP
         case 3:
             menustate=res.getString(R.string.battery_circle_percent);
             break;
+        case 4:
+            menustate=res.getString(R.string.battery_percent_only);
+            break;       
+        case 5:
+            menustate=res.getString(R.string.battery_hide);
+            break;       
         default:
             menustate=res.getString(R.string.battery_bar);
         }
         return menustate;
     }
     
-    private void updateBatteryIcon(int value) {
-        mBatteryIcon.setSummary(getBatterystring(value));
+    private void updateBatteryIcon() {
+        int BatteryValue = Settings.System.getInt(getContentResolver(),
+                                Settings.System.STATUS_BAR_BATTERY_STYLE, 0);
+        int QsBatteryValue = Settings.System.getInt(getContentResolver(),
+                                Settings.System.QUICKSETTINGS_BATTERY_STYLE, 0);
+        boolean BatteryFull = (Settings.System.getInt(getContentResolver(),
+                                Settings.System.STATUS_BAR_BATTERY_FULL, 0) == 1);
+        boolean BatteryEmpty = (Settings.System.getInt(getContentResolver(),
+                                Settings.System.STATUS_BAR_BATTERY_EMPTY, 1) == 1);
+        boolean BatteryBolt = (Settings.System.getInt(getContentResolver(),
+                                Settings.System.STATUS_BAR_BATTERY_BOLT, 1) == 1);
+        if (mBatteryIcon != null) {
+            mBatteryIcon.setValue(String.valueOf(BatteryValue));
+            mBatteryIcon.setSummary(getBatterystring(BatteryValue));
+        }
+        if (mQsBatteryIcon != null) {
+            mQsBatteryIcon.setValue(String.valueOf(QsBatteryValue));
+            mQsBatteryIcon.setSummary(getBatterystring(QsBatteryValue));
+        }
+        if (mBatteryBolt != null) {
+            mBatteryBolt.setChecked(BatteryBolt);
+            mBatteryBolt.setEnabled(BatteryValue == 1 || QsBatteryValue == 1);
+        }
+        if (mBatteryEmpty != null) {
+            mBatteryEmpty.setChecked(BatteryEmpty);
+            mBatteryEmpty.setEnabled(BatteryValue == 1 || QsBatteryValue == 1);
+        }
+        if (mBatteryFull != null) {
+            mBatteryFull.setChecked(BatteryFull);
+            mBatteryFull.setEnabled(BatteryValue == 1 || QsBatteryValue == 1);
+        }
     }
-
-    
+ 
 	
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {      	
@@ -141,8 +199,32 @@ public class StatusbarSettings extends SettingsPreferenceFragment implements OnP
             final int bValue = Integer.valueOf((String) newValue);
             Settings.System.putInt(getContentResolver(),
                     Settings.System.STATUS_BAR_BATTERY_STYLE, bValue);
-            updateBatteryIcon(bValue);
+            updateBatteryIcon();
             return true;
+        } else if (preference == mQsBatteryIcon) {
+            final int bValue = Integer.valueOf((String) newValue);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.QUICKSETTINGS_BATTERY_STYLE, bValue);
+            updateBatteryIcon();
+            return true;
+		} else if (preference == mBatteryBolt) {
+            final int val = (Boolean) newValue ? 1 : 0;
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.STATUS_BAR_BATTERY_BOLT, val);
+            updateBatteryIcon();
+            return true;        
+		} else if (preference == mBatteryEmpty) {
+            final int val = (Boolean) newValue ? 1 : 0;
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.STATUS_BAR_BATTERY_EMPTY, val);
+            updateBatteryIcon();
+            return true;        
+		} else if (preference == mBatteryFull) {
+            final int val = (Boolean) newValue ? 1 : 0;
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.STATUS_BAR_BATTERY_FULL, val);
+            updateBatteryIcon();
+            return true;        
         } else if (preference == mReminder) {
             Settings.System.putIntForUser(getContentResolver(),
                     Settings.System.REMINDER_ALERT_ENABLED,
