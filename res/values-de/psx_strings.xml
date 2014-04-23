@@ -47,7 +47,7 @@
     <string name="dialog_test">Test</string>
     <string name="dialog_delete_title">Löschen</string>
     <string name="dialog_delete_message">Auswahl entfernen?</string>
-    <string name="dialog_test_message">Bildschirm ausschalten um Licht zu testen oder Dialog beenden um zurückzukehren</string>
+    <string name="dialog_test_message">Bildschirm ausschalten, um Licht zu testen oder Dialog beenden um zurückzukehren</string>
     <string name="dialog_test_button">Abbruch</string>
 
     <!-- Values for the notification light pulse spinners -->
@@ -86,7 +86,7 @@
     <string name="quiet_hours_end_summary">Wann sollen die stillen Stunden enden</string>
     <string name="quiet_hours_mute">Kein Benachrichtigungston</string>
     <string name="quiet_hours_mute_on">Kein Ton wird gespielt</string>
-    <string name="quiet_hours_mute_off">Töne werden normal gespielrt</string>
+    <string name="quiet_hours_mute_off">Töne werden normal gespielt</string>
     <string name="quiet_hours_still">Vibrationen abschalten</string>
     <string name="quiet_hours_still_on">Gerät vibriert nicht</string>
     <string name="quiet_hours_still_off">Gerät wird normal vibrieren</string>
@@ -94,8 +94,8 @@
     <string name="quiet_hours_dim_on">Kein Benachrichtigungslicht</string>
     <string name="quiet_hours_dim_off">Normales Benachrichtigungslicht</string>
     <string name="quiet_hours_haptic">Haptisches Feedback abschalten</string>
-    <string name="quiet_hours_haptic_on">Kein Haptisches Feedback</string>
-    <string name="quiet_hours_haptic_off">Normales Haptisches Feedback</string>
+    <string name="quiet_hours_haptic_on">Kein haptisches Feedback</string>
+    <string name="quiet_hours_haptic_off">Normales haptisches Feedback</string>
     <string name="quiet_hours_active_from">Aktiv von</string>
     <string name="quiet_hours_active_to">bis</string>
 
@@ -106,7 +106,7 @@
     <!-- Less Notification sounds -->
     <string name="notifications_category_title">Benachrichtigungen</string>
     <string name="less_notification_sounds_title">Weniger häufige Benachrichtigungstöne</string>
-    <string name="less_notification_sounds_summary">Anzahl Benachrichtigungstöne pro App auf einen Intervall begrenzen</string>
+    <string name="less_notification_sounds_summary">Anzahl Benachrichtigungstöne pro App auf ein Intervall begrenzen</string>
     <string name="less_notification_sounds_default">Normales Verhalten</string>
     <string name="less_notification_sounds_3s">3 Sekunden</string>
     <string name="less_notification_sounds_5s">5 Sekunden</string>
@@ -154,9 +154,9 @@
     <!-- Kernel Settings -->
     <string name="kernel_settings_header">Kernel Einstellungen</string>
     <string name="kernel_settings_force_fastcharge_title">Schnellladen erzwingen</string>
-    <string name="kernel_settings_force_fastcharge_summary_on">Schnelles laden erzwungen</string>
-    <string name="kernel_settings_force_fastcharge_summary_off">Schnelles laden nicht erzwungen</string>
-    <string name="kernel_settings_force_fastcharge_summary_unsupported">Schnelles laden nicht unterstützt</string>
+    <string name="kernel_settings_force_fastcharge_summary_on">Schnelles Laden erzwungen</string>
+    <string name="kernel_settings_force_fastcharge_summary_off">Schnelles Laden nicht erzwungen</string>
+    <string name="kernel_settings_force_fastcharge_summary_unsupported">Schnelles Laden nicht unterstützt</string>
     <string name="kernel_settings_governor_title">Governor</string>
     <string name="kernel_settings_cpu_frequency_title">CPU Takt</string>
     <string name="kernel_settings_cpu_frequency_min_title">Mindest Takt</string>
@@ -193,7 +193,7 @@
     <string name="checkbox_increasing_ring">Aktiv</string>
     <!-- Sound settings screen, the title of the volume bar to adjust the minimum increasing ring volume -->
     <string name="increasing_ring_min_volume_title">Anfangslautstärke</string>
-    <string name="increasing_ring_volume_notice">Hinweis:\nWenn die Anfangslautstärke lauter gesetzt wird als die normale Lautstärke, wird die Normale benutzt</string>
+    <string name="increasing_ring_volume_notice">Hinweis:\nWenn die Anfangslautstärke lauter gesetzt wird als die normale Lautstärke, wird die normale Lautstärke benutzt</string>
     <string name="increasing_ring_interval_title">Anstiegsintervall</string>
     <string name="increasing_ring_interval_eachring">Bei jedem Klingeln</string>
     <string name="increasing_ring_interval_half_second">0.5 Sekunden</string>
