@@ -24,54 +24,17 @@
         android:key="clock_style_pref"
         android:title="@string/status_bar_clock" />
 
+    <PreferenceScreen
+        android:fragment="net.purespeedx.psxxtras.BatteryIcon"
+        android:key="battery_icon"
+        android:title="@string/battery_icon_title" />
+		
     <CheckBoxPreference
         android:key="swipe_for_qs"
         android:title="@string/swipe_for_qs_title"
         android:summary="@string/swipe_for_qs_summary"
         android:persistent="false" />    
-
-    
-   <PreferenceCategory
-            android:title="@string/battery_icon_title">
-            
-        <ListPreference
-            android:key="statusbar_battery_title"
-            android:dialogTitle="@string/statusbar_battery_title"
-            android:title="@string/statusbar_battery_title"
-            android:summary="@string/battery_bar"
-            android:entries="@array/statusbar_battery_values"
-            android:entryValues="@array/statusbar_battery_entries"
-            android:defaultValue="0" />
-
-        <ListPreference
-            android:key="quicksettings_battery_title"
-            android:dialogTitle="@string/quicksettings_battery_title"
-            android:title="@string/quicksettings_battery_title"
-            android:summary="@string/battery_bar"
-            android:entries="@array/quicksettings_battery_values"
-            android:entryValues="@array/quicksettings_battery_entries"
-            android:defaultValue="0" />
-            
-        <CheckBoxPreference
-            android:key="battery_bolt"
-            android:title="@string/battery_bolt_title"
-            android:summary="@string/battery_bolt_summary"
-            android:persistent="false" />    
-            
-        <CheckBoxPreference
-            android:key="battery_empty"
-            android:title="@string/battery_empty_title"
-            android:summary="@string/battery_empty_summary"
-            android:persistent="false" />    
-
-        <CheckBoxPreference
-            android:key="battery_full"
-            android:title="@string/battery_full_title"
-            android:summary="@string/battery_full_summary"
-            android:persistent="false" />    
-            
-    </PreferenceCategory>
-                
+               
    <PreferenceCategory
             android:title="@string/noti_reminder_category">
 
