@@ -22,8 +22,8 @@
      <PreferenceScreen
         android:fragment="net.purespeedx.psxxtras.DoubleTapToSleepSettings"
         android:key="double_tap_sleep"
-        android:title="@string/double_tap_sleep_title" />	
-		
+        android:title="@string/double_tap_sleep_title" />    
+        
     <net.purespeedx.psxxtras.IncreasingRingPreference
         android:key="increasing_ring"
         android:title="@string/increasing_ring_title"
@@ -35,9 +35,9 @@
             android:key="safe_headset_volume_warning"
             android:title="@string/safe_headset_volume_warning_title"
             android:summary="@string/safe_headset_volume_warning_summary"
-            android:persistent="false" />	
-		
- 	<PreferenceCategory
+            android:persistent="false" />    
+        
+     <PreferenceCategory
         android:title="@string/notifications_category_title" >
 
         <ListPreference
@@ -69,4 +69,23 @@
             android:fragment="net.purespeedx.psxxtras.notificationlight.NotificationLightSettings" />
 
     </PreferenceCategory>
+    
+    <PreferenceCategory
+            android:key="category_omniswitch"
+            android:title="@string/omniswitch_category">
+
+        <CheckBoxPreference
+                android:key="recents_use_omniswitch"
+                android:title="@string/recents_use_omniswitch_title"
+                android:summary="@string/recents_use_omniswitch_summary"
+                android:persistent="false" />
+
+        <Preference
+                android:key="omniswitch_start_settings"
+                android:title="@string/omniswitch_start_settings_title"
+                android:summary="@string/omniswitch_start_settings_summary"
+                android:persistent="false" />    
+            
+    </PreferenceCategory>
+            
 </PreferenceScreen>
