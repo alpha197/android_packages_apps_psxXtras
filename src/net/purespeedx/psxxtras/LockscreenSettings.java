@@ -26,9 +26,11 @@ public class LockscreenSettings extends SettingsPreferenceFragment implements On
 
     private static final String KEY_SEE_THROUGH = "see_through";
     private static final String LOCKSCREEN_MAXIMIZE_WIDGETS = "lockscreen_maximize_widgets";
+    private static final String KEY_QUICK_UNLOCK = "quick_unlock";
     
     private CheckBoxPreference mSeeThrough;
     private CheckBoxPreference mMaximizeKeyguardWidgets;
+    private CheckBoxPreference mQuickUnlock;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,11 @@ public class LockscreenSettings extends SettingsPreferenceFragment implements On
                         Settings.System.LOCKSCREEN_MAXIMIZE_WIDGETS, 0) == 1);
             }
         }
+        mQuickUnlock = (CheckBoxPreference) root.findPreference(KEY_QUICK_UNLOCK);
+        if (mQuickUnlock != null) {
+            mQuickUnlock.setChecked(Settings.System.getInt(getContentResolver(),
+                    Settings.System.QUICK_UNLOCK, 0) == 1);
+        }
     }
 
     @Override
@@ -63,6 +70,10 @@ public class LockscreenSettings extends SettingsPreferenceFragment implements On
         } else if (preference == mMaximizeKeyguardWidgets) {
             Settings.System.putInt(getContentResolver(),
                     Settings.System.LOCKSCREEN_MAXIMIZE_WIDGETS, isToggled(preference) ? 1 : 0);
+       } else if (preference == mQuickUnlock) {
+            Settings.System.putInt(getContentResolver(), Settings.System.QUICK_UNLOCK,
+                    mQuickUnlock.isChecked() ? 1 : 0);
+            return true;
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }

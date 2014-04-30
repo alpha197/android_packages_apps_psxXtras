@@ -39,4 +39,10 @@ limitations under the License.
         android:key="lockscreen_maximize_widgets"
         android:title="@string/security_maximize_widgets_title"
         android:summary="@string/security_maximize_widgets_summary" />    
+		
+    <CheckBoxPreference
+        android:key="quick_unlock"
+        android:title="@string/quick_unlock_title"
+        android:summary="@string/quick_unlock_summary" />    
+		
 </PreferenceScreen>
