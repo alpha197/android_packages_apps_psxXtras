@@ -315,5 +315,8 @@
     <string name="noti_reminder_interval_3s">3 Sekunden</string>
     <string name="noti_reminder_interval_3dot5s">3.5 Sekunden</string>
     <string name="noti_reminder_interval_4s">4 Sekunden</string>    
+
+    <string name="kill_app_longpress_back">App beenden bei Zurück</string>
+    <string name="kill_app_longpress_back_summary">Beende das im Vordergrund befindliche Programm bei langem drücken der Zurück Taste</string> 
 	
 </resources>
