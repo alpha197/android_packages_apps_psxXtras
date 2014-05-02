@@ -55,8 +55,7 @@
     <!-- general -->
     <header android:id="@+id/general_section"
         android:title="@string/header_category_general" />
-    
-                
+                   
     <!-- Interface -->
     <header
         android:id="@+id/psx_user_interface"
@@ -64,6 +63,20 @@
         android:fragment="net.purespeedx.psxxtras.UserInterfaceSettings"
         android:title="@string/psx_header_interface" />
 
+    <!-- Sound -->
+    <header
+        android:id="@+id/psx_sound"
+        android:icon="@drawable/ic_settings_sound"
+        android:fragment="net.purespeedx.psxxtras.SoundSettings"
+        android:title="@string/psx_header_sound" />
+		
+    <!-- Notifications -->
+    <header
+        android:id="@+id/psx_notifications"
+        android:icon="@drawable/ic_settings_notifications"
+        android:fragment="net.purespeedx.psxxtras.NotificationsSettings"
+        android:title="@string/psx_header_notifications" />
+		
     <!-- Lockscreen -->
     <header
         android:id="@+id/psx_lockscreen"

@@ -14,6 +14,8 @@
     <string name="header_category_general">General</string>
     <string name="header_category_bars">Bars</string>
     <string name="header_category_buttons">Buttons</string>
+	<string name="psx_header_sound">Sound</string>
+	<string name="psx_header_notifications">Notifications</string>
     
     <!-- General strings -->
     <string name="ok">OK</string>
@@ -336,4 +338,5 @@
 	
 	<string name="quick_unlock_title">Quick Unlock</string>
 	<string name="quick_unlock_summary">If active no Enter is needed on Pin or Password</string>
+	
 </resources>

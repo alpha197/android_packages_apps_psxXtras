@@ -14,6 +14,8 @@
     <string name="header_category_general">Allgemeines</string>
     <string name="header_category_bars">Leisten</string>
     <string name="header_category_buttons">Tasten</string>
+	<string name="psx_header_sound">Töne</string>
+	<string name="psx_header_notifications">Benachrichtigungen</string>
     
     <!-- General strings -->
     <string name="ok">OK</string>
@@ -321,5 +323,5 @@
 
 	<string name="quick_unlock_title">Schnell Entsperren</string>
 	<string name="quick_unlock_summary">Wenn aktiv, wird Enter beim Entsperren über Pin oder Passwort nicht benötigt</string>
-	
+
 </resources>

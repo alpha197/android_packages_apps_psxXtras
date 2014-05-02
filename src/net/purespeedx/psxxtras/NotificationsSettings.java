@@ -1,0 +1,157 @@
+package net.purespeedx.psxxtras;
+
+
+import com.android.settings.SettingsPreferenceFragment;
+import com.android.settings.Utils;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.pm.ResolveInfo;
+import android.content.res.Resources;
+import android.database.ContentObserver;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.os.Vibrator;
+import android.preference.CheckBoxPreference;
+import android.preference.ListPreference;
+import android.preference.Preference;
+import android.preference.Preference.OnPreferenceChangeListener;
+import android.preference.PreferenceCategory;
+import android.preference.PreferenceGroup;
+import android.preference.PreferenceScreen;
+import android.provider.MediaStore;
+import android.provider.Settings;
+import android.provider.Settings.SettingNotFoundException;
+import android.util.Log;
+import com.android.settings.Utils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import net.purespeedx.psxxtras.R;
+
+public class NotificationsSettings extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
+
+    private static final String KEY_LIGHT_OPTIONS = "category_light_options";
+    private static final String KEY_NOTIFICATION_PULSE = "notification_pulse";
+    private static final String KEY_BATTERY_LIGHT = "battery_light";
+    private static final String PREF_LESS_NOTIFICATION_SOUNDS = "less_notification_sounds";
+  
+    private PreferenceCategory mLightOptions;
+    private PreferenceScreen mNotificationPulse;
+    private PreferenceScreen mBatteryPulse;
+    private ListPreference mAnnoyingNotifications;
+    
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        addPreferencesFromResource(R.xml.notifications_settings);
+        PreferenceScreen prefSet = getPreferenceScreen();
+        ContentResolver resolver = getActivity().getContentResolver();
+        
+        mLightOptions = (PreferenceCategory) prefSet.findPreference(KEY_LIGHT_OPTIONS);
+        mNotificationPulse = (PreferenceScreen) findPreference(KEY_NOTIFICATION_PULSE);
+        if (mNotificationPulse != null) {
+            if (!getResources().getBoolean(
+                com.android.internal.R.bool.config_intrusiveNotificationLed)) {
+                mLightOptions.removePreference(mNotificationPulse);
+                mNotificationPulse = null ;
+            } else {
+                updateLightPulseDescription();
+            }
+        }
+
+        mBatteryPulse = (PreferenceScreen) findPreference(KEY_BATTERY_LIGHT);
+        if (mBatteryPulse != null) {
+            if (getResources().getBoolean(
+                    com.android.internal.R.bool.config_intrusiveBatteryLed) == false) {
+                mLightOptions.removePreference(mBatteryPulse);
+                mBatteryPulse = null;
+            } else {
+                updateBatteryPulseDescription();
+            }
+        }
+
+        if ((mNotificationPulse == null) && (mBatteryPulse == null) && (mLightOptions != null)) {
+            prefSet.removePreference(mLightOptions);
+            mLightOptions = null;
+        }
+        
+        mAnnoyingNotifications = (ListPreference) findPreference(PREF_LESS_NOTIFICATION_SOUNDS);
+        if (mAnnoyingNotifications !=null) {
+            int notificationThreshold = Settings.System.getInt(resolver,
+                    Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD,
+                    0);
+            mAnnoyingNotifications.setValue(Integer.toString(notificationThreshold));
+            mAnnoyingNotifications.setOnPreferenceChangeListener(this);        
+        }
+        
+    }
+
+    private void updateLightPulseDescription() {
+        if (mNotificationPulse != null) {    
+            if (Settings.System.getInt(getActivity().getContentResolver(),
+                    Settings.System.NOTIFICATION_LIGHT_PULSE, 0) == 1) {
+                mNotificationPulse.setSummary(getString(R.string.notification_light_enabled));
+            } else {
+                mNotificationPulse.setSummary(getString(R.string.notification_light_disabled));
+            }
+        }
+    }
+
+    private void updateBatteryPulseDescription() {
+        if (mBatteryPulse != null) {    
+            if (Settings.System.getInt(getActivity().getContentResolver(),
+                    Settings.System.BATTERY_LIGHT_ENABLED, 1) == 1) {
+                mBatteryPulse.setSummary(getString(R.string.notification_light_enabled));
+            } else {
+                mBatteryPulse.setSummary(getString(R.string.notification_light_disabled));
+            }
+        }
+     }
+    
+
+    @Override
+    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+        return super.onPreferenceTreeClick(preferenceScreen, preference);
+    }
+
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object objValue) {
+        ContentResolver resolver = getActivity().getContentResolver();
+        if (preference == mAnnoyingNotifications) {
+            final int val = Integer.valueOf((String) objValue);
+            Settings.System.putInt(resolver,
+                    Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD, val);
+            return true;
+        }
+        return false;
+    }
+        
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateLightPulseDescription();
+        updateBatteryPulseDescription();
+    }    
+    
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+    
+}

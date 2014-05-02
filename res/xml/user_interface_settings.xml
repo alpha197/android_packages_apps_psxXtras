@@ -19,57 +19,11 @@
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
     android:title="@string/psx_header_interface">
 
-     <PreferenceScreen
+    <PreferenceScreen
         android:fragment="net.purespeedx.psxxtras.DoubleTapToSleepSettings"
         android:key="double_tap_sleep"
         android:title="@string/double_tap_sleep_title" />    
-        
-    <net.purespeedx.psxxtras.IncreasingRingPreference
-        android:key="increasing_ring"
-        android:title="@string/increasing_ring_title"
-        android:dialogTitle="@string/increasing_ring_title"
-        android:persistent="false"
-        android:streamType="ring" />
-
-    <CheckBoxPreference
-            android:key="safe_headset_volume_warning"
-            android:title="@string/safe_headset_volume_warning_title"
-            android:summary="@string/safe_headset_volume_warning_summary"
-            android:persistent="false" />    
-        
-     <PreferenceCategory
-        android:title="@string/notifications_category_title" >
-
-        <ListPreference
-            android:key="less_notification_sounds"
-            android:title="@string/less_notification_sounds_title"
-            android:summary="@string/less_notification_sounds_summary"
-            android:entries="@array/less_notification_sounds_entries"
-            android:entryValues="@array/less_notification_sounds_values" />
-
-    </PreferenceCategory>
-
-    <PreferenceScreen
-        android:key="quiet_hours_settings"
-        android:fragment="net.purespeedx.psxxtras.QuietHours"
-        android:title="@string/quiet_hours_title" />
-
-    <PreferenceCategory
-        android:key="category_light_options"
-        android:title="@string/display_category_light_options_title" >
-
-        <PreferenceScreen
-            android:key="battery_light"
-            android:title="@string/battery_light_title"
-            android:fragment="net.purespeedx.psxxtras.notificationlight.BatteryLightSettings" />
-
-        <PreferenceScreen
-            android:key="notification_pulse"
-            android:title="@string/notification_pulse_title"
-            android:fragment="net.purespeedx.psxxtras.notificationlight.NotificationLightSettings" />
-
-    </PreferenceCategory>
-    
+                  
     <PreferenceCategory
             android:key="category_omniswitch"
             android:title="@string/omniswitch_category">

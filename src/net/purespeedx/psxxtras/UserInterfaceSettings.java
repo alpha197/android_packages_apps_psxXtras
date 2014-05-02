@@ -45,13 +45,6 @@ import net.purespeedx.psxxtras.R;
 
 public class UserInterfaceSettings extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
-    private static final String KEY_LIGHT_OPTIONS = "category_light_options";
-    private static final String KEY_NOTIFICATION_PULSE = "notification_pulse";
-    private static final String KEY_BATTERY_LIGHT = "battery_light";
-    private static final String PREF_LESS_NOTIFICATION_SOUNDS = "less_notification_sounds";
-    private static final String KEY_SAFE_HEADSET_VOLUME_WARNING = "safe_headset_volume_warning";
-    private static final String KEY_INCREASING_RING = "increasing_ring";
-
     private static final String OMNISWITCH_CATEGORY = "category_omniswitch";
     private static final String RECENTS_USE_OMNISWITCH = "recents_use_omniswitch";
     private static final String OMNISWITCH_START_SETTINGS = "omniswitch_start_settings";
@@ -62,15 +55,7 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
     public static Intent INTENT_OMNISWITCH_SETTINGS = new Intent(Intent.ACTION_MAIN)
             .setClassName(OMNISWITCH_PACKAGE_NAME, OMNISWITCH_PACKAGE_NAME + ".SettingsActivity");    
 
-            private static final String[] NEED_VOICE_CAPABILITY = {
-            KEY_INCREASING_RING
-    };
     
-    private PreferenceCategory mLightOptions;
-    private PreferenceScreen mNotificationPulse;
-    private PreferenceScreen mBatteryPulse;
-    private ListPreference mAnnoyingNotifications;
-    private CheckBoxPreference mVolumeWarning;
     private CheckBoxPreference mRecentsUseOmniSwitch;
     private Preference mOmniSwitchSettings;
     
@@ -81,58 +66,7 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
         addPreferencesFromResource(R.xml.user_interface_settings);
         PreferenceScreen prefSet = getPreferenceScreen();
         ContentResolver resolver = getActivity().getContentResolver();
-        
-        mLightOptions = (PreferenceCategory) prefSet.findPreference(KEY_LIGHT_OPTIONS);
-        mNotificationPulse = (PreferenceScreen) findPreference(KEY_NOTIFICATION_PULSE);
-        if (mNotificationPulse != null) {
-            if (!getResources().getBoolean(
-                com.android.internal.R.bool.config_intrusiveNotificationLed)) {
-                mLightOptions.removePreference(mNotificationPulse);
-                mNotificationPulse = null ;
-            } else {
-                updateLightPulseDescription();
-            }
-        }
-
-        mBatteryPulse = (PreferenceScreen) findPreference(KEY_BATTERY_LIGHT);
-        if (mBatteryPulse != null) {
-            if (getResources().getBoolean(
-                    com.android.internal.R.bool.config_intrusiveBatteryLed) == false) {
-                mLightOptions.removePreference(mBatteryPulse);
-                mBatteryPulse = null;
-            } else {
-                updateBatteryPulseDescription();
-            }
-        }
-
-        if ((mNotificationPulse == null) && (mBatteryPulse == null) && (mLightOptions != null)) {
-            prefSet.removePreference(mLightOptions);
-            mLightOptions = null;
-        }
-        
-        mAnnoyingNotifications = (ListPreference) findPreference(PREF_LESS_NOTIFICATION_SOUNDS);
-        if (mAnnoyingNotifications !=null) {
-            int notificationThreshold = Settings.System.getInt(resolver,
-                    Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD,
-                    0);
-            mAnnoyingNotifications.setValue(Integer.toString(notificationThreshold));
-            mAnnoyingNotifications.setOnPreferenceChangeListener(this);        
-        }
-        
-        mVolumeWarning = (CheckBoxPreference) findPreference(KEY_SAFE_HEADSET_VOLUME_WARNING);
-        mVolumeWarning.setChecked(Settings.System.getInt(resolver,
-                    Settings.System.MANUAL_SAFE_MEDIA_VOLUME, 1) == 1);
-        mVolumeWarning.setOnPreferenceChangeListener(this);        
-        
-        if (!Utils.isVoiceCapable(getActivity())) {
-            for (String prefKey : NEED_VOICE_CAPABILITY) {
-                Preference pref = findPreference(prefKey);
-                if (pref != null) {
-                    prefSet.removePreference(pref);
-                }
-            }
-        }
-
+               
         PreferenceCategory mOmniSwitch = (PreferenceCategory) prefSet.findPreference(OMNISWITCH_CATEGORY);
         if (!isOmniSwitchInstalled()) {
             prefSet.removePreference(mOmniSwitch);
@@ -159,29 +93,6 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
         }
     }
 
-    private void updateLightPulseDescription() {
-        if (mNotificationPulse != null) {    
-            if (Settings.System.getInt(getActivity().getContentResolver(),
-                    Settings.System.NOTIFICATION_LIGHT_PULSE, 0) == 1) {
-                mNotificationPulse.setSummary(getString(R.string.notification_light_enabled));
-            } else {
-                mNotificationPulse.setSummary(getString(R.string.notification_light_disabled));
-            }
-        }
-    }
-
-    private void updateBatteryPulseDescription() {
-        if (mBatteryPulse != null) {    
-            if (Settings.System.getInt(getActivity().getContentResolver(),
-                    Settings.System.BATTERY_LIGHT_ENABLED, 1) == 1) {
-                mBatteryPulse.setSummary(getString(R.string.notification_light_enabled));
-            } else {
-                mBatteryPulse.setSummary(getString(R.string.notification_light_disabled));
-            }
-        }
-     }
-    
-
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference == mOmniSwitchSettings){
@@ -194,17 +105,7 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
     @Override
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         ContentResolver resolver = getActivity().getContentResolver();
-        if (preference == mAnnoyingNotifications) {
-            final int val = Integer.valueOf((String) objValue);
-            Settings.System.putInt(resolver,
-                    Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD, val);
-            return true;
-        } else if (preference == mVolumeWarning) {
-            int volumeWarning = (Boolean) objValue ? 1 : 0;
-            Settings.System.putInt(resolver,
-                    Settings.System.MANUAL_SAFE_MEDIA_VOLUME, volumeWarning);
-            return true;
-        } else if (preference == mRecentsUseOmniSwitch) {
+        if (preference == mRecentsUseOmniSwitch) {
             boolean value = (Boolean) objValue;
 
             Settings.System.putInt(
@@ -213,19 +114,7 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
         }
         return false;
     }
-        
-    @Override
-    public void onResume() {
-        super.onResume();
-        updateLightPulseDescription();
-        updateBatteryPulseDescription();
-    }    
-    
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
-    
+           
     private boolean isOmniSwitchInstalled() {
         final PackageManager pm = getPackageManager();
         try {
