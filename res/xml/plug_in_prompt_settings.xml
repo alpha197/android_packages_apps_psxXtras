@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/plug_in_prompt_settings_title" >
+
+    <CheckBoxPreference
+        android:key="power_notifications"
+        android:title="@string/power_notifications_enable_title"
+        android:summary="@string/power_notifications_enable_summary"
+        android:defaultValue="false"
+        android:persistent="false" />
+
+    <Preference
+        android:key="power_notifications_ringtone"
+        android:title="@string/power_notifications_ringtone_title"
+        android:dependency="power_notifications"
+        android:persistent="false" />
+
+    <CheckBoxPreference
+        android:key="power_notifications_vibrate"
+        android:title="@string/power_notifications_vibrate_title"
+        android:defaultValue="false"
+        android:dependency="power_notifications"
+        android:persistent="false" />
+
+</PreferenceScreen>
+

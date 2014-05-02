@@ -20,6 +20,11 @@
     android:title="@string/psx_header_interface">
 
              
+    <PreferenceScreen
+        android:key="plug_in_prompt_settings"
+        android:fragment="net.purespeedx.psxxtras.PlugInPromptSettings"
+        android:title="@string/plug_in_prompt_settings_title" />
+		
     <ListPreference
         android:key="less_notification_sounds"
         android:title="@string/less_notification_sounds_title"
