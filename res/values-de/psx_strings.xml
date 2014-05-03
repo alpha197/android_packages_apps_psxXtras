@@ -27,7 +27,7 @@
     <string name="general_string">Allgemein</string>    
     
     <!-- Display settings screen, notification light settings -->
-    <string name="display_category_light_options_title">Licht Optionen</string>
+    <string name="display_category_light_options_title">Licht-Optionen</string>
     <string name="notification_light_general_title">Generell</string>
     <string name="notification_light_applist_title">Anwendungen</string>
     <string name="notification_light_phonelist_title">Telefon</string>
@@ -45,11 +45,11 @@
     <string name="pulse_speed_title">Blinkrate</string>
     <string name="picker_arrow">→</string>
     <string name="default_time">Normal</string>
-    <string name="custom_time">Eigen</string>
+    <string name="custom_time">Individuell</string>
     <string name="dialog_test">Test</string>
     <string name="dialog_delete_title">Löschen</string>
     <string name="dialog_delete_message">Auswahl entfernen?</string>
-    <string name="dialog_test_message">Bildschirm ausschalten, um Licht zu testen oder Dialog beenden um zurückzukehren</string>
+    <string name="dialog_test_message">Bildschirm ausschalten, um Licht zu testen oder Dialog beenden, um zurückzukehren</string>
     <string name="dialog_test_button">Abbruch</string>
 
     <!-- Values for the notification light pulse spinners -->
@@ -83,9 +83,9 @@
     <string name="quiet_hours_enabled_on">Stille Stunden werden erzwungen</string>
     <string name="quiet_hours_enabled_off">Benachrichtigungen werden normal angezeigt</string>
     <string name="quiet_hours_start">Beginn stille Stunden</string>
-    <string name="quiet_hours_start_summary">Wann sollen die stillen Stunden beginnen</string>
+    <string name="quiet_hours_start_summary">Wann sollen die stillen Stunden beginnen?</string>
     <string name="quiet_hours_end">Ende stille Stunden</string>
-    <string name="quiet_hours_end_summary">Wann sollen die stillen Stunden enden</string>
+    <string name="quiet_hours_end_summary">Wann sollen die stillen Stunden enden?</string>
     <string name="quiet_hours_mute">Kein Benachrichtigungston</string>
     <string name="quiet_hours_mute_on">Kein Ton wird gespielt</string>
     <string name="quiet_hours_mute_off">Töne werden normal gespielt</string>
@@ -154,7 +154,7 @@
     <string name="powermenu_torch_prefs_summary">%1$s</string>
 
     <!-- Kernel Settings -->
-    <string name="kernel_settings_header">Kernel Einstellungen</string>
+    <string name="kernel_settings_header">Kernel-Einstellungen</string>
     <string name="kernel_settings_force_fastcharge_title">Schnellladen erzwingen</string>
     <string name="kernel_settings_force_fastcharge_summary_on">Schnelles Laden erzwungen</string>
     <string name="kernel_settings_force_fastcharge_summary_off">Schnelles Laden nicht erzwungen</string>
@@ -212,22 +212,22 @@
     <string name="layout">Layout</string>
     <string name="privacy">Privatsphäre</string>
 
-    <string name="lockscreen_notifications">Sperrschirm Meldungen</string>
-    <string name="lockscreen_notifications_summary">Zeige offene Meldungen auf dem Sperrschirm</string>
+    <string name="lockscreen_notifications">Sperrbildschirm-Meldungen</string>
+    <string name="lockscreen_notifications_summary">Zeige offene Meldungen auf dem Sperrbildschirm</string>
     <string name="pocket_mode">Taschen-Modus</string>
     <string name="pocket_mode_summary">Schalte den Bildschirm ein und zeige alle Meldungen, wenn das Gerät aus der Tasche genommen wird. Schalte Bildschirm aus, wenn es zurück in die Tasche gesteckt wird</string>
     <string name="show_always">Immer zeigen</string>
     <string name="show_always_summary">Schaltet den Bildschirm immer ein, sobald das Gerät aus der Tachen genommen wird, auch wenn keine Nachricht ansteht</string>
-    <string name="hide_low_priority">Verstecke Niedrige Priorität</string>
-    <string name="hide_low_priority_summary">Verstecke Meldungen mit niedriger Priorität wie Google Now Wetter Meldungen</string>
+    <string name="hide_low_priority">Verstecke niedrige Priorität</string>
+    <string name="hide_low_priority_summary">Verstecke Meldungen mit niedriger Priorität, z.B. Google Now Wetter-Meldungen</string>
     <string name="hide_non_clearable">Verstecke Unlöschbare</string>
     <string name="hide_non_clearable_summary">Verstecke alle nichtlöschbaren Meldungen</string>
     <string name="dismiss_all">Erlaube Bestätigung aller Meldungen</string>
-    <string name="dismiss_all_summary">Erlaube auch das Bestätigen nicht löschbarer Meldungen. Natürlich werden diese nur vom Sperrschirm entfernt und nicht vom Meldungsschirm</string>
+    <string name="dismiss_all_summary">Erlaube auch das Bestätigen nicht löschbarer Meldungen. Natürlich werden diese nur vom Sperrbildschirm entfernt und nicht vom Meldungsschirm</string>
     <string name="expanded_view">Erweiterte Meldungsansicht</string>
     <string name="expanded_view_summary">Fügt die Möglichkeit hinzu, durch langen Druck Meldungen erweitert anzuzeigen. Die erweiterte Ansicht zeigt manchmal privatere Informationen, weshalb dies vielleicht deaktiviert werden sollte</string>
     <string name="force_expanded_view">Erzwinge erweiterte Ansicht</string>
-    <string name="force_expanded_view_summary">Zeige Meldungen voreingestellt erweitert. Sie können weiterhin per langem Druck verkleinert werden</string>
+    <string name="force_expanded_view_summary">Zeige Meldungen voreingestellt erweitert. Sie können weiterhin durch langen Druck verkleinert werden</string>
     <string name="wake_on_notification">Aufwachen bei Meldungen</string>
     <string name="wake_on_notification_summary">Wecke Gerät bei neuen Nachrichten auf</string>
     <string name="notifications_height">Anzahl Meldungen</string>
@@ -259,8 +259,8 @@
     <string name="blacklist_edit_dialog_title">Editiere Sperreinträge</string>
     <string name="blacklist_prefs">Einstellungen</string>
     <string name="blacklist_button_delete">Löschen</string>
-    <string name="blacklist_empty_text">Es sind keine Sperreinträge vorhanden. Füge einen Eintrag mit der (+) Taste hinzu.</string>
-    <string name="blacklist_disabled_empty_text">Um Anrufe oder Nachrichten zu sperren, aktiviere Sperrliste.</string>
+    <string name="blacklist_empty_text">Es sind keine Sperreinträge vorhanden. Füge einen Eintrag mit der (+) Taste hinzu</string>
+    <string name="blacklist_disabled_empty_text">Um Anrufe oder Nachrichten zu sperren, aktiviere Sperrliste</string>
     <string name="blacklist_summary_disabled">Deaktiviert</string>
     <string name="blacklist_summary">Anrufe und Nachrichten von Nummern in der Liste werden gesperrt</string>
     <string name="blacklist_notify">Zeige Nachrichten</string>
@@ -274,7 +274,7 @@
     <string name="blacklist_summary_type_messages_only">Nachrichten</string>
     <string name="blacklist_summary_type_calls_and_messages">Anrufe und Nachrichten</string>
     <string name="blacklist_regex_title">Benutze Jokerzeichen</string>
-    <string name="blacklist_regex_summary">Benutze . als Jokerzeichen und * für fortführend. Z.B. 123.* Blockiert alle Nummern, die mit 123 beginnen und .*123.* blockiert alle Nummern, in denen 123 vorkommt</string>
+    <string name="blacklist_regex_summary">Benutze . als Jokerzeichen und * für fortführend. Z.B. 123.* blockiert alle Nummern, die mit 123 beginnen, und .*123.* blockiert alle Nummern, in denen 123 vorkommt</string>
     <string name="blacklist_policy_block_calls">Blockiere eingehende Anrufe</string>
     <string name="blacklist_policy_block_messages">Blockiere eingehende Nachrichten</string>
 
@@ -318,11 +318,11 @@
     <string name="noti_reminder_interval_3dot5s">3.5 Sekunden</string>
     <string name="noti_reminder_interval_4s">4 Sekunden</string>    
 
-    <string name="kill_app_longpress_back">App beenden bei Zurück</string>
-    <string name="kill_app_longpress_back_summary">Beende das im Vordergrund befindliche Programm bei langem drücken der Zurück Taste</string> 
+    <string name="kill_app_longpress_back">App beenden mit Zurück-Taste</string>
+    <string name="kill_app_longpress_back_summary">Beende das im Vordergrund befindliche Programm bei langem Druck auf Zurück-Taste</string> 
 
-	<string name="quick_unlock_title">Schnell Entsperren</string>
-	<string name="quick_unlock_summary">Wenn aktiv, wird Enter beim Entsperren über Pin oder Passwort nicht benötigt</string>
+	<string name="quick_unlock_title">Schnelles Entsperren</string>
+	<string name="quick_unlock_summary">Wenn aktiv, wird der Sperrbildschirm nach Eingabe der richtigen Pin oder des richtigen Passworts ohne Enter-Taste entsperrt</string>
 
     <!-- Plug-in prompt -->
     <string name="plug_in_prompt_settings_title">Anschlussbenachrichtigung</string>
