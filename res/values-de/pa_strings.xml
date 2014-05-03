@@ -23,8 +23,8 @@
     <string name="navigation_ring_title">Schnellstart</string>
     
     <!-- Navigation ring shortcuts -->
-    <string name="navring_target_reset_message">Sollen alle benutzerdefinierten Navigationsleisten Schnellstart-Verknüpfungen gelöscht werden?</string>
-    <string name="navring_target_reset">Navigationsleisten Schnellstart-Verknüpfungen gelöscht</string>
+    <string name="navring_target_reset_message">Sollen alle benutzerdefinierten Schnellstart-Verknüpfungen in der Navigationsleiste gelöscht werden?</string>
+    <string name="navring_target_reset">Schnellstart-Verknüpfungen in Navigationsleiste gelöscht</string>
     <string name="navring_action_open_ime_switcher">Öffne IME Wechsler</string>
     <string name="navring_action_kill_app">Lösche App</string>
     <string name="navring_action_none">Keiner</string>
@@ -52,13 +52,13 @@
     <!-- Description of the down direction in which one can to slide the handle in the Slide unlock     screen. [CHAR LIMIT=NONE] -->
     <string name="description_direction_down">Schiebe runter für <xliff:g id="target_description"           example="Unlock">%s</xliff:g>.</string>
     <!-- Description of the left direction in which one can to slide the handle in the Slide unlock     screen. [CHAR LIMIT=NONE] -->
-    <string name="description_direction_left">"Schiebe links für <xliff:g id="target_description"          example="Unlock">%s</xliff:g>.</string>
+    <string name="description_direction_left">Schiebe links für <xliff:g id="target_description"          example="Unlock">%s</xliff:g>.</string>
     <!-- Description of the right direction in which one can to slide the handle in the Slide unlock    screen. [CHAR LIMIT=NONE] -->
     <string name="description_direction_right">Schiebe rechts für <xliff:g id="target_description"         example="Unlock">%s</xliff:g>.</string>
 
     <!-- Reset Profiles -->
     <string name="profile_reset_title">Zurücksetzen</string>
-    <string name="profile_reset_message">Alle benutzerdefinierten Profile und App-Gruppen zurücksetzen ?</string>
+    <string name="profile_reset_message">Alle benutzerdefinierten Profile und App-Gruppen zurücksetzen?</string>
 
     <!-- Title for application group setting screen -->
     <string name="profile_applist_title">Apps</string>
@@ -71,22 +71,22 @@
     <string name="icon_picker_title">Wähle Symbolquelle</string>
     <string name="icon_picker_system_icons_title">Systemsymbol</string>
     <string name="icon_picker_gallery_title">Gallerie</string>
-    <string name="icon_picker_pack_title">Symbol Packet</string>
+    <string name="icon_picker_pack_title">Symbol-Paket</string>
 
     <!-- Lock Screen Shortcuts -->
     <string name="lockscreen_target_info">Ziehe Schieber auf das gewünschte Ziel, um eine Verknüpfung zu definieren</string>
     <string name="lockscreen_target_title">Schieberverknüpfung</string>
-    <string name="lockscreen_target_summary">Editiere benutzerdefinierte Sperrschirm-Verknüpfungen</string>
-    <string name="lockscreen_target_reset">Sperrschirm Verknüpfungen zurücksetzen</string>
+    <string name="lockscreen_target_summary">Editiere benutzerdefinierte Sperrbildschirm-Verknüpfungen</string>
+    <string name="lockscreen_target_reset">Sperrbilschirm-Verknüpfungen zurücksetzen</string>
     <string name="lockscreen_target_reset_title">Zurücksetzen</string>
     <string name="lockscreen_target_reset_message">Alle benutzerdefinierten Sperrbildschirm-Ziele zurücksetzen?</string>
     <string name="lockscreen_target_empty">Leer</string>
-    <string name="lockscreen_target_edit_title">Editiere Verknüpfungen und Symbol</string>
+    <string name="lockscreen_target_edit_title">Editiere Verknüpfungen und Symbole</string>
     <string name="lockscreen_target_edit_msg">Wähle oder ändere gewünschte Anwendung oder Aktivität und das gewünschte Symbol</string>
 
     <!-- Lock screen shortcuts -->
     <string name="picker_activities">Aktivitäten</string>
-    <string name="select_custom_app_title">Wähle Benutzerapp</string>
+    <string name="select_custom_app_title">Wähle Benutzer-App</string>
     <string name="select_custom_activity_title">Wähle Benutzer-Aktivität</string>
     <string name="icon_picker_choose_icon_title">Wähle Symbol</string>
     <string name="icon_picker_alarm">Alarm</string>
@@ -114,7 +114,7 @@
     <string name="icon_picker_twitter">Twitter</string>
 
    <!-- Lockscreen widgets -->
-    <string name="security_maximize_widgets_title">Maximiere Sperrschirm-Widgets</string>
-    <string name="security_maximize_widgets_summary">Bestimmt, ob die Sperrschirm-Widgets maximiert angezeigt werden oder nicht</string>
+    <string name="security_maximize_widgets_title">Maximiere Sperrbildschirm-Widgets</string>
+    <string name="security_maximize_widgets_summary">Sperrbildschirm-Widgets maximiert anzeigen oder nicht</string>
 	
 </resources>
